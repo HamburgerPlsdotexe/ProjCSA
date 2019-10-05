@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectCSA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +31,16 @@ namespace ProjectCSA.Controllers
         public ActionResult SignIn()
         {
             ViewBag.Message = "Teacher Sign in";
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignIn(TeacherModel model)
+        {
+            if (ModelState.IsValid)
+
+                return RedirectToAction("index");
 
             return View();
         }
