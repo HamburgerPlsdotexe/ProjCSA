@@ -27,9 +27,9 @@ namespace ProjectCSA.Controllers
             return View();
         }
 
-        public ActionResult SignUp()
+        public ActionResult SignIn()
         {
-            ViewBag.Message = "Student Sign up";
+            ViewBag.Message = "Teacher Sign in";
 
             return View();
         }
