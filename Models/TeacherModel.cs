@@ -10,7 +10,7 @@ namespace ProjectCSA.Models
     {   
         [Display(Name = "Teacher Code")]
         [Required(ErrorMessage = "Please enter a valid teacher code")]
-        public int Tcode { get; set; }
+        public string Tcode { get; set; }
         [Display(Name = "First name")]
         [Required(ErrorMessage = "Please enter a valid first name")]
         public string Fname { get; set; }

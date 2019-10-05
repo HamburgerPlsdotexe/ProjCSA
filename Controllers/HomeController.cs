@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static DataLibrary.Logic.TeacherProcessor;
+
 
 namespace ProjectCSA.Controllers
 {
@@ -38,10 +40,14 @@ namespace ProjectCSA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignIn(TeacherModel model)
         {
-            if (ModelState.IsValid)
-
+            if (ModelState.IsValid) 
+            {
+                int recordsCreated = CreateTeacher(model.Tcode,
+                    model.Fname,
+                    model.Infix,
+                    model.Lname);
                 return RedirectToAction("index");
-
+            }
             return View();
         }
     }
