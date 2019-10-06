@@ -22,7 +22,25 @@ namespace ProjectCSA.Controllers
 
             return View();
         }
+        public ActionResult ViewTeachers()
+        {
+            ViewBag.Message = "Teachers List";
 
+            var data = LoadTeachers();
+            List<TeacherModel> teachers = new List<TeacherModel>();
+            
+            foreach (var row in data)
+            {
+                teachers.Add(new TeacherModel
+                {
+                    Tcode = row.Tcode,
+                    Fname = row.Fname,
+                    Infix = row.Infix,
+                    Lname = row.Lname
+                });
+            }
+            return View(teachers);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
