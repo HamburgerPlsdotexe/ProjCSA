@@ -184,13 +184,11 @@ tr {
     }
 
 
-/* Add a black background color to the top navigation bar */
 .topnav {
     overflow: hidden;
     background-color: #e9e9e9;
 }
 
-    /* Style the links inside the navigation bar */
     .topnav a {
         float: left;
         display: block;
@@ -201,19 +199,16 @@ tr {
         font-size: 17px;
     }
 
-        /* Change the color of links on hover */
         .topnav a:hover {
             background-color: #ddd;
             color: black;
         }
 
-        /* Style the "active" element to highlight the current page */
         .topnav a.active {
             background-color: #2196F3;
             color: white;
         }
 
-    /* Style the search box inside the navigation bar */
     .topnav input[type=text] {
         padding: 6px;
         border: none;
@@ -221,3 +216,17 @@ tr {
         margin-right: 16px;
         font-size: 17px;
     }
+
+h2{
+    font-size:40px;
+    text-align:center;
+}
+a{
+    color:black;
+    font-size:15px;
+    padding-top:10px;
+}
+validation{
+    color:red;
+    font-weight:bold;
+}

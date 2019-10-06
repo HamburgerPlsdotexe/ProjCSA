@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProjectCSA.Models.TeacherModel>
+
+@{
+    ViewBag.Title = "ViewTeachers";
+}
+
+<h2>ViewTeachers</h2>
+
+<p>
+    @Html.ActionLink("Sign up", "SignUp")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fname)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Lname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lname)
+        </td>
+
+    </tr>
+}
+
+</table>
