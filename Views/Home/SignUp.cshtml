@@ -16,22 +16,22 @@
         <hr />
         @Html.ValidationSummary(true, "")
     <div class="form-group">
-        @Html.LabelFor(model => model.TeacherCode)
+        @Html.LabelFor(model => model.Tcode)
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TeacherCode)
+            @Html.EditorFor(model => model.Tcode)
         </div>
         <div class="validation">
-            @Html.ValidationMessageFor(model => model.TeacherCode, "")
+            @Html.ValidationMessageFor(model => model.Tcode, "")
         </div>
     </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fname)
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fname)
-                @Html.ValidationMessageFor(model => model.Fname, "")
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fname)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fname)
+            @Html.ValidationMessageFor(model => model.Fname, "")
         </div>
+    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Lname)

@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCSA", "ProjectCSA.csproj", "{8ADEB3AC-0FA6-4C7F-8E13-32E0D5ABBF1D}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SADB", "..\SADB\SADB.sqlproj", "{01E0F185-C4FA-4973-B008-6D333DB6ACAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "..\DataLibrary\DataLibrary.csproj", "{AB7CD602-DD03-4A52-B15F-71FABD8A4C02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{8ADEB3AC-0FA6-4C7F-8E13-32E0D5ABBF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ADEB3AC-0FA6-4C7F-8E13-32E0D5ABBF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ADEB3AC-0FA6-4C7F-8E13-32E0D5ABBF1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01E0F185-C4FA-4973-B008-6D333DB6ACAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01E0F185-C4FA-4973-B008-6D333DB6ACAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01E0F185-C4FA-4973-B008-6D333DB6ACAD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{01E0F185-C4FA-4973-B008-6D333DB6ACAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01E0F185-C4FA-4973-B008-6D333DB6ACAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01E0F185-C4FA-4973-B008-6D333DB6ACAD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AB7CD602-DD03-4A52-B15F-71FABD8A4C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7CD602-DD03-4A52-B15F-71FABD8A4C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7CD602-DD03-4A52-B15F-71FABD8A4C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7CD602-DD03-4A52-B15F-71FABD8A4C02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

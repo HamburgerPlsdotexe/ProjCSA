@@ -41,7 +41,7 @@ namespace ProjectCSA.Controllers
         {
             if (ModelState.IsValid)
             {
-                int RecordsCreated = CreateTeacher(model.TeacherCode, model.Fname, model.Lname);
+                int RecordsCreated = CreateTeacher(model.Tcode, model.Fname, model.Lname);
                 return RedirectToAction("index");
             }
 
@@ -59,7 +59,7 @@ namespace ProjectCSA.Controllers
             {
                 teachers.Add(new TeacherModel
                 {
-                    TeacherCode = row.TeacherCode,
+                    Tcode = row.Tcode,
                     Fname = row.Fname,
                     Lname = row.Lname,
                 });
