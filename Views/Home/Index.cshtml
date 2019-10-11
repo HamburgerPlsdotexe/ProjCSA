@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<ProjectCSA.Models.StudentModel>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -64,7 +66,7 @@
         <div class="table">
             <table style="width:100%">
                 <tr>
-                    <th>Full name</th>
+                    <th>@Html.DisplayNameFor(model => model.Fname)</th>
                     <th>Date</th>
                     <th>Date</th>
                     <th>Date</th>
@@ -79,9 +81,8 @@
                 <tr>
                     <td>Daan Nekeman</td>
                     <td>
-                        <div>
-                            <input id="checkbox-1" class="checkbox-custom" type="checkbox">
-                            <label for="checkbox-1" class="checkbox-custom-label"></label>
+                        <div class="checkbox">
+                            @Html.CheckBox("checkbox-1")
                         </div>
                     </td>
                     <td>
@@ -214,4 +215,4 @@
             </table>
         </div>
     </div>
-    </div>
+</div>
