@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "ViewTeachers";
 }
+<asp:Table ID="Table1" runat="server" BorderColor="Black" BorderWidth="2px">
+</asp:Table>
 
 <h2>ViewTeachers</h2>
 
@@ -24,19 +26,20 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tcode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lname)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lname)
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
