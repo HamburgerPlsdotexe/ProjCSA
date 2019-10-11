@@ -68,13 +68,36 @@ namespace ProjectCSA.Controllers
         {
             if (ModelState.IsValid) 
             {
-                int recordsCreated = CreateTeacher(model.Tcode,
+
+                int RecordsCreated = CreateTeacher(model.Tcode,
                     model.Fname,
                     model.Infix,
                     model.Lname);
+
                 return RedirectToAction("index");
             }
             return View();
         }
+
+        public ActionResult ViewTeachers()
+        {
+            ViewBag.Message = "Teacher List";
+
+            var data = LoadTeachers();
+
+            List<TeacherModel> teachers = new List<TeacherModel>();
+            foreach(var row in data)
+            {
+                teachers.Add(new TeacherModel
+                {
+                    Tcode = row.Tcode,
+                    Fname = row.Fname,
+                    Lname = row.Lname,
+                });
+            }
+
+            return View(teachers);
+        }
+
     }
 }

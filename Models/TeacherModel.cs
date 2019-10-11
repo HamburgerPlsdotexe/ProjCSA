@@ -7,9 +7,10 @@ using System.Web;
 namespace ProjectCSA.Models
 {
     public class TeacherModel
-    {   
-        [Display(Name = "Teacher Code")]
-        [Required(ErrorMessage = "Please enter a valid teacher code")]
+    {
+        [Display(Name = "Teacher code")]
+        [Required(ErrorMessage = "You need to enter a valid teacher code")]
+        [StringLength(5, MinimumLength =5, ErrorMessage = "Please enter a valid teacher code")]
         public string Tcode { get; set; }
         [Display(Name = "First name")]
         [Required(ErrorMessage = "Please enter a valid first name")]

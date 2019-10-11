@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "ViewTeachers";
 }
+<asp:Table ID="Table1" runat="server" BorderColor="Black" BorderWidth="2px">
+</asp:Table>
 
 <h2>ViewTeachers</h2>
 
@@ -12,7 +14,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TeacherCode)
+            @Html.DisplayNameFor(model => model.Tcode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fname)
@@ -22,6 +24,7 @@
         </th>
         <th></th>
     </tr>
+
 
 @foreach (var item in Model) {
     <tr>
