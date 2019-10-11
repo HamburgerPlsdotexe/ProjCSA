@@ -1,3 +1,4 @@
+using DataLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ProjectCSA.Controllers
 {
     public class HomeController : Controller
     {
+        Pwenc penc = new Pwenc();
         public ActionResult Index()
         {
             return View();
@@ -28,7 +30,7 @@ namespace ProjectCSA.Controllers
 
             var data = LoadTeachers();
             List<TeacherModel> teachers = new List<TeacherModel>();
-            
+
             foreach (var row in data)
             {
                 teachers.Add(new TeacherModel
@@ -48,56 +50,27 @@ namespace ProjectCSA.Controllers
             return View();
         }
 
-        public ActionResult SignUp()
-        {
-            ViewBag.Message = "Teacher Sign Up";
-       
-            return View();
-        }   
-        
         public ActionResult SignIn()
         {
             ViewBag.Message = "Teacher Sign in";
 
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignIn(TeacherModel model)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-
-                int RecordsCreated = CreateTeacher(model.Tcode,
+                int recordsCreated = CreateTeacher(
+                    model.Tcode,
                     model.Fname,
-                    model.Infix,
-                    model.Lname);
-
+                    model.Lname,
+                    model.Password = penc.Run(model.Password));
                 return RedirectToAction("index");
             }
             return View();
         }
-
-        public ActionResult ViewTeachers()
-        {
-            ViewBag.Message = "Teacher List";
-
-            var data = LoadTeachers();
-
-            List<TeacherModel> teachers = new List<TeacherModel>();
-            foreach(var row in data)
-            {
-                teachers.Add(new TeacherModel
-                {
-                    Tcode = row.Tcode,
-                    Fname = row.Fname,
-                    Lname = row.Lname,
-                });
-            }
-
-            return View(teachers);
-        }
-
     }
 }
