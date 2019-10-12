@@ -1,6 +1,6 @@
 ﻿using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
-
+using static DataLibrary.Logic.ClassProcessor;
 using ProjectCSA.Models;
 using System;
 using System.Collections.Generic;
