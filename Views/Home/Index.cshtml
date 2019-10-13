@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectCSA.Models.StudentModel>
+﻿@model ProjectCSA.Models.StudentsAndClassesModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -11,7 +11,8 @@
 
         <div class="headers">
             <a class="headerbuttons" href="#">CLASSES</a>
-            <a class="headerbuttons" href="#">SCHEDULES</a>
+            <a class="headerbuttons" href="~/Home/ViewTeachers/">TEACHERS</a>
+            <a class="headerbuttons" href="~/Home/SignUp/">CREATE TEACHER</a>
         </div>
     </div>
     <div class="leftcolumn">
@@ -36,7 +37,7 @@
         <div class="table">
             <table style="width:100%">
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Fname)</th>
+                    <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
                     <th>Date</th>
                     <th>Date</th>
                     <th>Date</th>
@@ -49,36 +50,24 @@
                     <th>Date</th>
                 </tr>
 
-                @foreach (var item in Model)
+                @foreach (var item in Model.Students)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Fname)
-                        </td>
+                    if (item.cnum == "INF1I")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fname)
+                            </td>
 
-                        <td>
-                            <div class="checkbox">
-                                @Html.CheckBox("checkbox-1")
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox">
-                                @Html.CheckBox("checkbox-1")
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox">
-                                @Html.CheckBox("checkbox-1")
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox">
-                                @Html.CheckBox("checkbox-1")
-                            </div>
-                        </td>
-                    </tr>
+                            <td>
+                                <div class="checkbox">
+                                    @Html.CheckBox("checkbox-1")
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
                 }
-
             </table>
         </div>
     </div>

@@ -17,7 +17,9 @@ namespace ProjectCSA.Controllers
         {
             ViewBag.Message = "Home page";
 
+            StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
+            var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
             foreach (var row in data)
@@ -30,8 +32,19 @@ namespace ProjectCSA.Controllers
                     cnum = row.cnum
                 });
             }
+            List<ClassModel> classes = new List<ClassModel>();
+            foreach (var row in data2)
+            {
+                classes.Add(new ClassModel
+                {
+                    cnum = row.cnum
+                });
+            }
+            model.Classes = classes;
+            model.Students = student;
 
-            return View(student);
+
+            return View(model);
         }
 
         public ActionResult About()
@@ -55,7 +68,7 @@ namespace ProjectCSA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SignIn(TeacherModel model)
+        public ActionResult SignUp(TeacherModel model)
         {
             if (ModelState.IsValid)
             {
