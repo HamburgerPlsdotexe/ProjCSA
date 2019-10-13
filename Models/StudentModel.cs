@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectCSA.Models
 {
     public class StudentModel
     {
-        public int Snum { get; set; }
+        [Display(Name = "Student Number")]
+        public string Snum { get; set; }
+        [Display(Name = "First Name")]
+
         public string Fname { get; set; }
-        public string Infix { get; set; }
+        [Display(Name = "Last Name")]
+
         public string Lname { get; set; }
+        [Display(Name = "Class Number")]
+
+        public string cnum { get; set; }
+
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+
+        public string confirmPassword { get; set; }
+
+
     }
 }
