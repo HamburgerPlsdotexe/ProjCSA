@@ -159,8 +159,8 @@ tr {
 }
 
 .leftcolumn {
-    background-color: black;
-    width: 20%;
+    background-color: white;
+    width: 20%;         
     height: 90%;
     float: left;
     overflow-y: scroll;
