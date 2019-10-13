@@ -1,12 +1,12 @@
 ﻿using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
-using static DataLibrary.Logic.ClassProcessor;
+using static DataLibrary.Models.TeacherModel;
+using static DataLibrary.Models.StudentModel;
+using static ProjectCSA.Models.TeacherModel;
 using ProjectCSA.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
 namespace ProjectCSA.Controllers
 
 {
@@ -22,7 +22,7 @@ namespace ProjectCSA.Controllers
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
+            foreach (var row in data) 
             {
                 student.Add(new StudentModel
                 {
