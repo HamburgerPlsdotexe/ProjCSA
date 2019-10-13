@@ -51,7 +51,7 @@
                 @Html.ValidationMessageFor(model => model.Password, "")
                 @Html.LabelFor(model => model.Password)
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password)
                     <div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 @Html.ValidationMessageFor(model => model.confirmPassword, "")
                 @Html.LabelFor(model => model.confirmPassword)
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.confirmPassword)
+                    @Html.PasswordFor(model => model.confirmPassword)
 
                 </div>
             </div>
