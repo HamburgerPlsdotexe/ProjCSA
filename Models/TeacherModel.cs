@@ -11,10 +11,12 @@ namespace ProjectCSA.Models
 
         [Display(Name = "First name")]
         [Required(ErrorMessage = "Enter your first name")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter a valid name")]
         public string Fname { get; set;  }
 
         [Display(Name = "Last name")]
         [Required(ErrorMessage = "Enter your last name")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter a valid last name")]
         public string Lname { get; set; }
 
         [Display(Name = "Password")]
@@ -24,7 +26,7 @@ namespace ProjectCSA.Models
         public string Password { get; set; }
 
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password must match")]
+        [Compare("Password", ErrorMessage = "The passwords must match")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "The password must match")]
         public string confirmPassword { get; set; }

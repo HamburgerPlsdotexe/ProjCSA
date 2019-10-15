@@ -16,6 +16,16 @@ html, body {
     min-height: 100%;
 }
 
+FnameTextBox {
+    background-color: pink;
+    width: 55%;
+    margin: 0 auto;
+    margin-top: 0px;
+}
+
+box {
+    background-color: #f7b0b0
+}
 h1 {
     color: white;
 }
