@@ -10,9 +10,11 @@
     <div class="header">
 
         <div class="headers">
-            <a class="headerbuttons" href="#">CLASSES</a>
+            <a class="headerbuttons" href="#">SCHEDULE</a>
             <a class="headerbuttons" href="~/Home/ViewTeachers/">TEACHERS</a>
-            <a class="headerbuttons" href="~/Home/SignUp/">CREATE TEACHER</a>
+            <a class="headerbuttons" href="~/Home/SignUp/">TEACHER SIGNUP</a>
+            <a class="headerbuttons" href="#">STATISTICS</a>
+
         </div>
     </div>
     <div class="leftcolumn">
@@ -26,7 +28,7 @@
             <a class="active">Classes</a>
             @foreach (var item in Model.Classes)
             {
-                @Html.ActionLink(item.cnum, item.cnum)
+                @Html.ActionLink(item.cnum,  "onClick", "Home", new {cnum = item.cnum}, null)
             }
 
         </div>
@@ -52,8 +54,6 @@
 
                 @foreach (var item in Model.Students)
                 {
-                    if (item.cnum == "INF1I")
-                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Fname)
@@ -66,7 +66,6 @@
                             </td>
 
                         </tr>
-                    }
                 }
             </table>
         </div>

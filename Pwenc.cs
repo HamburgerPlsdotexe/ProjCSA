@@ -21,12 +21,13 @@ namespace ProjectCSA
         }
         private byte[] HashPassword(string password, byte[] salt)
         {
-            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
-
-            argon2.Salt = salt;
-            argon2.DegreeOfParallelism = 8; // four cores
-            argon2.Iterations = 4;
-            argon2.MemorySize = 1024 * 1024; // 1 GB
+            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password))
+            {
+                Salt = salt,
+                DegreeOfParallelism = 8, // four cores
+                Iterations = 24,
+                MemorySize = 128 * 128 // 1 GB
+            };
 
             return argon2.GetBytes(16);
         }

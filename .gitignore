@@ -9,13 +9,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-bin/ProjectCSA.dll
-bin/ProjectCSA.dll.config
-bin/ProjectCSA.pdb
-packages.config
-ProjectCSA.csproj
-ProjectCSA.sln
-Web.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
