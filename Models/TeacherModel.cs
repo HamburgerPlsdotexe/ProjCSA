@@ -29,7 +29,9 @@ namespace ProjectCSA.Models
         [Compare("Password", ErrorMessage = "The passwords must match")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "The password must match")]
-        public string confirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
+
+        public string Salt { get; set; }
 
         public string Salt { get; set; }
 

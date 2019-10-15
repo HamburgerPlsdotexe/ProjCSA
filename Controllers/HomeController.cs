@@ -20,14 +20,14 @@ namespace ProjectCSA.Controllers
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data) 
+            foreach (var row in data)
             {
                 student.Add(new StudentModel
                 {
                     Snum = row.Snum,
                     Fname = row.Fname,
                     Lname = row.Lname,
-                    cnum = row.cnum
+                    Cnum = row.Cnum
                 });
             }
             List<ClassModel> classes = new List<ClassModel>();
@@ -35,7 +35,7 @@ namespace ProjectCSA.Controllers
             {
                 classes.Add(new ClassModel
                 {
-                    cnum = row.cnum
+                    cnum = row.Cnum
                 });
             }
             model.Classes = classes;
@@ -76,7 +76,7 @@ namespace ProjectCSA.Controllers
                     model.Lname,
                     model.Password = penc.Run(model.Password, true),
                     model.Salt = penc.Run(model.Password, false));
-                    
+
                 return RedirectToAction("index");
             }
             return View();
@@ -101,7 +101,7 @@ namespace ProjectCSA.Controllers
 
             return View(teachers);
         }
-        public ActionResult onClick(string cnum)
+        public ActionResult OnClick(string cnum)
         {
             ViewBag.Message = "Home page";
 
@@ -112,14 +112,14 @@ namespace ProjectCSA.Controllers
             List<StudentModel> student = new List<StudentModel>();
             foreach (var row in data)
             {
-                if (row.cnum == cnum)
+                if (row.Cnum == cnum)
                 {
                     student.Add(new StudentModel
                     {
                         Snum = row.Snum,
                         Fname = row.Fname,
                         Lname = row.Lname,
-                        cnum = row.cnum
+                        Cnum = row.Cnum
                     });
                 }
             }
@@ -128,12 +128,12 @@ namespace ProjectCSA.Controllers
             {
                 classes.Add(new ClassModel
                 {
-                    cnum = row.cnum
+                    cnum = row.Cnum
                 });
             }
             model.Classes = classes;
             model.Students = student;
-        
+
             return View("Index", model);
 
         }

@@ -14,11 +14,11 @@ namespace ProjectCSA.Models
         public string Lname { get; set; }
         [Display(Name = "Class Number")]
 
-        public string cnum { get; set; }
+        public string Cnum { get; set; }
 
         public string Password { get; set; }
 
-        public string confirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
 
 
     }
