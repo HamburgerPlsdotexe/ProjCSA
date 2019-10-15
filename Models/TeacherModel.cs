@@ -6,13 +6,13 @@ namespace ProjectCSA.Models
     {
         [Display(Name = "Teacher code")]
         [Required(ErrorMessage = "You need to enter a valid teacher code")]
-        [StringLength(5, MinimumLength =5, ErrorMessage = "You need to enter a valid teacher code")]
+        [StringLength(5, MinimumLength = 5, ErrorMessage = "You need to enter a valid teacher code")]
         public string Tcode { get; set; }
 
         [Display(Name = "First name")]
         [Required(ErrorMessage = "Enter your first name")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter a valid name")]
-        public string Fname { get; set;  }
+        public string Fname { get; set; }
 
         [Display(Name = "Last name")]
         [Required(ErrorMessage = "Enter your last name")]
@@ -29,7 +29,9 @@ namespace ProjectCSA.Models
         [Compare("Password", ErrorMessage = "The passwords must match")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "The password must match")]
-        public string confirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
+
+        public string Salt { get; set; }
 
 
 
