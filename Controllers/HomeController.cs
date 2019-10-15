@@ -1,8 +1,6 @@
 ﻿using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
-using static DataLibrary.Models.TeacherModel;
-using static DataLibrary.Models.StudentModel;
-using static ProjectCSA.Models.TeacherModel;
+using static DataLibrary.Logic.ClassProcessor;
 using ProjectCSA.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -76,7 +74,9 @@ namespace ProjectCSA.Controllers
                     model.Tcode,
                     model.Fname,
                     model.Lname,
-                    model.Password = penc.Run(model.Password));
+                    model.Password = penc.Run(model.Password, true),
+                    model.Salt = penc.Run(model.Password, false));
+                    
                 return RedirectToAction("index");
             }
             return View();
