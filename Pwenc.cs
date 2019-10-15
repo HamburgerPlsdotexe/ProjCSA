@@ -20,7 +20,6 @@ namespace ProjectCSA
             rng.Dispose();
             return buffer;
         }
-
         private byte[] HashPassword(string password, byte[] salt)
         {
             var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password))
@@ -38,8 +37,6 @@ namespace ProjectCSA
             var newHash = HashPassword(password, salt);
             return hash.SequenceEqual(newHash);
         }
-
-
         public string Run(string password, bool state)
         {
             var salt = CreateSalt();
@@ -48,6 +45,7 @@ namespace ProjectCSA
 
             if (state)
             {
+
                 if (VerifyHash(password, salt, hash))
                 {
                     return Convert.ToBase64String(fused[0]);
