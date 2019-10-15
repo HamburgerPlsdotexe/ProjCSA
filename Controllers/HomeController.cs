@@ -12,7 +12,7 @@ namespace ProjectCSA.Controllers
 {
     public class HomeController : Controller
     {
-        Pwenc penc = new Pwenc();
+        readonly Pwenc penc = new Pwenc();
         public ActionResult Index()
         {
             ViewBag.Message = "Home page";
@@ -72,7 +72,7 @@ namespace ProjectCSA.Controllers
         {
             if (ModelState.IsValid)
             {
-                int recordsCreated = CreateTeacher(
+                CreateTeacher(
                     model.Tcode,
                     model.Fname,
                     model.Lname,
@@ -100,6 +100,42 @@ namespace ProjectCSA.Controllers
             }
 
             return View(teachers);
+        }
+        public ActionResult onClick(string cnum)
+        {
+            ViewBag.Message = "Home page";
+
+            StudentsAndClassesModel model = new StudentsAndClassesModel();
+            var data = LoadStudents();
+            var data2 = LoadClasses();
+
+            List<StudentModel> student = new List<StudentModel>();
+            foreach (var row in data)
+            {
+                if (row.cnum == cnum)
+                {
+                    student.Add(new StudentModel
+                    {
+                        Snum = row.Snum,
+                        Fname = row.Fname,
+                        Lname = row.Lname,
+                        cnum = row.cnum
+                    });
+                }
+            }
+            List<ClassModel> classes = new List<ClassModel>();
+            foreach (var row in data2)
+            {
+                classes.Add(new ClassModel
+                {
+                    cnum = row.cnum
+                });
+            }
+            model.Classes = classes;
+            model.Students = student;
+        
+            return View("Index", model);
+
         }
     }
 }

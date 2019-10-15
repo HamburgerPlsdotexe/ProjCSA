@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProjectCSA.Models
 {
@@ -29,6 +28,7 @@ namespace ProjectCSA.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "The password must match")]
         public string confirmPassword { get; set; }
+
 
 
     }
