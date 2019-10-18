@@ -3,11 +3,9 @@
 @{
     ViewBag.Title = "Login";
 }
-
-
-
-
-<div class="center">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -26,9 +24,7 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
+                        <input type="submit" value="Login" class="login100-form-btn" />
                     </div>
                     <a class="txt2" href="~/Application/SignUp/">
                         Create your Account
@@ -36,9 +32,8 @@
                 </form>
             </div>
         </div>
+
+
+
     </div>
-
-
-
-</div>
-
+}
