@@ -1,0 +1,67 @@
+﻿@model ProjectCSA.Models.StudentsAndClassesModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class=wrap>
+
+
+    <div class="header">
+
+        <div class="headers">
+            <a class="headerbuttons" href="#">SCHEDULE</a>
+            <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
+            <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
+            <a class="headerbuttons" href="#">STATISTICS</a>
+
+        </div>
+    </div>
+    <div class="leftcolumn">
+
+        <div class="vertical-menu">
+
+            <div class="topnav">
+
+                <input type="text" placeholder="search...">
+            </div>
+            <a class="active">Classes</a>
+            @foreach (var item in Model.Classes)
+            {
+                @Html.ActionLink(item.cnum,  "OnClick", "Home", new {cnum = item.cnum}, null)
+            }
+
+        </div>
+
+    </div>
+
+    <div class="maincontent">
+        <div class="table">
+
+            <table style="width:100%">
+
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
+                    <th>Date</th>
+
+                </tr>
+
+                @foreach (var item in Model.Students)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fname)
+                        </td>
+
+                        <td>
+                            <div class="checkbox">
+                                @Html.CheckBox("checkbox")
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

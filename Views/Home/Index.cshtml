@@ -1,73 +1,44 @@
-﻿@model ProjectCSA.Models.StudentsAndClassesModel
+﻿@model ProjectCSA.Models.TeacherModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Login";
 }
 
-<div class=wrap>
 
 
-    <div class="header">
 
-        <div class="headers">
-            <a class="headerbuttons" href="#">SCHEDULE</a>
-            <a class="headerbuttons" href="~/Home/ViewTeachers/">TEACHERS</a>
-            <a class="headerbuttons" href="~/Home/SignUp/">TEACHER SIGNUP</a>
-            <a class="headerbuttons" href="#">STATISTICS</a>
+<div class="center">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
 
-        </div>
-    </div>
-    <div class="leftcolumn">
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        User Login
+                    </span>
+                    <div class="wrap-input100 validate-input">
+                        @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code", Class = "input100" })
+                        <span class="focus-input100"></span>
+                    </div>
 
-        <div class="vertical-menu">
-
-            <div class="topnav">
-
-                <input type="text" placeholder="search...">
+                    <div class="wrap-input100 validate-input">
+                        @Html.TextBoxFor(model => model.Password, new { placeholder = "Password", Class = "input100" })
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                    <a class="txt2" href="~/Application/SignUp/">
+                        Create your Account
+                    </a>
+                </form>
             </div>
-            <a class="active">Classes</a>
-            @foreach (var item in Model.Classes)
-            {
-                @Html.ActionLink(item.cnum,  "OnClick", "Home", new {cnum = item.cnum}, null)
-            }
-
-        </div>
-
-    </div>
-
-    <div class="maincontent">
-        <div class="table">
-            <table style="width:100%">
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                    <th>Date</th>
-                </tr>
-
-                @foreach (var item in Model.Students)
-                {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Fname)
-                            </td>
-
-                            <td>
-                                <div class="checkbox">
-                                    @Html.CheckBox("checkbox-1")
-                                </div>
-                            </td>
-
-                        </tr>
-                }
-            </table>
         </div>
     </div>
+
+
+
 </div>
+
