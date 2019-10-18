@@ -34,7 +34,7 @@ namespace ProjectCSA.Controllers
             {
                 classes.Add(new ClassModel
                 {
-                    cnum = row.Cnum
+                    Cnum = row.Cnum
                 });
             }
             model.Classes = classes;
@@ -67,14 +67,16 @@ namespace ProjectCSA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(TeacherModel model)
         {
+            string[] Values = new string[] { penc.GetEnc(model.Password)[0], penc.GetEnc(model.Password)[1] };
             if (ModelState.IsValid)
             {
+
                 CreateTeacher(
                     model.Tcode,
                     model.Fname,
                     model.Lname,
-                    model.Password = penc.Run(model.Password, true),
-                    model.Salt = penc.Run(model.Password, false));
+                    model.Password = Values[0],
+                    model.Salt = Values[1]);
 
                 return RedirectToAction("index");
             }
@@ -100,7 +102,7 @@ namespace ProjectCSA.Controllers
 
             return View(teachers);
         }
-        public ActionResult OnClick(string cnum)
+        public ActionResult OnClick(string Cnum)
         {
             ViewBag.Message = "Home page";
 
@@ -111,7 +113,7 @@ namespace ProjectCSA.Controllers
             List<StudentModel> student = new List<StudentModel>();
             foreach (var row in data)
             {
-                if (row.Cnum == cnum)
+                if (row.Cnum == Cnum)
                 {
                     student.Add(new StudentModel
                     {
@@ -127,7 +129,7 @@ namespace ProjectCSA.Controllers
             {
                 classes.Add(new ClassModel
                 {
-                    cnum = row.Cnum
+                    Cnum = row.Cnum
                 });
             }
             model.Classes = classes;

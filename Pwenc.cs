@@ -32,34 +32,38 @@ namespace ProjectCSA
             argon2.Dispose();
             return argon2.GetBytes(16);
         }   
-        private bool VerifyHash(string password, byte[] salt, byte[] hash)
-        {
-            var newHash = HashPassword(password, salt);
-            return hash.SequenceEqual(newHash);
-        }
-        public string Run(string password, bool state)
+        //private bool VerifyHash(string password, byte[] salt, byte[] hash)
+        //{
+        //    var newHash = HashPassword(password, salt);
+        //    return hash.SequenceEqual(newHash);
+        //}
+        private string[] Run(string password)
         {
             var salt = CreateSalt();
             var hash = HashPassword(password, salt);
+            // byte[][] empty = new byte[0][];
             byte[][] fused = new byte[][] { hash, salt };
 
-            if (state)
-            {
+            string[] intermediate = new string[] { Convert.ToBase64String(fused[0]), Convert.ToBase64String(fused[1]) };
 
-                if (VerifyHash(password, salt, hash))
-                {
-                    return Convert.ToBase64String(fused[0]);
-                }
+            return intermediate;
+                //if (VerifyHash(password, salt, hash))
+                //{
+                //    return fused;
+                //}
 
-                else
-                {
-                    return "";
-                }
-            }
-            else
-            {
-                return Convert.ToBase64String(fused[1]);
-            }
+               // else
+               // {
+               //     return empty;
+               // }
+        }
+        public string[] GetEnc(string password)
+        {
+            return Run(password);
+        }
+        public string GetHashPw(string password, byte[] salt)
+        {
+            return Convert.ToBase64String(HashPassword(password, salt));
         }
     }
 }
