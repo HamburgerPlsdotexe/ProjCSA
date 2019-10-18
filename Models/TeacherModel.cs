@@ -33,6 +33,8 @@ namespace ProjectCSA.Models
 
         public string Salt { get; set; }
 
+        public string Salt { get; set; }
+
 
 
     }
