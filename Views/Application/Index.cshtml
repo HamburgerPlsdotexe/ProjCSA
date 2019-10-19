@@ -28,7 +28,7 @@
             <a class="active">Classes</a>
             @foreach (var item in Model.Classes)
             {
-                @Html.ActionLink(item.Cnum,  "OnClick", "Home", new {Cnum = item.Cnum}, null)
+                @Html.ActionLink(item.Cnum,  "OnClick", "Application", new {Cnum = item.Cnum}, null)
             }
 
         </div>

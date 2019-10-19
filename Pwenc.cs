@@ -22,7 +22,7 @@ namespace ProjectCSA
         }
         private byte[] HashPassword(string password, byte[] salt)
         {
-            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password))
+            Argon2id argon2 = new Argon2id(Encoding.UTF8.GetBytes(password))
             {
                 Salt = salt,
                 DegreeOfParallelism = 8, 
@@ -31,36 +31,32 @@ namespace ProjectCSA
             };
             argon2.Dispose();
             return argon2.GetBytes(16);
-        }   
-        //private bool VerifyHash(string password, byte[] salt, byte[] hash)
-        //{
-        //    var newHash = HashPassword(password, salt);
-        //    return hash.SequenceEqual(newHash);
-        //}
-        private string[] Run(string password)
+        }
+        public bool Verifyhash(string password, byte[] salt, byte[] hash)
+        {
+            var newhash = HashPassword(password, salt);
+            return hash.SequenceEqual(newhash);
+        }
+        public string[] Run(string password)
         {
             var salt = CreateSalt();
             var hash = HashPassword(password, salt);
-            // byte[][] empty = new byte[0][];
             byte[][] fused = new byte[][] { hash, salt };
 
             string[] intermediate = new string[] { Convert.ToBase64String(fused[0]), Convert.ToBase64String(fused[1]) };
 
             return intermediate;
-                //if (VerifyHash(password, salt, hash))
-                //{
-                //    return fused;
-                //}
+            //if (VerifyHash(password, salt, hash))
+            //{
+            //    return fused;
+            //}
 
-               // else
-               // {
-               //     return empty;
-               // }
+            // else
+            // {
+            //     return empty;
+            // }
         }
-        public string[] GetEnc(string password)
-        {
-            return Run(password);
-        }
+        
         public string GetHashPw(string password, byte[] salt)
         {
             return Convert.ToBase64String(HashPassword(password, salt));

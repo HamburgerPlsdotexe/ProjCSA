@@ -4,6 +4,8 @@ using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
 using ProjectCSA.Models;
+using System.Text;
+using DataLibrary.DataAccess;
 
 namespace ProjectCSA.Controllers
 {
@@ -63,24 +65,44 @@ namespace ProjectCSA.Controllers
 
             return View();
         }
+
+        public bool DoesTcodeExist(string Tcode)
+        {
+            string sql = "SELECT Tcode FROM dbo.Teacher WHERE Tcode = @Tcode";
+            var data = SqlDataAccess.LoadTcodes(sql, Tcode);
+
+            if(data == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(TeacherModel model)
         {
-            string[] Values = new string[] { penc.GetEnc(model.Password)[0], penc.GetEnc(model.Password)[1] };
+            string[][] Encrypted = new string[][] { penc.Run(model.Password) };
+
             if (ModelState.IsValid)
             {
+                if (DoesTcodeExist(model.Tcode))
+                {
 
                 CreateTeacher(
                     model.Tcode,
                     model.Fname,
                     model.Lname,
-                    model.Password = Values[0],
-                    model.Salt = Values[1]);
+                    model.Password = Encrypted[0][0],
+                    model.Salt = Encrypted[0][1]);
 
                 return RedirectToAction("index");
+                }
             }
-            return View();
+            return View("SignUp");
         }
 
         public ActionResult ViewTeachers()
