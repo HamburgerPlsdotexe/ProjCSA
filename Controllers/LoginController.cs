@@ -36,18 +36,20 @@ namespace ProjectCSA.Controllers
 
         public List<string> GetTeacher(string Tcode)
         {
-            string sql = "SELECT [Tcode], [Hashedpw], [Salt] FROM dbo.[Teacher] WHERE Tcode = @Tcode AND Hashedpw = Hashedpw  AND Salt = Salt";
-            
-            List<string> Danyel = SQLDataAccess.LoadTeachersWithTcode<string>(sql, Tcode);
-            return Danyel;
-        }
+            string sql = "SELECT Tcode, Hashedpw, Salt FROM dbo.Teacher WHERE Tcode = @Tcode";
 
+            List<string> Teacher = SqlDataAccess.LoadPasswordsWithTcode(sql, Tcode);
+            return Teacher;
+        }
+            
         public bool IsValid(string Tcode, string Password)
         {
+            
             List<string> teacher = GetTeacher(Tcode);
-            byte[] array = Encoding.ASCII.GetBytes(teacher[2]);
+            string converted = teacher[2];
+            byte[] array = Convert.FromBase64String(converted);    
             string hashedpw = enc.GetHashPw(Password, array);
-
+            //enc.verifyhash(Password, array, hashedpw);
             if (hashedpw == teacher[1])
             {
                 return true;
