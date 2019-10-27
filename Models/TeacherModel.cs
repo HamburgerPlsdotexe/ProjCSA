@@ -33,11 +33,4 @@ namespace ProjectCSA.Models
         public string Salt { get; set; }
 
     }
-    public class LoginModel
-    {
-        [Required(ErrorMessage = "Please enter your teacher code")]
-        public string Tcode { get; set; }
-        [Required(ErrorMessage = "Please enter your password")]
-        public string Password { get; set; }
-    }
 }
