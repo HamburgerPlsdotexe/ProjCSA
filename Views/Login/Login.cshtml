@@ -9,7 +9,6 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-
                 <form class="login100-form validate-form">
                     <span class="login100-form-title">
                         User Login
@@ -20,7 +19,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        @Html.TextBoxFor(model => model.Password, new { placeholder = "Password", Class = "input100" })
+                        @Html.PasswordFor(model => model.Password, new { placeholder = "Password", Class = "input100" })
                         <span class="focus-input100"></span>
                     </div>
                     <div class="container-login100-form-btn">
@@ -32,8 +31,5 @@
                 </form>
             </div>
         </div>
-
-
-
     </div>
 }
