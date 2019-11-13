@@ -13,13 +13,15 @@
                     <span class="login100-form-title">
                         User Login
                     </span>
-                    <div class="wrap-input100 validate-input">
+                    <div class="wrap-input100 validate-input" >
                         @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code", Class = "input100" })
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        @Html.PasswordFor(model => model.Password, new { placeholder = "Password", Class = "input100" })
+
+                        @Html.TextBoxFor(model => model.Password, new { placeholder = "Password", Class = "input100", @type = "password"})
+
                         <span class="focus-input100"></span>
                     </div>
                     <div class="container-login100-form-btn">

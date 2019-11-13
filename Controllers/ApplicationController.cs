@@ -77,6 +77,7 @@ namespace ProjectCSA.Controllers
             }
             else
             {
+
                 return false;
             }
         }
@@ -85,22 +86,29 @@ namespace ProjectCSA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(TeacherModel model)
         {
-            string[][] Encrypted = new string[][] { penc.Run(model.Password) };
 
             if (ModelState.IsValid)
             {
+
                 if (DoesTcodeExist(model.Tcode))
                 {
+                    string[][] Encrypted = new string[][] { penc.Run(model.Password) };
 
-                CreateTeacher(
+
+                    CreateTeacher(
                     model.Tcode,
                     model.Fname,
                     model.Lname,
                     model.Password = Encrypted[0][0],
-                    model.Salt = Encrypted[0][1]);
+                    model.Salt = Encrypted[0][1],
+                    model.Flag ="usr");
 
                 return RedirectToAction("index");
                 }
+            }
+            if(model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
+            {
+            TempData["Message"] = "This teacher code already exists.";
             }
             return View("SignUp");
         }
