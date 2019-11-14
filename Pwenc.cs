@@ -39,22 +39,14 @@ namespace ProjectCSA
         }
         public string[] Run(string password)
         {
-            var salt = CreateSalt();
+            var salt = CreateSalt();    
             var hash = HashPassword(password, salt);
             byte[][] fused = new byte[][] { hash, salt };
 
             string[] intermediate = new string[] { Convert.ToBase64String(fused[0]), Convert.ToBase64String(fused[1]) };
 
             return intermediate;
-            //if (VerifyHash(password, salt, hash))
-            //{
-            //    return fused;
-            //}
 
-            // else
-            // {
-            //     return empty;
-            // }
         }
         
         public string GetHashPw(string password, byte[] salt)

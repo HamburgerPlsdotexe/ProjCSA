@@ -15,6 +15,7 @@ namespace ProjectCSA.Controllers
         public ActionResult Login()
         {
             ViewBag.Message = "Login";
+            
             return View();
         }
 
@@ -64,5 +65,7 @@ namespace ProjectCSA.Controllers
          
 
         }
+        
+
     }
 }

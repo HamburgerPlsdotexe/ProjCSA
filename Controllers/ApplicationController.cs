@@ -71,12 +71,13 @@ namespace ProjectCSA.Controllers
             string sql = "SELECT Tcode FROM dbo.Teacher WHERE Tcode = @Tcode";
             var data = SqlDataAccess.LoadTcodes(sql, Tcode);
 
-            if (data == null)
+            if(data == null)
             {
                 return true;
             }
             else
             {
+
                 return false;
             }
         }
@@ -85,27 +86,32 @@ namespace ProjectCSA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(TeacherModel model)
         {
-            string[][] Encrypted = new string[][] { penc.Run(model.Password) };
 
             if (ModelState.IsValid)
             {
+
                 if (DoesTcodeExist(model.Tcode))
                 {
+                    string[][] Encrypted = new string[][] { penc.Run(model.Password) };
+
 
                     CreateTeacher(
-                        model.Tcode,
-                        model.Fname,
-                        model.Lname,
-                        model.Password = Encrypted[0][0],
-                        model.Salt = Encrypted[0][1],
-                        model.Flag = "usr");
-                }
+                    model.Tcode,
+                    model.Fname,
+                    model.Lname,
+                    model.Password = Encrypted[0][0],
+                    model.Salt = Encrypted[0][1],
+                    model.Flag ="usr");
 
                 return RedirectToAction("index");
+                }
+            }
+            if(model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
+            {
+            TempData["Message"] = "This teacher code already exists.";
             }
             return View("SignUp");
         }
-
 
         public ActionResult ViewTeachers()
         {
@@ -123,6 +129,7 @@ namespace ProjectCSA.Controllers
                     Lname = row.Lname,
                 });
             }
+
             return View(teachers);
         }
         public ActionResult OnClick(string Cnum)
