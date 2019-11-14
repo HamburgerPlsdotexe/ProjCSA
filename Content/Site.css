@@ -494,6 +494,7 @@ iframe {
     height: 50px;
     border-radius: 25px;
     padding: 0 0px 0 10px;
+
 }
 
     .input100:hover {
@@ -716,4 +717,7 @@ iframe {
         visibility: visible;
         opacity: 1;
     }
+}
+.validation{
+    color:red;
 }

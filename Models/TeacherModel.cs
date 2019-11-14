@@ -32,5 +32,7 @@ namespace ProjectCSA.Models
         public string ConfirmPassword { get; set; }
         public string Salt { get; set; }
 
+        public string Flag { get; set; }
+
     }
 }
