@@ -71,7 +71,7 @@ namespace ProjectCSA.Controllers
             string sql = "SELECT Tcode FROM dbo.Teacher WHERE Tcode = @Tcode";
             var data = SqlDataAccess.LoadTcodes(sql, Tcode);
 
-            if(data == null)
+            if (data == null)
             {
                 return true;
             }
@@ -92,18 +92,20 @@ namespace ProjectCSA.Controllers
                 if (DoesTcodeExist(model.Tcode))
                 {
 
-                CreateTeacher(
-                    model.Tcode,
-                    model.Fname,
-                    model.Lname,
-                    model.Password = Encrypted[0][0],
-                    model.Salt = Encrypted[0][1]);
+                    CreateTeacher(
+                        model.Tcode,
+                        model.Fname,
+                        model.Lname,
+                        model.Password = Encrypted[0][0],
+                        model.Salt = Encrypted[0][1],
+                        model.Flag = "usr");
+                }
 
                 return RedirectToAction("index");
-                }
             }
             return View("SignUp");
         }
+
 
         public ActionResult ViewTeachers()
         {
@@ -121,7 +123,6 @@ namespace ProjectCSA.Controllers
                     Lname = row.Lname,
                 });
             }
-
             return View(teachers);
         }
         public ActionResult OnClick(string Cnum)
