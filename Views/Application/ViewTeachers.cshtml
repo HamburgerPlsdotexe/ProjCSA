@@ -4,6 +4,17 @@
     ViewBag.Title = "ViewTeachers";
 }
 
+<div class="header">
+
+    <div class="headers">
+        <a class="headerbuttons" href="#">SCHEDULE</a>
+        <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
+        <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
+        <a class="headerbuttons" href="#">STATISTICS</a>
+        <a class="headerbuttons" href="~/Application/QRCoder/">QRCODER</a>
+
+    </div>
+</div>
 
 <h2>ViewTeachers</h2>
 
@@ -22,7 +33,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Lname)
         </th>
-        
+
     </tr>
 
     @foreach (var item in Model)
