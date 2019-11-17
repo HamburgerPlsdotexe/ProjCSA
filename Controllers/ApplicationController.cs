@@ -6,6 +6,7 @@ using static DataLibrary.Logic.ClassProcessor;
 using ProjectCSA.Models;
 using System.Text;
 using DataLibrary.DataAccess;
+using static ProjectCSA.Controllers.LoginController;
 
 namespace ProjectCSA.Controllers
 {
@@ -71,7 +72,7 @@ namespace ProjectCSA.Controllers
             string sql = "SELECT Tcode FROM dbo.Teacher WHERE Tcode = @Tcode";
             var data = SqlDataAccess.LoadTcodes(sql, Tcode);
 
-            if(data == null)
+            if (data == null)
             {
                 return true;
             }
@@ -101,36 +102,43 @@ namespace ProjectCSA.Controllers
                     model.Lname,
                     model.Password = Encrypted[0][0],
                     model.Salt = Encrypted[0][1],
-                    model.Flag ="usr");
+                    model.Flag = "usr");
 
-                return RedirectToAction("index");
+                    return RedirectToAction("index");
                 }
             }
-            if(model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
+            if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
             {
-            TempData["Message"] = "This teacher code already exists.";
+                TempData["Message"] = "This teacher code already exists.";
             }
             return View("SignUp");
         }
 
         public ActionResult ViewTeachers()
         {
-            ViewBag.Message = "Teacher List";
 
-            var data = LoadTeachers();
+                ViewBag.Message = "Teacher List";
 
-            List<TeacherModel> teachers = new List<TeacherModel>();
-            foreach (var row in data)
-            {
-                teachers.Add(new TeacherModel
+                var data = LoadTeachers();
+
+                List<TeacherModel> teachers = new List<TeacherModel>();
+                foreach (var row in data)
                 {
-                    Tcode = row.Tcode,
-                    Fname = row.Fname,
-                    Lname = row.Lname,
-                });
+                    teachers.Add(new TeacherModel
+                    {
+                        Tcode = row.Tcode,
+                        Fname = row.Fname,
+                        Lname = row.Lname,
+                    });
+                }
+            if (LoginController.IsAdmin(LoginController.returnTcode()))
+            {
+                return View(teachers);
             }
-
-            return View(teachers);
+            else
+            {
+                return View("Error");
+            }
         }
         public ActionResult OnClick(string Cnum)
         {

@@ -8,9 +8,16 @@ using System.Text;
 
 namespace ProjectCSA.Controllers
 {
+
     public class LoginController : Controller
     {
+        public static string Tcode;
         readonly Pwenc enc = new Pwenc();
+
+        public static string returnTcode()
+        {
+            return Tcode;
+        }
 
         public ActionResult Login()
         {
@@ -22,11 +29,20 @@ namespace ProjectCSA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string Tcode, string Password)
+        public ActionResult Login(string tcode, string Password)
         {
-            if (IsValid(Tcode, Password))
+            if (IsValid(tcode, Password))
             {
-                return Redirect("~/Application/index");
+                Tcode = tcode;
+                if (IsAdmin(tcode))
+                {
+
+                    return Redirect("~/Application/ViewTeachers");      //Admin
+                }
+                else
+                {
+                    return Redirect("~/Application/Index");             //User
+                }
             }
 
             else
@@ -62,7 +78,24 @@ namespace ProjectCSA.Controllers
          
 
         }
-        
+        public static bool IsAdmin(string Tcode)
+        {
+            string sql = "SELECT Tcode, Flag FROM dbo.Teacher WHERE Tcode = @Tcode";
+
+            List<string> teacher = SqlDataAccess.LoadPermissionsWithTCode(sql, Tcode);
+            if (teacher[1] == "usr")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
+        }
+
+
 
     }
 }
