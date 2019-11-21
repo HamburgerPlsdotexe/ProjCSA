@@ -242,6 +242,11 @@ h2{
     font-size:40px;
     text-align:center;
 }
+
+h3{
+    font-size:25px;
+    text-align:left;
+}
 a{
     color:black;
     font-size:15px;
