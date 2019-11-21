@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using static DataLibrary.Logic.TeacherProcessor;
 using System.Web.Mvc;
 using System.Text;
+using System.Web;
+using System.Web.Security;
 
 namespace ProjectCSA.Controllers
 {
@@ -22,10 +24,8 @@ namespace ProjectCSA.Controllers
         public ActionResult Login()
         {
             ViewBag.Message = "Login";
-            
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -35,13 +35,20 @@ namespace ProjectCSA.Controllers
             {
                 Tcode = tcode;
                 if (IsAdmin(tcode))
-                {
-
-                    return Redirect("~/Application/ViewTeachers");      //Admin
+                {                                                       //Admin
+                    FormsAuthentication.SetAuthCookie("Admin", false);
+                    return Redirect("~/Application/ViewTeachers");      
                 }
                 else
-                {
-                    return Redirect("~/Application/Index");             //User
+                {                                                       //User
+                    var data2 = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+                    //FormsAuthentication.SetAuthCookie(tcode, false);
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, tcode, DateTime.Now, DateTime.Now.AddMinutes(20), false, tcode); //change false to true later.
+                    string encticket = FormsAuthentication.Encrypt(ticket);
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encticket));
+
+                    return Redirect("~/Application/Index");             
                 }
             }
 
@@ -80,18 +87,22 @@ namespace ProjectCSA.Controllers
         }
         public static bool IsAdmin(string Tcode)
         {
-            string sql = "SELECT Tcode, Flag FROM dbo.Teacher WHERE Tcode = @Tcode";
-
-            List<string> teacher = SqlDataAccess.LoadPermissionsWithTCode(sql, Tcode);
-            if (teacher[1] == "usr")
+            if(Tcode == null)
             {
                 return false;
             }
-            else
-            {
-                return true;
+            else { 
+                string sql = "SELECT Tcode, Flag FROM dbo.Teacher WHERE Tcode = @Tcode";
+                List<string> teacher = SqlDataAccess.LoadPermissionsWithTCode(sql, Tcode);
+                if (teacher[1] == "adm")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
 
         }
 

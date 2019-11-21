@@ -21,7 +21,7 @@
                         @Html.ValidationMessageFor(model => model.Tcode, "")
                     </span>
                     <div class="wrap-input100 validate-input">
-                        @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code", Class = "input100" })
+                        @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code (5 characters)", Class = "input100" })
                         <span class="focus-input100"></span>
                     </div>
                     <span class="validation">
@@ -61,8 +61,5 @@
                 </form>
             </div>
         </div>
-
-
-
     </div>
 }
