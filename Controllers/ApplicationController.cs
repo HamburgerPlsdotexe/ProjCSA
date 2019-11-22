@@ -49,6 +49,13 @@ namespace ProjectCSA.Controllers
             return View(model);
         }
 
+        public ActionResult ViewSchedules()
+        {
+            ViewBag.Message = "Schedule";
+
+            return View();
+        }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -56,7 +63,6 @@ namespace ProjectCSA.Controllers
 
             return RedirectToAction("Login", "Login");
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

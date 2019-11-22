@@ -59,8 +59,11 @@ namespace ProjectCSA.Controllers
         public List<string> GetTeacher(string Tcode)
         {
             string sql = "SELECT Tcode, Hashedpw, Salt FROM dbo.Teacher WHERE Tcode = @Tcode";
-
+          
             List<string> Teacher = SqlDataAccess.LoadPasswordsWithTcode(sql, Tcode);
+            
+
+
             return Teacher;
         }
             
