@@ -41,13 +41,11 @@ namespace ProjectCSA.Controllers
                 }
                 else
                 {                                                       //User
-                    var data2 = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
-                    //FormsAuthentication.SetAuthCookie(tcode, false);
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, tcode, DateTime.Now, DateTime.Now.AddMinutes(20), false, tcode); //change false to true later.
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, tcode, DateTime.Now, DateTime.Now.AddMinutes(20), false, tcode); //change false to true later for different sessions.
                     string encticket = FormsAuthentication.Encrypt(ticket);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encticket));
-
+                    Tcode = ticket.Name;
                     return Redirect("~/Application/Index");             
                 }
             }

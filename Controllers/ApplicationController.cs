@@ -3,9 +3,11 @@ using System.Web.Mvc;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
+using static ProjectCSA.Controllers.LoginController;
 using ProjectCSA.Models;
 using DataLibrary.DataAccess;
 using System.Web.Security;
+using System.IO;
 
 namespace ProjectCSA.Controllers
 {
@@ -15,6 +17,7 @@ namespace ProjectCSA.Controllers
         readonly Pwenc penc = new Pwenc();
         public ActionResult Index()
         {
+            string Tcode = LoginController.Tcode;
 
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
@@ -44,14 +47,12 @@ namespace ProjectCSA.Controllers
 
 
             return View(model);
-            
         }
 
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            var data2 = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
             return RedirectToAction("Login", "Login");
         }
@@ -96,7 +97,6 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-
         public ActionResult SignUp(TeacherModel model)
         {
 
@@ -132,7 +132,6 @@ namespace ProjectCSA.Controllers
             ViewBag.Message = "Teacher List";
 
             var data = LoadTeachers();
-            var data2 = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             List<TeacherModel> teachers = new List<TeacherModel>();
             foreach (var row in data)
             {
