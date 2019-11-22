@@ -3,19 +3,21 @@ using System.Web.Mvc;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
-using ProjectCSA.Models;
-using System.Text;
-using DataLibrary.DataAccess;
 using static ProjectCSA.Controllers.LoginController;
+using ProjectCSA.Models;
+using DataLibrary.DataAccess;
+using System.Web.Security;
+using System.IO;
 
 namespace ProjectCSA.Controllers
 {
+    [Authorize]
     public class ApplicationController : Controller
     {
         readonly Pwenc penc = new Pwenc();
         public ActionResult Index()
         {
-            ViewBag.Message = "Home page";
+            string Tcode = LoginController.Tcode;
 
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
@@ -47,6 +49,14 @@ namespace ProjectCSA.Controllers
             return View(model);
         }
 
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            return RedirectToAction("Login", "Login");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -60,6 +70,7 @@ namespace ProjectCSA.Controllers
 
             return View();
         }
+        [AllowAnonymous]
         public ActionResult SignUp()
         {
             ViewBag.Message = "Teacher Sign Up";
@@ -85,6 +96,7 @@ namespace ProjectCSA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult SignUp(TeacherModel model)
         {
 
@@ -104,7 +116,7 @@ namespace ProjectCSA.Controllers
                     model.Salt = Encrypted[0][1],
                     model.Flag = "usr");
 
-                    return RedirectToAction("index");
+                    return RedirectToAction("index");                   
                 }
             }
             if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
@@ -117,21 +129,22 @@ namespace ProjectCSA.Controllers
         public ActionResult ViewTeachers()
         {
 
-                ViewBag.Message = "Teacher List";
+            ViewBag.Message = "Teacher List";
 
-                var data = LoadTeachers();
-
-                List<TeacherModel> teachers = new List<TeacherModel>();
-                foreach (var row in data)
+            var data = LoadTeachers();
+            List<TeacherModel> teachers = new List<TeacherModel>();
+            foreach (var row in data)
+            {
+                teachers.Add(new TeacherModel
                 {
-                    teachers.Add(new TeacherModel
-                    {
-                        Tcode = row.Tcode,
-                        Fname = row.Fname,
-                        Lname = row.Lname,
-                    });
-                }
-            if (LoginController.IsAdmin(LoginController.returnTcode()))
+                    Tcode = row.Tcode,
+                    Fname = row.Fname,
+                    Lname = row.Lname,
+                });
+            }
+
+            
+            if (LoginController.IsAdmin(LoginController.returnTcode()) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 return View(teachers);
             }
