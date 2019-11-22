@@ -7,10 +7,11 @@ namespace ProjectCSA.Models
 {
     public class ScheduleModel
     {
-        public string Lesson { get; set; }
-        public string Title { get; set; }
+        public string LessonCode { get; set; }
         public string Day { get; set; }
-        public string Hour { get; set; }
-        public string classroom { get; set; }
+        public string Classroom { get; set; }
+        public List<int> Hours { get; set; }
+        public string Class { get; set; }
+        
     }
 }
