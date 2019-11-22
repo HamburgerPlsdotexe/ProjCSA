@@ -3,18 +3,21 @@ using System.Web.Mvc;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
+using static ProjectCSA.Controllers.LoginController;
 using ProjectCSA.Models;
-using System.Text;
 using DataLibrary.DataAccess;
+using System.Web.Security;
+using System.IO;
 
 namespace ProjectCSA.Controllers
 {
+    [Authorize]
     public class ApplicationController : Controller
     {
         readonly Pwenc penc = new Pwenc();
         public ActionResult Index()
         {
-            ViewBag.Message = "Home page";
+            string Tcode = LoginController.Tcode;
 
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
@@ -52,6 +55,14 @@ namespace ProjectCSA.Controllers
 
             return View();
         }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            return RedirectToAction("Login", "Login");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -65,6 +76,7 @@ namespace ProjectCSA.Controllers
 
             return View();
         }
+        [AllowAnonymous]
         public ActionResult SignUp()
         {
             ViewBag.Message = "Teacher Sign Up";
@@ -77,7 +89,7 @@ namespace ProjectCSA.Controllers
             string sql = "SELECT Tcode FROM dbo.Teacher WHERE Tcode = @Tcode";
             var data = SqlDataAccess.LoadTcodes(sql, Tcode);
 
-            if(data == null)
+            if (data == null)
             {
                 return true;
             }
@@ -90,6 +102,7 @@ namespace ProjectCSA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult SignUp(TeacherModel model)
         {
 
@@ -107,24 +120,24 @@ namespace ProjectCSA.Controllers
                     model.Lname,
                     model.Password = Encrypted[0][0],
                     model.Salt = Encrypted[0][1],
-                    model.Flag ="usr");
+                    model.Flag = "usr");
 
-                return RedirectToAction("index");
+                    return RedirectToAction("index");                   
                 }
             }
-            if(model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
+            if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
             {
-            TempData["Message"] = "This teacher code already exists.";
+                TempData["Message"] = "This teacher code already exists.";
             }
             return View("SignUp");
         }
 
         public ActionResult ViewTeachers()
         {
+
             ViewBag.Message = "Teacher List";
 
             var data = LoadTeachers();
-
             List<TeacherModel> teachers = new List<TeacherModel>();
             foreach (var row in data)
             {
@@ -136,7 +149,15 @@ namespace ProjectCSA.Controllers
                 });
             }
 
-            return View(teachers);
+            
+            if (LoginController.IsAdmin(LoginController.returnTcode()) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                return View(teachers);
+            }
+            else
+            {
+                return View("Error");
+            }
         }
         public ActionResult OnClick(string Cnum)
         {

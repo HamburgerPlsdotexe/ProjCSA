@@ -5,28 +5,49 @@ using System.Collections.Generic;
 using static DataLibrary.Logic.TeacherProcessor;
 using System.Web.Mvc;
 using System.Text;
+using System.Web;
+using System.Web.Security;
 
 namespace ProjectCSA.Controllers
 {
+
     public class LoginController : Controller
     {
+        public static string Tcode;
         readonly Pwenc enc = new Pwenc();
+
+        public static string returnTcode()
+        {
+            return Tcode;
+        }
 
         public ActionResult Login()
         {
             ViewBag.Message = "Login";
-            
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string Tcode, string Password)
+        public ActionResult Login(string tcode, string Password)
         {
-            if (IsValid(Tcode, Password))
+            if (IsValid(tcode, Password))
             {
-                return Redirect("~/Application/index");
+                Tcode = tcode;
+                if (IsAdmin(tcode))
+                {                                                       //Admin
+                    FormsAuthentication.SetAuthCookie("Admin", false);
+                    return Redirect("~/Application/ViewTeachers");      
+                }
+                else
+                {                                                       //User
+
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, tcode, DateTime.Now, DateTime.Now.AddMinutes(20), false, tcode); //change false to true later for different sessions.
+                    string encticket = FormsAuthentication.Encrypt(ticket);
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encticket));
+                    Tcode = ticket.Name;
+                    return Redirect("~/Application/Index");             
+                }
             }
 
             else
@@ -65,7 +86,28 @@ namespace ProjectCSA.Controllers
          
 
         }
-        
+        public static bool IsAdmin(string Tcode)
+        {
+            if(Tcode == null)
+            {
+                return false;
+            }
+            else { 
+                string sql = "SELECT Tcode, Flag FROM dbo.Teacher WHERE Tcode = @Tcode";
+                List<string> teacher = SqlDataAccess.LoadPermissionsWithTCode(sql, Tcode);
+                if (teacher[1] == "adm")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+
+
 
     }
 }

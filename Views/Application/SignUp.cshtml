@@ -21,7 +21,7 @@
                         @Html.ValidationMessageFor(model => model.Tcode, "")
                     </span>
                     <div class="wrap-input100 validate-input">
-                        @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code", Class = "input100" })
+                        @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code (5 characters)", Class = "input100" })
                         <span class="focus-input100"></span>
                     </div>
                     <span class="validation">
@@ -55,14 +55,11 @@
                         <div class="container-login100-form-btn">
                             <input type="submit" value="Create" class="login100-form-btn" />
                         </div>
-                        <a class="txt2" href="~/Application/SignUp/">
-                            Create your Account
-                        </a>
+                    <a class="txt2" href="~/Login/Login/">
+                        Already have an account?
+                    </a>
                 </form>
             </div>
         </div>
-
-
-
     </div>
 }
