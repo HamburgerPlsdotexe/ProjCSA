@@ -7,23 +7,29 @@ using ProjectCSA.Models;
 using DataLibrary.DataAccess;
 using System.Web.Security;
 using System.IO;
-using System.Web.Hosting;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Web.Hosting;
+
 
 namespace ProjectCSA.Controllers
 {
     [Authorize]
     public class ApplicationController : Controller
     {
-        public string foenc()
+
+        public string Foenc()
         {
             var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
             return username;
         }
 
+
         readonly Pwenc penc = new Pwenc();
-        public ActionResult Index()
+        public ActionResult ViewStudentsTemp()
         {
+            string Tcode = Foenc();
+
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
             var data2 = LoadClasses();
@@ -54,11 +60,26 @@ namespace ProjectCSA.Controllers
             return View(model);
         }
 
-        public ActionResult ViewSchedules()
+        public ActionResult Index()
         {
+            Dino(Foenc());
             ViewBag.Message = "Schedule";
 
             return View();
+        }
+
+        public void Dino(string Tcode)
+        {
+            string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
+
+            using StreamReader f = new StreamReader(jsonPath);
+            string json = f.ReadToEnd();
+            JArray js = JArray.Parse(json);
+
+            foreach (var entry in js)
+            {
+                Console.WriteLine(entry);
+            }
         }
 
         public ActionResult LogOut()
@@ -68,6 +89,7 @@ namespace ProjectCSA.Controllers
 
             return RedirectToAction("Login", "Login");
         }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -81,6 +103,7 @@ namespace ProjectCSA.Controllers
 
             return View();
         }
+
         [AllowAnonymous]
         public ActionResult SignUp()
         {
@@ -126,6 +149,7 @@ namespace ProjectCSA.Controllers
                     model.Salt = Encrypted[0][1],
                     model.Flag = "usr");
 
+
                     return RedirectToAction("index");                           //unique account, continue creation.      
                 }
                 else
@@ -163,8 +187,8 @@ namespace ProjectCSA.Controllers
                 });
             }
 
-            
-            if (LoginController.IsAdmin(LoginController.returnTcode()) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+
+            if (LoginController.IsAdmin(LoginController.ReturnTcode()) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 return View(teachers);
             }
@@ -206,7 +230,7 @@ namespace ProjectCSA.Controllers
             model.Classes = classes;
             model.Students = student;
 
-            return View("Index", model);
+            return View("ViewStudentsTemp", model);
 
         }
 

@@ -16,7 +16,7 @@ namespace ProjectCSA.Controllers
         public static string Tcode;
         readonly Pwenc enc = new Pwenc();
 
-        public static string returnTcode()
+        public static string ReturnTcode()
         {
             return Tcode;
         }
