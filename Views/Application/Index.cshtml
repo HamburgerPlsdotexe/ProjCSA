@@ -14,9 +14,10 @@
             <a class="headerbuttons" href="~/Application/ViewSchedules/">SCHEDULES</a>
             <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
             <a class="headerbuttons" href="#">STATISTICS</a>
-            @Html.ActionLink("Logout", "LogOut", "Application")
+            <a class="headerbuttons" @Html.ActionLink("Logout", "LogOut", "Application")</a>
+            <a class="headerbuttons">Current user: @Html.Action("foenc", "Application")</a>
         </div>
-    </div>
+        </div>
     <div class="leftcolumn">
 
         <div class="vertical-menu">
