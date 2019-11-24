@@ -3,22 +3,27 @@ using System.Web.Mvc;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
-using static ProjectCSA.Controllers.LoginController;
 using ProjectCSA.Models;
 using DataLibrary.DataAccess;
 using System.Web.Security;
 using System.IO;
+using System.Web.Hosting;
+using Newtonsoft.Json.Linq;
 
 namespace ProjectCSA.Controllers
 {
     [Authorize]
     public class ApplicationController : Controller
     {
+        public string foenc()
+        {
+            var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
+            return username;
+        }
+
         readonly Pwenc penc = new Pwenc();
         public ActionResult Index()
         {
-            string Tcode = LoginController.Tcode;
-
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
             var data2 = LoadClasses();
@@ -83,13 +88,12 @@ namespace ProjectCSA.Controllers
             string sql = "SELECT Tcode FROM dbo.Teacher WHERE Tcode = @Tcode";
             var data = SqlDataAccess.LoadTcodes(sql, Tcode);
 
-            if (data == null)
+            if (data == null)     //does not exist
             {
                 return true;
             }
-            else
+            else                  //does exist
             {
-
                 return false;
             }
         }
@@ -116,14 +120,24 @@ namespace ProjectCSA.Controllers
                     model.Salt = Encrypted[0][1],
                     model.Flag = "usr");
 
-                    return RedirectToAction("index");                   
+                    return RedirectToAction("index");                           //unique account, continue creation.      
                 }
+                else
+                {
+                   // if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
+                   // {
+                        
+                    //}
+                    ViewData["ErrorMessage"] = "That teacher code already exists!";
+                    return View("SignUp");                                      //Not a unique Tcode, redirect to signup
+                }
+                
             }
-            if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
-            {
-                TempData["Message"] = "This teacher code already exists.";
-            }
-            return View("SignUp");
+            ViewData["ErrorMessage"] = "Something went wrong, try again!";
+
+            return View("SignUp");                                              //other error, redirect to signup
+
+
         }
 
         public ActionResult ViewTeachers()
