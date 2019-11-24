@@ -16,7 +16,9 @@
                         Create your account
                     </span>
                     <span class="validation">
-                        <strong>@TempData["Message"]</strong>
+                        @Html.ValidationMessage("ModelName")
+                        @ViewData["ErrorMessage"]
+
 
                         @Html.ValidationMessageFor(model => model.Tcode, "")
                     </span>
