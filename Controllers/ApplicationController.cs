@@ -62,24 +62,34 @@ namespace ProjectCSA.Controllers
 
         public ActionResult Index()
         {
-            Dino(Foenc());
-            ViewBag.Message = "Schedule";
+            string Tcode = Foenc();
+            List<ScheduleModel> model = new List<ScheduleModel>();
 
-            return View();
+            List<ScheduleModel> list = Dino(Tcode);
+            foreach (var row in list)
+            {
+                model.Add(new ScheduleModel
+                {
+                    LessonCode = row.LessonCode,
+                    Day = row.Day,
+                    Classroom = row.Classroom,
+                    Hours = row.Hours,
+                    Class = row.Class
+                });
+            }
+
+            return View(model);
         }
 
-        public void Dino(string Tcode)
+        public List<ScheduleModel> Dino(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
-
             using StreamReader f = new StreamReader(jsonPath);
             string json = f.ReadToEnd();
             JArray js = JArray.Parse(json);
+            var array = js.ToObject<List<ScheduleModel>>();
+            return array;
 
-            foreach (var entry in js)
-            {
-                Console.WriteLine(entry);
-            }
         }
 
         public ActionResult LogOut()
@@ -164,7 +174,6 @@ namespace ProjectCSA.Controllers
                 
             }
             ViewData["ErrorMessage"] = "Something went wrong, try again!";
-
             return View("SignUp");                                              //other error, redirect to signup
 
 
@@ -229,9 +238,7 @@ namespace ProjectCSA.Controllers
             }
             model.Classes = classes;
             model.Students = student;
-
             return View("ViewStudentsTemp", model);
-
         }
 
     }

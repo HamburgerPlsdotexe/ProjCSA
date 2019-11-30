@@ -1,5 +1,4 @@
-﻿@model ProjectCSA.Models.StudentsAndClassesModel
-
+﻿@model IEnumerable<ProjectCSA.Models.ScheduleModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -14,141 +13,72 @@
             <a class="headerbuttons" href="~/Application/ViewSchedules/">SCHEDULES</a>
             <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
             <a class="headerbuttons" href="#">STATISTICS</a>
-            <a class="headerbuttons" @Html.ActionLink("Logout", "LogOut", "Application")</a>
+            <a class="headerbuttons" @Html.ActionLink("Log out", "LogOut", "Application")</a>
             <a class="headerbuttons">Current user: @Html.Action("foenc", "Application")</a>
         </div>
-        </div>
+    </div>
 
     <div class="maincontent">
         <table class="table2">
             <tr>
                 <th></th>
-                <th>Monday </th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
-            </tr>
+                @{ string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
 
-            <tr>
-                <td>
-                    <h3>1</h3>
-                    <p>08:30</p>
-                    <p>09:20</p>
-                </td>
-                <td>
-                    <h4>INFWEB01-D</h4>
-                    <tabdat>H.2.403</tabdat>
-                    <div>
-                        <tabdat>INF 2C</tabdat>
-                    </div>
-                </td>
+                @for (int i = 0; i < days.Length; i++)
+                {
+                    <th>@(days[i])</th>
+                }
             </tr>
+            @{
+                TimeSpan timeSpan = new TimeSpan(8, 30, 0); //08:30:00
+                TimeSpan AddTime = new TimeSpan(0, 50, 0);  //00:50:00
+                TimeSpan timeSpan2 = new TimeSpan();
+            }
+            
+            @{ for (int i = 1; i < 16; i++)
+                {
+                    
 
-            <tr>
-                <td>
-                    <h3>2</h3>
-                    <p>09:20</p>
-                    <p>10:10</p>
-                </td>
-            </tr>
+                        <tr>
+                            <td>
+                                <h3>@(i)</h3>
+                                <a>
+                                    @{timeSpan.ToString();}
 
-            <tr>
-                <td>
-                    <h3>3</h3>
-                    <p>10:30</p>
-                    <p>11:20</p>
-                </td>
-            </tr>
+                                    @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
+                                </a>
+                                @{timeSpan2 = timeSpan.Add(AddTime);}
+                                <div>
+                                    <a>
+                                        @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
+                                        @{timeSpan = timeSpan2;}
+                                    </a>
+                                </div>
+                            </td>
 
-            <tr>
-                <td>
-                    <h3>4</h3>
-                    <p>11:20</p>
-                    <p>12:10</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>5</h3>
-                    <p>12:10</p>
-                    <p>13:00</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>6</h3>
-                    <p>13:00</p>
-                    <p>13:50</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>7</h3>
-                    <p>13:50</p>
-                    <p>14:40</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>8</h3>
-                    <p>15:00</p>
-                    <p>15:50</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>9</h3>
-                    <p>15:50</p>
-                    <p>16:40</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>10</h3>
-                    <p>17:00</p>
-                    <p>17:50</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>11</h3>
-                    <p>17:50</p>
-                    <p>18:40</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>12</h3>
-                    <p>18:40</p>
-                    <p>19:30</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>13</h3>
-                    <p>19:30</p>
-                    <p>20:20</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>14</h3>
-                    <p>20:20</p>
-                    <p>21:10</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>15</h3>
-                    <p>21:10</p>
-                    <p>22:00</p>
-                </td>
-            </tr>
+                            @for (int x = 0; x < 7; x++)
+                            {
+                                <td>
+                                    @foreach(var item in Model)
+                                    {
+                                        if (item.Hours.Contains(i))
+                                        {
+                                            if(item.Day == days[x]){
+                                                @(item.Class)
+                                                @(item.Classroom)
+                                            }
+                                            else
+                                            {
+                                                @("")
+                                            }
+                                        }
+                                    }
+                                </td>
+                            }
 
-
+                        </tr>
+                    }
+            }
         </table>
     </div>
 </div>
