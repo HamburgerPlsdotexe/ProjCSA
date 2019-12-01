@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Konscious.Security.Cryptography.Argon2, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -142,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassModel.cs" />
+    <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\StudentsAndClassesModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
@@ -156,6 +159,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\knyee.json" />
+    <Content Include=".gitignore" />
+    <Content Include="Content\daane.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -184,6 +189,8 @@
     <Content Include="Views\Application\SignUp.cshtml" />
     <Content Include="Views\Application\ViewTeachers.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Application\ViewSchedules.cshtml" />
+    <Content Include="Views\Application\ViewStudentsTemp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

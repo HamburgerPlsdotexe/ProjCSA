@@ -18,7 +18,7 @@ namespace ProjectCSA.Controllers
     public class ApplicationController : Controller
     {
 
-        public string Foenc()
+        public string GetUserTcode()
         {
             var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
             return username;
@@ -28,8 +28,6 @@ namespace ProjectCSA.Controllers
         readonly Pwenc penc = new Pwenc();
         public ActionResult ViewStudentsTemp()
         {
-            string Tcode = Foenc();
-
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
             var data2 = LoadClasses();
@@ -62,10 +60,14 @@ namespace ProjectCSA.Controllers
 
         public ActionResult Index()
         {
-            string Tcode = Foenc();
+            string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
-
-            List<ScheduleModel> list = Dino(Tcode);
+            if(User.Identity.Name == "Admin")
+            {
+                return View();
+            }
+            else { 
+            List<ScheduleModel> list = RetrieveValuesFromJson(Tcode);
             foreach (var row in list)
             {
                 model.Add(new ScheduleModel
@@ -79,9 +81,10 @@ namespace ProjectCSA.Controllers
             }
 
             return View(model);
+            }
         }
 
-        public List<ScheduleModel> Dino(string Tcode)
+        public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
             using StreamReader f = new StreamReader(jsonPath);
@@ -140,7 +143,7 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult SignUp(TeacherModel model)
+        public ActionResult SignUp(TeacherModel model) // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
         {
 
             if (ModelState.IsValid)
@@ -206,10 +209,8 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult OnClick(string Cnum)
+        public ActionResult ReturnStudentListViewWithCnum(string Cnum)
         {
-            ViewBag.Message = "Home page";
-
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
             var data2 = LoadClasses();
@@ -238,7 +239,17 @@ namespace ProjectCSA.Controllers
             }
             model.Classes = classes;
             model.Students = student;
-            return View("ViewStudentsTemp", model);
+            if(model.Students.Count==0)
+            {
+                TempData["Temporary"] = "No students where found!";
+                return View("ViewStudentsTemp", model);
+
+            }
+            else
+            {
+                return View("ViewStudentsTemp", model);
+            }
+
         }
 
     }

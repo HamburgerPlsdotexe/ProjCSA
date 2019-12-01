@@ -47,14 +47,45 @@ box {
 }
 
 .maincontent {
+    overflow-y: hidden;
+    overflow-x: hidden;
     background-color: white;
     width: 100%;
     height: 88%;
     float: right;
-    overflow-y: scroll;
 }
 
+.fixed_header {
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 
+    .fixed_header tbody {
+        display: block;
+        width: 100%;
+        overflow: auto;
+        height: 100%;
+    }
+
+    .fixed_header thead tr {
+        display: block;
+        width:100%;
+    }
+
+    .fixed_header thead {
+        color: #fff;
+        width:100%;
+    }
+
+    .fixed_header th, .fixed_header td {
+        padding: 5px;
+        text-align: left;
+        width:300px;
+    }
 .headerbuttons {
     color: #fff !important;
     text-transform: uppercase;
@@ -74,6 +105,19 @@ box {
         box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
     }
+
+th {
+    color:white;
+    background: #333;
+    border-bottom: 4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 24px;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+}
 
 
 .table {
@@ -287,12 +331,6 @@ validation{
     font-weight:bold;
 }
 
-
-
-
-
-
-
 * {
     margin: 0px;
     padding: 0px;
@@ -304,6 +342,7 @@ inpu
 
 body, html {
     height: 100%;
+
 }
 
 /*---------------------------------------------*/

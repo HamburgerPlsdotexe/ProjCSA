@@ -3,42 +3,42 @@
     "LessonCode": "Test",
     "Day": "Tuesday",
     "Classroom": "H.2.403",
-    "Hours": [ 1, 2, 3 ],
-    "Class": "TEST1"
+    "Hours": [ 1, 2, 3 ],      
+    "Class": "INF1I"
   },
   {
     "LessonCode": "INFWEB01-C",
     "Day": "Monday",
     "Classroom": "H.1.609",
     "Hours": [ 3, 4, 5 ],
-    "Class": "TEST2"
+    "Class": "INF1G"
   },
   {
     "LessonCode": "INFWEB01-a",
     "Day": "Wednesday",
     "Classroom": "H.2.103",
     "Hours": [ 3, 4, 5 ],
-    "Class": "TEST3"
+    "Class": "INF2C"
   },
   {
     "LessonCode": "AlEssoN-n",
     "Day": "Saturday",
     "Classroom": "H.2.305",
     "Hours": [ 12, 13, 14, 15 ],
-    "Class": "TEST4"
+    "Class": "INF1I"
   },
   {
     "LessonCode": "KJLHKJLHK",
     "Day": "Friday",
     "Classroom": "H.2.305",
     "Hours": [ 9, 10, 11 ],
-    "Class": "TEST4"
+    "Class": "INF1A"
   },
   {
     "LessonCode": "AlEssoN-n",
     "Day": "Monday",
     "Classroom": "H.2.305",
     "Hours": [ 7, 8, 9 ],
-    "Class": "TEST4"
+    "Class": "INF4D"
   }
 ]

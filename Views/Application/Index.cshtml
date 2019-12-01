@@ -9,17 +9,28 @@
     <div class="header">
 
         <div class="headers">
-            <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
-            <a class="headerbuttons" href="~/Application/ViewSchedules/">SCHEDULES</a>
-            <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
+            @if (User.Identity.Name == "Admin")
+            {
+                <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
+            }
             <a class="headerbuttons" href="#">STATISTICS</a>
-            <a class="headerbuttons" @Html.ActionLink("Log out", "LogOut", "Application")</a>
-            <a class="headerbuttons">Current user: @Html.Action("foenc", "Application")</a>
+            <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
+            @Html.ActionLink("Logout", "LogOut", "Application")
+
         </div>
     </div>
 
     <div class="maincontent">
-        <table class="table2">
+        @if (User.Identity.Name == "Admin")
+        {
+            <div class="center"> <a> You're an admin, you do not have a schedule.</a> </div>
+        }
+        else
+        {
+
+
+    <table class="fixed_header">
+        <thead>
             <tr>
                 <th></th>
                 @{ string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
@@ -28,58 +39,71 @@
                 {
                     <th>@(days[i])</th>
                 }
+
             </tr>
-            @{
-                TimeSpan timeSpan = new TimeSpan(8, 30, 0); //08:30:00
-                TimeSpan AddTime = new TimeSpan(0, 50, 0);  //00:50:00
-                TimeSpan timeSpan2 = new TimeSpan();
-            }
-            
+        </thead>
+        @{
+            TimeSpan BreakToken1 = new TimeSpan(10, 10, 0); //10:10:00 First break 
+            TimeSpan BreakToken2 = new TimeSpan(14, 40, 0); //14:40:00 Second break 
+            TimeSpan BreakToken3 = new TimeSpan(16, 40, 0); //16:40:00 Third break 
+            TimeSpan timeSpan = new TimeSpan(8, 30, 0); //08:30:00
+            TimeSpan AddTime = new TimeSpan(0, 50, 0);  //00:50:00
+            TimeSpan AddTime2 = new TimeSpan(0, 20, 0); //00:20:00 Added time for breaks        
+            TimeSpan timeSpan2 = new TimeSpan();
+        }
+        <tbody>
+
             @{ for (int i = 1; i < 16; i++)
                 {
-                    
+                    if (timeSpan2 == BreakToken1 || timeSpan2 == BreakToken2 || timeSpan2 == BreakToken3){ // check if time is equal to break time
+                        timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time  
 
-                        <tr>
-                            <td>
-                                <h3>@(i)</h3>
+                    }
+                    <tr>
+                        <td>
+                            <h3>@(i)</h3>
+                            <a>
+                                @{timeSpan.ToString();}
+
+                                @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
+                            </a>
+                            @{timeSpan2 = timeSpan.Add(AddTime);}
+                            <div>
                                 <a>
-                                    @{timeSpan.ToString();}
-
-                                    @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
+                                    @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
+                                    @{timeSpan = timeSpan2;}
                                 </a>
-                                @{timeSpan2 = timeSpan.Add(AddTime);}
-                                <div>
-                                    <a>
-                                        @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
-                                        @{timeSpan = timeSpan2;}
-                                    </a>
-                                </div>
-                            </td>
+                            </div>
+                        </td>
 
-                            @for (int x = 0; x < 7; x++)
-                            {
-                                <td>
-                                    @foreach(var item in Model)
+                        @for (int x = 0; x < 7; x++)                // For every day of the week
+                        {
+                            <td>
+                                @foreach (var item in Model)        // For every scheduleitem in the model
+                                {
+                                    if (item.Hours.Contains(i))     // If current hour is in model hours array 
                                     {
-                                        if (item.Hours.Contains(i))
+                                        if (item.Day == days[x])    // Check if model day is equal to current day
                                         {
-                                            if(item.Day == days[x]){
-                                                @(item.Class)
-                                                @(item.Classroom)
-                                            }
-                                            else
-                                            {
-                                                @("")
-                                            }
+                                            @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class }, null) //????
+                                            @(item.Classroom)
+                                        }
+                                        else
+                                        {
+                                            @("")
                                         }
                                     }
-                                </td>
-                            }
+                                }
+                            </td>
+                        }
 
-                        </tr>
-                    }
+                    </tr>
+                }
             }
-        </table>
+    </table>
+
+
+                }
+        </div>
     </div>
-</div>
 
