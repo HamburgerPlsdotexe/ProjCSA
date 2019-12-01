@@ -10,40 +10,28 @@
     <div class="header">
 
         <div class="headers">
-            <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
-            <a class="headerbuttons" href="~/Application/ViewSchedules/">SCHEDULES</a>
-            <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
-            <a class="headerbuttons" href="#">STATISTICS</a>
+
+            <a class="headerbuttons" href="#">QR Code</a>
             @Html.ActionLink("Logout", "LogOut", "Application")
         </div>
     </div>
-    <div class="leftcolumn">
-
-        <div class="vertical-menu">
-
-            <div class="topnav">
-
-                <input type="text" placeholder="search...">
-            </div>
-            <a class="active">Classes</a>
-            @foreach (var item in Model.Classes)
-            {
-                @Html.ActionLink(item.Cnum, "OnClick", "Application", new { Cnum = item.Cnum }, null)
-            }
-
-        </div>
-
-    </div>
-
     <div class="maincontent">
-        <div class="table">
+        <div class="table2">
 
             <table style="width:100%">
 
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
-                    <th>Date</th>
-
+                    @if (Model.Students.Count == 0)
+                    {
+                    <div class="center">
+                        <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
+                    </div>
+                    }
+                    else
+                    {
+                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
+                        <th>Date</th>
+                    }
                 </tr>
 
                 @foreach (var item in Model.Students)
@@ -55,6 +43,7 @@
 
                         <td>
                             <div class="checkbox">
+
                                 @Html.CheckBox("checkbox")
                             </div>
                         </td>

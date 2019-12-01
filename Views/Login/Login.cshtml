@@ -9,11 +9,17 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
+                @Html.ValidationSummary(true, "")
                 <form class="login100-form validate-form">
                     <span class="login100-form-title">
                         User Login
                     </span>
+                    <span class="validation">
+                        @TempData["Temp"]
+                    </span>
                     <div class="wrap-input100 validate-input">
+
+
                         @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code", Class = "input100" })
                         <span class="focus-input100"></span>
                     </div>

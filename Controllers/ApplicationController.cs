@@ -18,7 +18,7 @@ namespace ProjectCSA.Controllers
     public class ApplicationController : Controller
     {
 
-        public string Foenc()
+        public string GetUserTcode()
         {
             var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
             return username;
@@ -28,8 +28,6 @@ namespace ProjectCSA.Controllers
         readonly Pwenc penc = new Pwenc();
         public ActionResult ViewStudentsTemp()
         {
-            string Tcode = Foenc();
-
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
             var data2 = LoadClasses();
@@ -62,24 +60,39 @@ namespace ProjectCSA.Controllers
 
         public ActionResult Index()
         {
-            Dino(Foenc());
-            ViewBag.Message = "Schedule";
+            string Tcode = GetUserTcode();
+            List<ScheduleModel> model = new List<ScheduleModel>();
+            if(User.Identity.Name == "Admin")
+            {
+                return View();
+            }
+            else { 
+            List<ScheduleModel> list = RetrieveValuesFromJson(Tcode);
+            foreach (var row in list)
+            {
+                model.Add(new ScheduleModel
+                {
+                    LessonCode = row.LessonCode,
+                    Day = row.Day,
+                    Classroom = row.Classroom,
+                    Hours = row.Hours,
+                    Class = row.Class
+                });
+            }
 
-            return View();
+            return View(model);
+            }
         }
 
-        public void Dino(string Tcode)
+        public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
-
             using StreamReader f = new StreamReader(jsonPath);
             string json = f.ReadToEnd();
             JArray js = JArray.Parse(json);
+            var array = js.ToObject<List<ScheduleModel>>();
+            return array;
 
-            foreach (var entry in js)
-            {
-                Console.WriteLine(entry);
-            }
         }
 
         public ActionResult LogOut()
@@ -130,7 +143,7 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult SignUp(TeacherModel model)
+        public ActionResult SignUp(TeacherModel model) // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
         {
 
             if (ModelState.IsValid)
@@ -164,7 +177,6 @@ namespace ProjectCSA.Controllers
                 
             }
             ViewData["ErrorMessage"] = "Something went wrong, try again!";
-
             return View("SignUp");                                              //other error, redirect to signup
 
 
@@ -197,10 +209,8 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult OnClick(string Cnum)
+        public ActionResult ReturnStudentListViewWithCnum(string Cnum)
         {
-            ViewBag.Message = "Home page";
-
             StudentsAndClassesModel model = new StudentsAndClassesModel();
             var data = LoadStudents();
             var data2 = LoadClasses();
@@ -229,8 +239,16 @@ namespace ProjectCSA.Controllers
             }
             model.Classes = classes;
             model.Students = student;
+            if(model.Students.Count==0)
+            {
+                TempData["Temporary"] = "No students where found!";
+                return View("ViewStudentsTemp", model);
 
-            return View("ViewStudentsTemp", model);
+            }
+            else
+            {
+                return View("ViewStudentsTemp", model);
+            }
 
         }
 
