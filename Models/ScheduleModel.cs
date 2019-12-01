@@ -1,32 +1,18 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using ProjectCSA.Controllers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProjectCSA.Models
 {
     public class ScheduleModel
     {
+        [Display(Name = "Lesson Code")]
         public string LessonCode { get; set; }
+        [Display(Name = "Day")]
         public string Day { get; set; }
+        [Display(Name = "Classroom")]
         public string Classroom { get; set; }
+        [Display(Name = "Hours")]
         public int[] Hours { get; set; }
+        [Display(Name = "Class")]
         public string Class { get; set; }
-
-        readonly static string Tcode = LoginController.Tcode;
-        string jsonPath = $@"../Content/{Tcode}.json";
-
-        void ReadJson()
-        {
-            using (StreamReader r = new StreamReader(jsonPath))
-            {
-                string json = r.ReadToEnd();
-                List<string> items = JsonConvert.DeserializeObject<List<string>>(json);
-            }
-        }
     }
 }

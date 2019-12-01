@@ -1,0 +1,16 @@
+[
+  {
+    "LessonCode": "INFDEV-2",
+    "Day": "Friday",
+    "Classroom": "H.2.403",
+    "Hours": [ 3, 4, 5 ],
+    "Class": "INF1I"
+  },
+  {
+    "LessonCode": "INFDEV-1",
+    "Day": "Tuesday",
+    "Classroom": "H.2.403",
+    "Hours": [ 1, 2, 3 ],
+    "Class": "INF1I"
+  }
+]

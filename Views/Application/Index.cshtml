@@ -1,5 +1,4 @@
-﻿@model ProjectCSA.Models.StudentsAndClassesModel
-
+﻿@model IEnumerable<ProjectCSA.Models.ScheduleModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,146 +9,101 @@
     <div class="header">
 
         <div class="headers">
-            <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
-            <a class="headerbuttons" href="~/Application/ViewSchedules/">SCHEDULES</a>
-            <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
+            @if (User.Identity.Name == "Admin")
+            {
+                <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
+            }
             <a class="headerbuttons" href="#">STATISTICS</a>
-            <a class="headerbuttons" @Html.ActionLink("Logout", "LogOut", "Application")</a>
-            <a class="headerbuttons">Current user: @Html.Action("foenc", "Application")</a>
+            <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
+            @Html.ActionLink("Logout", "LogOut", "Application")
+
         </div>
-        </div>
+    </div>
 
     <div class="maincontent">
-        <table class="table2">
+        @if (User.Identity.Name == "Admin")
+        {
+            <div class="center"> <a> You're an admin, you do not have a schedule.</a> </div>
+        }
+        else
+        {
+
+
+    <table class="fixed_header">
+        <thead>
             <tr>
                 <th></th>
-                <th>Monday </th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
-            </tr>
+                @{ string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
 
-            <tr>
-                <td>
-                    <h3>1</h3>
-                    <p>08:30</p>
-                    <p>09:20</p>
-                </td>
-                <td>
-                    <h4>INFWEB01-D</h4>
-                    <tabdat>H.2.403</tabdat>
-                    <div>
-                        <tabdat>INF 2C</tabdat>
-                    </div>
-                </td>
-            </tr>
+                @for (int i = 0; i < days.Length; i++)
+                {
+                    <th>@(days[i])</th>
+                }
 
-            <tr>
-                <td>
-                    <h3>2</h3>
-                    <p>09:20</p>
-                    <p>10:10</p>
-                </td>
             </tr>
+        </thead>
+        @{
+            TimeSpan BreakToken1 = new TimeSpan(10, 10, 0); //10:10:00 First break 
+            TimeSpan BreakToken2 = new TimeSpan(14, 40, 0); //14:40:00 Second break 
+            TimeSpan BreakToken3 = new TimeSpan(16, 40, 0); //16:40:00 Third break 
+            TimeSpan timeSpan = new TimeSpan(8, 30, 0); //08:30:00
+            TimeSpan AddTime = new TimeSpan(0, 50, 0);  //00:50:00
+            TimeSpan AddTime2 = new TimeSpan(0, 20, 0); //00:20:00 Added time for breaks        
+            TimeSpan timeSpan2 = new TimeSpan();
+        }
+        <tbody>
 
-            <tr>
-                <td>
-                    <h3>3</h3>
-                    <p>10:30</p>
-                    <p>11:20</p>
-                </td>
-            </tr>
+            @{ for (int i = 1; i < 16; i++)
+                {
+                    if (timeSpan2 == BreakToken1 || timeSpan2 == BreakToken2 || timeSpan2 == BreakToken3){ // check if time is equal to break time
+                        timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time  
 
-            <tr>
-                <td>
-                    <h3>4</h3>
-                    <p>11:20</p>
-                    <p>12:10</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>5</h3>
-                    <p>12:10</p>
-                    <p>13:00</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>6</h3>
-                    <p>13:00</p>
-                    <p>13:50</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>7</h3>
-                    <p>13:50</p>
-                    <p>14:40</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>8</h3>
-                    <p>15:00</p>
-                    <p>15:50</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>9</h3>
-                    <p>15:50</p>
-                    <p>16:40</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>10</h3>
-                    <p>17:00</p>
-                    <p>17:50</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>11</h3>
-                    <p>17:50</p>
-                    <p>18:40</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>12</h3>
-                    <p>18:40</p>
-                    <p>19:30</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>13</h3>
-                    <p>19:30</p>
-                    <p>20:20</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>14</h3>
-                    <p>20:20</p>
-                    <p>21:10</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>15</h3>
-                    <p>21:10</p>
-                    <p>22:00</p>
-                </td>
-            </tr>
+                    }
+                    <tr>
+                        <td>
+                            <h3>@(i)</h3>
+                            <a>
+                                @{timeSpan.ToString();}
+
+                                @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
+                            </a>
+                            @{timeSpan2 = timeSpan.Add(AddTime);}
+                            <div>
+                                <a>
+                                    @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
+                                    @{timeSpan = timeSpan2;}
+                                </a>
+                            </div>
+                        </td>
+
+                        @for (int x = 0; x < 7; x++)                // For every day of the week
+                        {
+                            <td>
+                                @foreach (var item in Model)        // For every scheduleitem in the model
+                                {
+                                    if (item.Hours.Contains(i))     // If current hour is in model hours array 
+                                    {
+                                        if (item.Day == days[x])    // Check if model day is equal to current day
+                                        {
+                                            @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class }, null) //????
+                                            @(item.Classroom)
+                                        }
+                                        else
+                                        {
+                                            @("")
+                                        }
+                                    }
+                                }
+                            </td>
+                        }
+
+                    </tr>
+                }
+            }
+    </table>
 
 
-        </table>
+                }
+        </div>
     </div>
-</div>
 
