@@ -8,22 +8,20 @@
 
     <div class="header">
 
+
+
+
         <div class="headers">
+
 
             @if (User.Identity.Name == "Admin")
             {
                 <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
-
             }
             @{
-
-                DateTime StartSem = new DateTime(2019, 11, 18);
-                DateTime EndSem = new DateTime(2020, 2, 17);
-                DateTime startDate = new DateTime(2019, 12, 2);  //test
-                DateTime dateAndTime = DateTime.Now; //Current Date
-                var date = dateAndTime.ToString("dd/MM/yyyy");  //String current date
-                var day = dateAndTime.DayOfWeek; // Current day
-                
+                DateTime dateAndTime = DateTime.Now;
+                var date = dateAndTime.ToString("dd/MM/yyyy");
+                var day = dateAndTime.DayOfWeek;
             }
             <a class="headerbuttons">
                 @(day)
@@ -33,26 +31,43 @@
             <a class="headerbuttons" href="#">STATISTICS</a>
             <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
             @Html.ActionLink("Logout", "LogOut", "Application")
-
+            @Html.ActionLink("←", "SchedulePreviousWeek", "Application", null, new { @class = "headerbuttons" })
+            @Html.ActionLink("→", "ScheduleNextWeek", "Application", null, new { @class = "headerbuttons" })
         </div>
     </div>
+
+    <!---
+          p1 start 02/09/19                    p2 start 18/11/19               p3 start 17/02/20               p4 start 04/05/20
+
+          10/10/19 - 25/10/19 herfst           10/04/20 Good                   27/04/20 konings               05/05/20 bevrijding                     27/07/20 - 31/08/20 zomer
+          23/12/19 - 03/12/19 kerst            12/04/20 1e paas                28/04/20 - 01/05/20 mei        21/05/20 - 22/05/20 Hemelvaart
+          24/02/19 - 28/02/20 voorjaars        13/04/20 2e                                                    01/06/20 - 2e pinkster
+    -->
+
+    @{
+        DateTime per1 = new DateTime(2019, 9, 2);
+        DateTime per2 = new DateTime(2019, 11, 18);
+        DateTime per3 = new DateTime(2020, 02, 20);
+        DateTime per4 = new DateTime(2019, 05, 04);
+        int week = DateTime.Now.DayOfYear / 7 + 1;
+    }
+
 
     <div class="maincontent">
 
         @if (User.Identity.Name == "Admin")
         {
             <div class="center"> <a> You're an admin, you do not have a schedule.</a> </div>
-
         }
         else
         {
-            
-            
+
+
             <table class="fixed_header">
                 <thead>
                     <tr>
-                        <th> <a>Week @Html.Action("GetWeekOfYear", "Application")</a></th>
-                        @{ string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
+                        <th><a>Week: @(ViewData["weeks"])</a></th>
+                        @{string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
 
                         @for (int i = 0; i < days.Length; i++)
                         {
@@ -95,32 +110,29 @@
                                         </a>
                                     </div>
                                 </td>
-                
-                                @{ int weeks = (int)ViewData["weeks"]; }
-
+                                @{int weeks = (int)ViewData["weeks"];}
                                 @for (int x = 0; x < 7; x++)                // For every day of the week
                                 {
                                     <td>
                                         @foreach (var item in Model)        // For every scheduleitem in the model
                                         {
-                                            if(item.Week == weeks.ToString())
+                                            if (item.Week == weeks.ToString())
                                             {
-                                            if (item.Hours.Contains(i))     // If current hour is in model hours array
-                                            {
-                                                if (item.Day == days[x])    // Check if model day is equal to current day
-                                                {
-                                                    @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class }, null) //????
-                                                    @(item.Classroom)
-                                                }
-                                                else
-                                                {
-                                                    @("")
-                                                }
-                                            }
-                                            }
 
+                                                if (item.Hours.Contains(i))     // If current hour is in model hours array
+                                                {
+                                                    if (item.Day == days[x])    // Check if model day is equal to current day
+                                                    {
+                                                        @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class }, null) //????
+                                                        @(item.Classroom)
+                                                    }
+                                                    else
+                                                    {
+                                                        @("")
+                                                    }
+                                                }
+                                            }
                                         }
-
                                     </td>
                                 }
 
@@ -128,8 +140,6 @@
                         }
                     }
             </table>
-
-
         }
     </div>
 </div>
