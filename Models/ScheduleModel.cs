@@ -4,8 +4,8 @@ namespace ProjectCSA.Models
 {
     public class ScheduleModel
     {
-        [Display(Name = "Date")]
-        public string Date { get; set; }
+        [Display(Name = "Week")]
+        public string Week { get; set; }
         [Display(Name = "Lesson Code")]
         public string LessonCode { get; set; }
         [Display(Name = "Day")]

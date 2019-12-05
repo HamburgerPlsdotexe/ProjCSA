@@ -12,6 +12,7 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
+using System.Globalization;
 
 namespace ProjectCSA.Controllers
 {
@@ -19,6 +20,20 @@ namespace ProjectCSA.Controllers
     [Authorize]
     public class ApplicationController : Controller
     {
+        public int GetWeekOfYear()
+        {
+            DateTime time = DateTime.Today;
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                time = time.AddDays(3);
+            }
+            // Return the week of our adjusted day
+            Console.WriteLine(CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+        }
+
         public ActionResult qr_button_Click(object sender, EventArgs e)
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
@@ -86,7 +101,7 @@ namespace ProjectCSA.Controllers
 
         public ActionResult Index()
         {
-
+            int weeks = GetWeekOfYear();
             string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
             if (User.Identity.Name == "Admin")
@@ -100,7 +115,7 @@ namespace ProjectCSA.Controllers
                 {
                     model.Add(new ScheduleModel
                     {   
-                        Date = row.Date,
+                        Week = row.Week,
                         LessonCode = row.LessonCode,
                         Day = row.Day,
                         Classroom = row.Classroom,
@@ -108,8 +123,9 @@ namespace ProjectCSA.Controllers
                         Class = row.Class
                     });
             }
+                ViewData["weeks"] = weeks;
 
-            return View(model);
+                return View(model);
             }
         }
            
