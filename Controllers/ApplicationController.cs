@@ -10,14 +10,40 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Web.Hosting;
-
+using QRCoder;
+using System.Drawing;
 
 namespace ProjectCSA.Controllers
 {
+    
     [Authorize]
     public class ApplicationController : Controller
     {
+        public ActionResult qr_button_Click(object sender, EventArgs e)
+        {
+            //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
+            string Code = "SomeCode";
+            QRCodeGenerator qrgenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
 
+            System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
+            imgQRcode.Width = 500;
+            imgQRcode.Height = 500;
+
+            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
+            {
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
+                    imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
+                }
+                ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
+                return View("TestQR"); 
+            }
+        }
         public string GetUserTcode()
         {
             var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
@@ -33,7 +59,7 @@ namespace ProjectCSA.Controllers
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
+            foreach (var row in data) 
             {
                 student.Add(new StudentModel
                 {
@@ -60,29 +86,33 @@ namespace ProjectCSA.Controllers
 
         public ActionResult Index()
         {
+
             string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
-            if(User.Identity.Name == "Admin")
+            if (User.Identity.Name == "Admin")
             {
                 return View();
             }
-            else { 
-            List<ScheduleModel> list = RetrieveValuesFromJson(Tcode);
-            foreach (var row in list)
+            else
             {
-                model.Add(new ScheduleModel
+                List<ScheduleModel> list = RetrieveValuesFromJson(Tcode);
+                foreach (var row in list)
                 {
-                    LessonCode = row.LessonCode,
-                    Day = row.Day,
-                    Classroom = row.Classroom,
-                    Hours = row.Hours,
-                    Class = row.Class
-                });
+                    model.Add(new ScheduleModel
+                    {   
+                        Date = row.Date,
+                        LessonCode = row.LessonCode,
+                        Day = row.Day,
+                        Classroom = row.Classroom,
+                        Hours = row.Hours,
+                        Class = row.Class
+                    });
             }
 
             return View(model);
             }
         }
+           
 
         public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {

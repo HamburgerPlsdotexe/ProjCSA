@@ -11,7 +11,7 @@
 
         <div class="headers">
 
-            <a class="headerbuttons" href="#">QR Code</a>
+            @Html.ActionLink("qr_button_Click", "qr_button_Click", "Application", new { }, new { @class = "headerbuttons" })
             @Html.ActionLink("Logout", "LogOut", "Application")
         </div>
     </div>
