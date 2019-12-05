@@ -144,6 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CalenderModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
@@ -192,6 +193,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Application\ViewSchedules.cshtml" />
     <Content Include="Views\Application\ViewStudentsTemp.cshtml" />
+    <Content Include="Views\Application\TestQR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

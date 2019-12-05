@@ -16,21 +16,23 @@ using System.Drawing;
 namespace ProjectCSA.Controllers
 {
     
+
     [Authorize]
     public class ApplicationController : Controller
     {
 
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
+
             int n = 1; 
             Index(n);
-            return View("Index");
+            return RedirectToAction("Index");
         }
         public ActionResult SchedulePreviousWeek() // Same as the previous method but inverted
         {
             int n = 2;
             Index(n);
-            return View("Index");
+            return RedirectToAction("Index");
         }
        
         
@@ -46,6 +48,7 @@ namespace ProjectCSA.Controllers
             imgQRcode.Width = 500;
             imgQRcode.Height = 500;
 
+
             using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
             {
 
@@ -56,8 +59,15 @@ namespace ProjectCSA.Controllers
                     imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
                 }
                 ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
+                imgQRcode.Dispose();
+                qrCodeData.Dispose();
+                qrgenerator.Dispose();
+                qrCode.Dispose();
+                qrCodeData.Dispose();
                 return View("TestQR"); 
             }
+
+
         }
         public string GetUserTcode()
         {
@@ -105,13 +115,16 @@ namespace ProjectCSA.Controllers
             if (direction == 1)
             {
                 SetWeeks(1);
+                
             }
             if (direction == 2)
             {
                 SetWeeks(2);
+                
+
             }
 
-            
+
             string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
             if (User.Identity.Name == "Admin")
@@ -138,8 +151,6 @@ namespace ProjectCSA.Controllers
                 return View(model);
             }
         }
-           
-
         public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
@@ -156,7 +167,6 @@ namespace ProjectCSA.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-
             return RedirectToAction("Login", "Login");
         }
 
@@ -255,8 +265,6 @@ namespace ProjectCSA.Controllers
                     Lname = row.Lname,
                 });
             }
-
-
             if (LoginController.IsAdmin(LoginController.ReturnTcode()) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 return View(teachers);
@@ -304,6 +312,7 @@ namespace ProjectCSA.Controllers
             }
             else
             {
+                TempData["ClassCode"] = model.Classes[0];
                 return View("ViewStudentsTemp", model);
             }
 
