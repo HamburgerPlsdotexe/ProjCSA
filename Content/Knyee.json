@@ -1,6 +1,6 @@
 [
   {
-    "Date": "05/12/2019",
+    "Week": 49,
     "LessonCode": "Test",
     "Day": "Tuesday",
     "Classroom": "H.2.403",
@@ -8,7 +8,23 @@
     "Class": "INF1I"
   },
   {
-    "Date": "05/12/2019",
+    "Week": 49,
+    "LessonCode": "Test",
+    "Day": "Tuesday",
+    "Classroom": "H.2.403",
+    "Hours": [ 4, 5, 6 ],
+    "Class": "INF1I"
+  },
+  {
+    "Week": 48,
+    "LessonCode": "Test",
+    "Day": "Tuesday",
+    "Classroom": "H.2.403",
+    "Hours": [ 1, 2, 3 ],
+    "Class": "INF1I"
+  },
+  {
+    "Week": 49,
     "LessonCode": "INFWEB01-C",
     "Day": "Monday",
     "Classroom": "H.1.609",
@@ -16,7 +32,7 @@
     "Class": "INF1G"
   },
   {
-    "Date": "05/12/2019",
+    "Week": 49,
     "LessonCode": "INFWEB01-a",
     "Day": "Wednesday",
     "Classroom": "H.2.103",
@@ -24,15 +40,15 @@
     "Class": "INF2C"
   },
   {
-    "Date": "05/12/2019",
+    "Week": 49,
     "LessonCode": "AlEssoN-n",
-    "Day": "Saturday",
+    "Day": "Thursday",
     "Classroom": "H.2.305",
     "Hours": [ 12, 13, 14, 15 ],
     "Class": "INF1D"
   },
   {
-    "Date": "05/12/2019",
+    "Week": 49,
     "LessonCode": "KJLHKJLHK",
     "Day": "Friday",
     "Classroom": "H.2.305",
@@ -40,7 +56,7 @@
     "Class": "INF1A"
   },
   {
-    "Date": "06/12/2019",
+    "Week": 48,
     "LessonCode": "AlEssoN-n",
     "Day": "Monday",
     "Classroom": "H.2.305",
