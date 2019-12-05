@@ -16,6 +16,7 @@ using System.Drawing;
 namespace ProjectCSA.Controllers
 {
     
+
     [Authorize]
     public class ApplicationController : Controller
     {
@@ -37,7 +38,7 @@ namespace ProjectCSA.Controllers
         public ActionResult qr_button_Click(object sender, EventArgs e)
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
-            string Code = "SomeCode";
+            //string Code = "SomeCode";
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
@@ -45,6 +46,7 @@ namespace ProjectCSA.Controllers
             System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
             imgQRcode.Width = 500;
             imgQRcode.Height = 500;
+
 
             using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
             {
@@ -56,8 +58,15 @@ namespace ProjectCSA.Controllers
                     imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
                 }
                 ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
+                imgQRcode.Dispose();
+                qrCodeData.Dispose();
+                qrgenerator.Dispose();
+                qrCode.Dispose();
+                qrCodeData.Dispose();
                 return View("TestQR"); 
             }
+
+
         }
         public string GetUserTcode()
         {
@@ -138,8 +147,6 @@ namespace ProjectCSA.Controllers
                 return View(model);
             }
         }
-           
-
         public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
@@ -156,7 +163,6 @@ namespace ProjectCSA.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-
             return RedirectToAction("Login", "Login");
         }
 
@@ -255,8 +261,6 @@ namespace ProjectCSA.Controllers
                     Lname = row.Lname,
                 });
             }
-
-
             if (LoginController.IsAdmin(LoginController.ReturnTcode()) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 return View(teachers);
@@ -304,6 +308,7 @@ namespace ProjectCSA.Controllers
             }
             else
             {
+                TempData["ClassCode"] = model.Classes[0];
                 return View("ViewStudentsTemp", model);
             }
 

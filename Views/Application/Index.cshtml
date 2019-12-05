@@ -4,8 +4,6 @@
 }
 
 <div class=wrap>
-
-
     <div class="header">
 
 
@@ -28,6 +26,7 @@
                 @(date)
             </a>
 
+            @Html.ActionLink("Next week", "ReloadSchedule", "Application", null, new { @class = "headerbuttons" })
             <a class="headerbuttons" href="#">STATISTICS</a>
             <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
             @Html.ActionLink("Logout", "LogOut", "Application")
@@ -73,7 +72,6 @@
                         {
                             <th>@(days[i])</th>
                         }
-
                     </tr>
                 </thead>
                 @{
@@ -86,13 +84,11 @@
                     TimeSpan timeSpan2 = new TimeSpan();
                 }
                 <tbody>
-
                     @{ for (int i = 1; i < 16; i++)
                         {
                             if (timeSpan2 == BreakToken1 || timeSpan2 == BreakToken2 || timeSpan2 == BreakToken3)
                             { // check if time is equal to break time
                                 timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time
-
                             }
                             <tr>
                                 <td>
