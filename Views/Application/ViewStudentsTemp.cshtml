@@ -10,22 +10,26 @@
     <div class="header">
 
         <div class="headers">
+            <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to schedule</a>
 
-            <a class="headerbuttons" href="#">QR Code</a>
+            @Html.ActionLink("qr_button_Click", "QrButtonClick", "Application", new { }, new {@class = "headerbuttons", })
             @Html.ActionLink("Logout", "LogOut", "Application")
+
         </div>
     </div>
     <div class="maincontent">
         <div class="table2">
-
+            <div class="center">
+                <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
+            </div>
             <table style="width:100%">
+
+
 
                 <tr>
                     @if (Model.Students.Count == 0)
                     {
-                    <div class="center">
-                        <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
-                    </div>
+
                     }
                     else
                     {
