@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
+using static ProjectCSA.DateOperations;
 using ProjectCSA.Models;
 using DataLibrary.DataAccess;
 using System.Web.Security;
@@ -12,8 +13,6 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
-using System.Globalization;
-
 namespace ProjectCSA.Controllers
 {
     
@@ -21,21 +20,23 @@ namespace ProjectCSA.Controllers
     [Authorize]
     public class ApplicationController : Controller
     {
-        public int GetWeekOfYear()
-        {
-            DateTime time = DateTime.Today;
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
-            // Return the week of our adjusted day
-            Console.WriteLine(CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
+        public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
+        {
+            int n = 1; 
+            Index(n);
+            return View("Index");
         }
-        public ActionResult QrButtonClick(string Code, object sender, EventArgs e)
-            {
+        public ActionResult SchedulePreviousWeek() // Same as the previous method but inverted
+        {
+            int n = 2;
+            Index(n);
+            return View("Index");
+        }
+       
+        
+        public ActionResult qr_button_Click(object sender, EventArgs e)
+        {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
             //string Code = "SomeCode";
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
@@ -107,9 +108,19 @@ namespace ProjectCSA.Controllers
             return View(model);
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int direction=3)
         {
-            int weeks = GetWeekOfYear();
+           
+            if (direction == 1)
+            {
+                SetWeeks(1);
+            }
+            if (direction == 2)
+            {
+                SetWeeks(2);
+            }
+
+            
             string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
             if (User.Identity.Name == "Admin")
@@ -122,7 +133,7 @@ namespace ProjectCSA.Controllers
                 foreach (var row in list)
                 {
                     model.Add(new ScheduleModel
-                    {   
+                    {
                         Week = row.Week,
                         LessonCode = row.LessonCode,
                         Day = row.Day,
@@ -130,9 +141,9 @@ namespace ProjectCSA.Controllers
                         Hours = row.Hours,
                         Class = row.Class
                     });
-            }
-                ViewData["weeks"] = weeks;
 
+            }
+                ViewData["weeks"] = GetWeeks();
                 return View(model);
             }
         }
@@ -144,6 +155,8 @@ namespace ProjectCSA.Controllers
             JArray js = JArray.Parse(json);
             var array = js.ToObject<List<ScheduleModel>>();
             return array;
+
+
         }
 
         public ActionResult LogOut()
