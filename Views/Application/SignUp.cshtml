@@ -15,10 +15,10 @@
                     <span class="login100-form-title">
                         Create your account
                     </span>
-                    <span class="validation">
-                        <strong>@TempData["Message"]</strong>
 
-                        @Html.ValidationMessageFor(model => model.Tcode, "")
+                    <span class="validation">
+
+                        @ViewData["ErrorMessage"]
                     </span>
                     <div class="wrap-input100 validate-input">
                         @Html.TextBoxFor(model => model.Tcode, new { placeholder = "Teacher code (5 characters)", Class = "input100" })

@@ -1,7 +1,108 @@
-{
-  "LessonCode": "INFWEB01-D",
-  "Day": "Wednesday",
-  "Classroom": "H.2.403",
-  "Hours": [ 4, 5, 6 ],
-  "Class": "INF2C"
-}
+[
+  {
+    "Week": "40",
+    "LessonCode": "Test",
+    "Day": "Tuesday",
+    "Classroom": "H.2.403",
+    "Hours": [ 1, 2, 3 ],
+    "Class": "INF1I"
+  },
+  {
+    "Week": "41",
+    "LessonCode": "INFWEB01-C",
+    "Day": "Monday",
+    "Classroom": "H.1.609",
+    "Hours": [ 3, 4, 5 ],
+    "Class": "INF1G"
+  },
+  {
+    "Week": "42",
+    "LessonCode": "INFWEB01-a",
+    "Day": "Wednesday",
+    "Classroom": "H.2.103",
+    "Hours": [ 3, 4, 5 ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Saturday",
+    "Classroom": "H.2.305",
+    "Hours": [ 12, 13, 14, 15 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "KJLHKJLHK",
+    "Day": "Friday",
+    "Classroom": "H.2.305",
+    "Hours": [ 9, 10, 11 ],
+    "Class": "INF1A"
+  },
+  {
+    "Week": "45",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Monday",
+    "Classroom": "H.2.305",
+    "Hours": [ 7, 8 ],
+    "Class": "INF4D"
+  },
+  {
+    "Week": "46",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Saturday",
+    "Classroom": "H.2.305",
+    "Hours": [  14 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "47",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Saturday",
+    "Classroom": "H.2.305",
+    "Hours": [ 15 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Saturday",
+    "Classroom": "H.2.305",
+    "Hours": [ 12,  15 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Wednesday",
+    "Classroom": "H.2.305",
+    "Hours": [ 14, 15 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Tuesday",
+    "Classroom": "H.2.305",
+    "Hours": [ 11, 4, 1, 4 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Monday",
+    "Classroom": "H.2.305",
+    "Hours": [5, 13, 6, 15 ],
+    "Class": "INF1D"
+  },
+  {
+    "Week": "52",
+    "LessonCode": "AlEssoN-n",
+    "Day": "Saturday",
+    "Classroom": "H.2.305",
+    "Hours": [ 1,2, 3, 4 ],
+    "Class": "INF1D"
+  }
+
+
+]

@@ -1,5 +1,4 @@
-﻿@model ProjectCSA.Models.StudentsAndClassesModel
-
+﻿@model IEnumerable<ProjectCSA.Models.ScheduleModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -9,59 +8,138 @@
 
     <div class="header">
 
+
+
+
         <div class="headers">
-            <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
-            <a class="headerbuttons" href="~/Application/ViewSchedules/">SCHEDULES</a>
-            <a class="headerbuttons" href="~/Application/SignUp/">TEACHER SIGNUP</a>
-            <a class="headerbuttons" href="#">STATISTICS</a>
-            @Html.ActionLink("Logout", "LogOut", "Application")
-        </div>
-    </div>
-    <div class="leftcolumn">
 
-        <div class="vertical-menu">
 
-            <div class="topnav">
-
-                <input type="text" placeholder="search...">
-            </div>
-            <a class="active">Classes</a>
-            @foreach (var item in Model.Classes)
+            @if (User.Identity.Name == "Admin")
             {
-                @Html.ActionLink(item.Cnum,  "OnClick", "Application", new {Cnum = item.Cnum}, null)
+                <a class="headerbuttons" href="~/Application/ViewTeachers/">TEACHERS</a>
             }
+            @{
+                DateTime dateAndTime = DateTime.Now;
+                var date = dateAndTime.ToString("dd/MM/yyyy");
+                var day = dateAndTime.DayOfWeek;
+            }
+            <a class="headerbuttons">
+                @(day)
+                @(date)
+            </a>
 
+            <a class="headerbuttons" href="#">STATISTICS</a>
+            <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
+            @Html.ActionLink("Logout", "LogOut", "Application")
+            @Html.ActionLink("←", "SchedulePreviousWeek", "Application", null, new { @class = "headerbuttons" })
+            @Html.ActionLink("→", "ScheduleNextWeek", "Application", null, new { @class = "headerbuttons" })
         </div>
-
     </div>
+
+    <!---
+          p1 start 02/09/19                    p2 start 18/11/19               p3 start 17/02/20               p4 start 04/05/20
+
+          10/10/19 - 25/10/19 herfst           10/04/20 Good                   27/04/20 konings               05/05/20 bevrijding                     27/07/20 - 31/08/20 zomer
+          23/12/19 - 03/12/19 kerst            12/04/20 1e paas                28/04/20 - 01/05/20 mei        21/05/20 - 22/05/20 Hemelvaart
+          24/02/19 - 28/02/20 voorjaars        13/04/20 2e                                                    01/06/20 - 2e pinkster
+    -->
+
+    @{
+        DateTime per1 = new DateTime(2019, 9, 2);
+        DateTime per2 = new DateTime(2019, 11, 18);
+        DateTime per3 = new DateTime(2020, 02, 20);
+        DateTime per4 = new DateTime(2019, 05, 04);
+        int week = DateTime.Now.DayOfYear / 7 + 1;
+    }
+
 
     <div class="maincontent">
-        <div class="table">
 
-            <table style="width:100%">
+        @if (User.Identity.Name == "Admin")
+        {
+            <div class="center"> <a> You're an admin, you do not have a schedule.</a> </div>
+        }
+        else
+        {
 
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
-                    <th>Date</th>
 
-                </tr>
-
-                @foreach (var item in Model.Students)
-                {
+            <table class="fixed_header">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Fname)
-                        </td>
+                        <th><a>Week: @(ViewData["weeks"])</a></th>
+                        @{string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
 
-                        <td>
-                            <div class="checkbox">
-                                @Html.CheckBox("checkbox")
-                            </div>
-                        </td>
+                        @for (int i = 0; i < days.Length; i++)
+                        {
+                            <th>@(days[i])</th>
+                        }
 
                     </tr>
+                </thead>
+                @{
+                    TimeSpan BreakToken1 = new TimeSpan(10, 10, 0); //10:10:00 First break
+                    TimeSpan BreakToken2 = new TimeSpan(14, 40, 0); //14:40:00 Second break
+                    TimeSpan BreakToken3 = new TimeSpan(16, 40, 0); //16:40:00 Third break
+                    TimeSpan timeSpan = new TimeSpan(8, 30, 0); //08:30:00
+                    TimeSpan AddTime = new TimeSpan(0, 50, 0);  //00:50:00
+                    TimeSpan AddTime2 = new TimeSpan(0, 20, 0); //00:20:00 Added time for breaks
+                    TimeSpan timeSpan2 = new TimeSpan();
                 }
+                <tbody>
+
+                    @{ for (int i = 1; i < 16; i++)
+                        {
+                            if (timeSpan2 == BreakToken1 || timeSpan2 == BreakToken2 || timeSpan2 == BreakToken3)
+                            { // check if time is equal to break time
+                                timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time
+
+                            }
+                            <tr>
+                                <td>
+                                    <h3>@(i)</h3>
+                                    <a>
+                                        @{timeSpan.ToString();}
+
+                                        @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
+                                    </a>
+                                    @{timeSpan2 = timeSpan.Add(AddTime);}
+                                    <div>
+                                        <a>
+                                            @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
+                                            @{timeSpan = timeSpan2;}
+                                        </a>
+                                    </div>
+                                </td>
+                                @{int weeks = (int)ViewData["weeks"];}
+                                @for (int x = 0; x < 7; x++)                // For every day of the week
+                                {
+                                    <td>
+                                        @foreach (var item in Model)        // For every scheduleitem in the model
+                                        {
+                                            if (item.Week == weeks.ToString())
+                                            {
+
+                                                if (item.Hours.Contains(i))     // If current hour is in model hours array
+                                                {
+                                                    if (item.Day == days[x])    // Check if model day is equal to current day
+                                                    {
+                                                        @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class }, null) //????
+                                                        @(item.Classroom)
+                                                    }
+                                                    else
+                                                    {
+                                                        @("")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+                    }
             </table>
-        </div>
+        }
     </div>
 </div>

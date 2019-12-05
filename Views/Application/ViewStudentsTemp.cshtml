@@ -1,0 +1,56 @@
+﻿@model ProjectCSA.Models.StudentsAndClassesModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class=wrap>
+
+
+    <div class="header">
+
+        <div class="headers">
+
+            @Html.ActionLink("qr_button_Click", "qr_button_Click", "Application", new { }, new { @class = "headerbuttons" })
+            @Html.ActionLink("Logout", "LogOut", "Application")
+        </div>
+    </div>
+    <div class="maincontent">
+        <div class="table2">
+
+            <table style="width:100%">
+
+                <tr>
+                    @if (Model.Students.Count == 0)
+                    {
+                    <div class="center">
+                        <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
+                    </div>
+                    }
+                    else
+                    {
+                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
+                        <th>Date</th>
+                    }
+                </tr>
+
+                @foreach (var item in Model.Students)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fname)
+                        </td>
+
+                        <td>
+                            <div class="checkbox">
+
+                                @Html.CheckBox("checkbox")
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
