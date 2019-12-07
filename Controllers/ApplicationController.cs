@@ -4,6 +4,7 @@ using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
 using static ProjectCSA.DateOperations;
+using static ProjectCSA.JsonOperations;
 using ProjectCSA.Models;
 using DataLibrary.DataAccess;
 using System.Web.Security;
@@ -13,18 +14,15 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
+
 namespace ProjectCSA.Controllers
 {
-    
-
     [Authorize]
     public class ApplicationController : Controller
     {
-
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
-
-            int n = 1; 
+            int n = 1;
             Index(n);
             return RedirectToAction("Index");
         }
@@ -34,12 +32,12 @@ namespace ProjectCSA.Controllers
             Index(n);
             return RedirectToAction("Index");
         }
-       
-        
-        public ActionResult qr_button_Click(object sender, EventArgs e)
+
+        public ActionResult QR_Button_Click(string LessonCode, object sender, EventArgs e)
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
-            string Code = "SomeCode";
+            string Code = LessonCode;
+
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
@@ -48,10 +46,8 @@ namespace ProjectCSA.Controllers
             imgQRcode.Width = 500;
             imgQRcode.Height = 500;
 
-
             using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
             {
-
                 using (MemoryStream ms = new MemoryStream())
                 {
                     qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -64,17 +60,14 @@ namespace ProjectCSA.Controllers
                 qrgenerator.Dispose();
                 qrCode.Dispose();
                 qrCodeData.Dispose();
-                return View("TestQR"); 
+                return View("TestQR");
             }
-
-
         }
         public string GetUserTcode()
         {
             var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
             return username;
         }
-
 
         readonly Pwenc penc = new Pwenc();
         public ActionResult ViewStudentsTemp()
@@ -84,7 +77,7 @@ namespace ProjectCSA.Controllers
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data) 
+            foreach (var row in data)
             {
                 student.Add(new StudentModel
                 {
@@ -105,25 +98,19 @@ namespace ProjectCSA.Controllers
             model.Classes = classes;
             model.Students = student;
 
-
             return View(model);
         }
 
-        public ActionResult Index(int direction=3)
+        public ActionResult Index(int direction = 3)
         {
-           
             if (direction == 1)
             {
                 SetWeeks(1);
-                
             }
             if (direction == 2)
             {
                 SetWeeks(2);
-                
-
             }
-
 
             string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
@@ -145,12 +132,12 @@ namespace ProjectCSA.Controllers
                         Hours = row.Hours,
                         Class = row.Class
                     });
-
-            }
+                }
                 ViewData["weeks"] = GetWeeks();
                 return View(model);
             }
         }
+
         public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
@@ -159,8 +146,6 @@ namespace ProjectCSA.Controllers
             JArray js = JArray.Parse(json);
             var array = js.ToObject<List<ScheduleModel>>();
             return array;
-
-
         }
 
         public ActionResult LogOut()
@@ -173,14 +158,12 @@ namespace ProjectCSA.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -188,7 +171,6 @@ namespace ProjectCSA.Controllers
         public ActionResult SignUp()
         {
             ViewBag.Message = "Teacher Sign Up";
-
             return View();
         }
 
@@ -210,16 +192,13 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult SignUp(TeacherModel model) // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
+        public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
         {
-
             if (ModelState.IsValid)
             {
-
                 if (DoesTcodeExist(model.Tcode))
                 {
                     string[][] Encrypted = new string[][] { penc.Run(model.Password) };
-
 
                     CreateTeacher(
                     model.Tcode,
@@ -229,29 +208,23 @@ namespace ProjectCSA.Controllers
                     model.Salt = Encrypted[0][1],
                     model.Flag = "usr");
 
-
-                    return RedirectToAction("index");                           //unique account, continue creation.      
+                    PopulateJson(model.Tcode);
+                    return RedirectToAction("Login", "Login");                                      //unique account, continue creation.      
                 }
                 else
                 {
-                   // if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
-                   // {
-                        
-                    //}
                     ViewData["ErrorMessage"] = "That teacher code already exists!";
-                    return View("SignUp");                                      //Not a unique Tcode, redirect to signup
+                    return View("SignUp");                                                          //Not a unique Tcode, redirect to signup
                 }
-                
             }
             ViewData["ErrorMessage"] = "Something went wrong, try again!";
-            return View("SignUp");                                              //other error, redirect to signup
-
-
+            return View("SignUp");                                                                  //other error, redirect to signup
         }
+
+
 
         public ActionResult ViewTeachers()
         {
-
             ViewBag.Message = "Teacher List";
 
             var data = LoadTeachers();
@@ -274,9 +247,10 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult ReturnStudentListViewWithCnum(string Cnum)
+        public ActionResult ReturnStudentListViewWithCnum(string Cnum, string CCode)
         {
-            StudentsAndClassesModel model = new StudentsAndClassesModel();
+            string ccode = CCode;
+            StudentsClassesLessonCode model = new StudentsClassesLessonCode();
             var data = LoadStudents();
             var data2 = LoadClasses();
 
@@ -294,6 +268,7 @@ namespace ProjectCSA.Controllers
                     });
                 }
             }
+
             List<ClassModel> classes = new List<ClassModel>();
             foreach (var row in data2)
             {
@@ -304,11 +279,12 @@ namespace ProjectCSA.Controllers
             }
             model.Classes = classes;
             model.Students = student;
-            if(model.Students.Count==0)
+            model.ClassCode = ccode;
+
+            if (model.Students.Count == 0)
             {
                 TempData["Temporary"] = "No students where found!";
                 return View("ViewStudentsTemp", model);
-
             }
             else
             {
