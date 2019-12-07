@@ -13,17 +13,16 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
+using Newtonsoft.Json;
+using System.Linq;
+
 namespace ProjectCSA.Controllers
 {
-    
-
     [Authorize]
     public class ApplicationController : Controller
     {
-
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
-
             int n = 1; 
             Index(n);
             return RedirectToAction("Index");
@@ -34,12 +33,12 @@ namespace ProjectCSA.Controllers
             Index(n);
             return RedirectToAction("Index");
         }
-       
-        
-        public ActionResult qr_button_Click(object sender, EventArgs e)
+
+        public ActionResult QR_Button_Click(string LessonCode, object sender, EventArgs e)
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
-            string Code = "SomeCode";
+            string Code = LessonCode;
+
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
@@ -47,7 +46,6 @@ namespace ProjectCSA.Controllers
             System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
             imgQRcode.Width = 500;
             imgQRcode.Height = 500;
-
 
             using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
             {
@@ -64,17 +62,14 @@ namespace ProjectCSA.Controllers
                 qrgenerator.Dispose();
                 qrCode.Dispose();
                 qrCodeData.Dispose();
-                return View("TestQR"); 
+                return View("TestQR");
             }
-
-
         }
         public string GetUserTcode()
         {
             var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
             return username;
         }
-
 
         readonly Pwenc penc = new Pwenc();
         public ActionResult ViewStudentsTemp()
@@ -84,7 +79,7 @@ namespace ProjectCSA.Controllers
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data) 
+            foreach (var row in data)
             {
                 student.Add(new StudentModel
                 {
@@ -105,13 +100,11 @@ namespace ProjectCSA.Controllers
             model.Classes = classes;
             model.Students = student;
 
-
             return View(model);
         }
 
-        public ActionResult Index(int direction=3)
+        public ActionResult Index(int direction = 3)
         {
-           
             if (direction == 1)
             {
                 SetWeeks(1);
@@ -146,11 +139,12 @@ namespace ProjectCSA.Controllers
                         Class = row.Class
                     });
 
-            }
+                }
                 ViewData["weeks"] = GetWeeks();
                 return View(model);
             }
         }
+
         public List<ScheduleModel> RetrieveValuesFromJson(string Tcode)
         {
             string jsonPath = HostingEnvironment.MapPath($@"~/Content/{Tcode}.json");
@@ -159,8 +153,6 @@ namespace ProjectCSA.Controllers
             JArray js = JArray.Parse(json);
             var array = js.ToObject<List<ScheduleModel>>();
             return array;
-
-
         }
 
         public ActionResult LogOut()
@@ -173,14 +165,12 @@ namespace ProjectCSA.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -188,7 +178,6 @@ namespace ProjectCSA.Controllers
         public ActionResult SignUp()
         {
             ViewBag.Message = "Teacher Sign Up";
-
             return View();
         }
 
@@ -210,7 +199,7 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult SignUp(TeacherModel model) // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
+        public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
         {
 
             if (ModelState.IsValid)
@@ -229,25 +218,83 @@ namespace ProjectCSA.Controllers
                     model.Salt = Encrypted[0][1],
                     model.Flag = "usr");
 
-
-                    return RedirectToAction("index");                           //unique account, continue creation.      
+                    PopulateJson(model.Tcode);
+                    return RedirectToAction("Login", "Login");                                      //unique account, continue creation.      
                 }
                 else
                 {
-                   // if (model.Tcode != null && model.Tcode.Length == 5 && DoesTcodeExist(model.Tcode))
-                   // {
-                        
-                    //}
                     ViewData["ErrorMessage"] = "That teacher code already exists!";
-                    return View("SignUp");                                      //Not a unique Tcode, redirect to signup
+                    return View("SignUp");                                                          //Not a unique Tcode, redirect to signup
                 }
-                
+
             }
             ViewData["ErrorMessage"] = "Something went wrong, try again!";
-            return View("SignUp");                                              //other error, redirect to signup
-
-
+            return View("SignUp");                                                                  //other error, redirect to signup
         }
+
+
+        public static void PopulateJson(string tcode)
+        {
+            Random rnd = new Random();
+            string[] Days = new string[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };     //days of the week.
+            int ZeroToFiveOuter = rnd.Next(0, 6);
+
+            string[] Classes = new string[5] { "INF2A", "INF2B", "INF2C", "INF2D", "INF2E" };
+
+            string[] ClassRooms = new string[] { $"H.{ZeroToFiveOuter}.114", $"WD.{ZeroToFiveOuter}.002", $"WD.{ZeroToFiveOuter}.016", $"H.{ZeroToFiveOuter}.403", $"H.{ZeroToFiveOuter}.315", $"H.{ZeroToFiveOuter}.308", $"H.{ZeroToFiveOuter}.306", $"H.{ZeroToFiveOuter}.206", $"H.{ZeroToFiveOuter}.204", $"H.{ZeroToFiveOuter}.110", $"H.{ZeroToFiveOuter}.405" };
+            List<ScheduleModel> _data = new List<ScheduleModel>();
+            for (int i = 0; i < 100; i++)
+            {
+                int OneToFive = rnd.Next(1, 6);                                                                                         //pick random day of the week.
+                int maxvalue = ClassRooms.Length;                                                                                       //random value from array.
+                int ClassRoomInt = rnd.Next(0, maxvalue);                                                                               //random int to pick from array.
+                int Hours = rnd.Next(1, 13);                                                                                            //pick random hour of the day between 1 and 13, and add the next to upcoming hours into the array.
+                int[] hours = new int[] { Hours, Hours + 1, Hours + 2 };
+                string ClassCode = Classes[OneToFive - 1];
+                string Weeks = rnd.Next(1, 53).ToString();
+                ScheduleModel tempmodel = new ScheduleModel()
+                {
+                    Week = Weeks,
+                    Day = Days[OneToFive],
+                    Classroom = ClassRooms[ClassRoomInt],
+                    Hours = hours,
+                    Class = ClassCode,
+                    LessonCode = ClassCode + "-" + Weeks + "-" + DateTime.Now.Date.ToString("d")                  //INF1I-49-Date
+
+                };
+                if (DoesExist(_data, tempmodel))
+                {
+                    _data.Add(tempmodel);
+                }
+                else
+                {
+
+                }
+            };
+
+            string json = JsonConvert.SerializeObject(_data.ToArray());
+            string Tcode = tcode;
+            System.IO.File.WriteAllText(HostingEnvironment.MapPath($@"~/Content/{Tcode}.json"), json);
+        }
+        public static bool DoesExist(List<ScheduleModel> _data, ScheduleModel tempmodel)
+        {
+            bool isEmpty = !_data.Any();
+            if (isEmpty)
+            {
+                return true;
+            }
+            bool alreadyExists = _data.Any(x => x.Day == tempmodel.Day && x.Week == tempmodel.Week && x.Hours.Intersect(tempmodel.Hours).Any()
+);
+            if (alreadyExists)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
 
         public ActionResult ViewTeachers()
         {
@@ -274,9 +321,10 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult ReturnStudentListViewWithCnum(string Cnum)
+        public ActionResult ReturnStudentListViewWithCnum(string Cnum, string CCode)
         {
-            StudentsAndClassesModel model = new StudentsAndClassesModel();
+            string ccode = CCode;
+            StudentsClassesLessonCode model = new StudentsClassesLessonCode();
             var data = LoadStudents();
             var data2 = LoadClasses();
 
@@ -294,6 +342,7 @@ namespace ProjectCSA.Controllers
                     });
                 }
             }
+
             List<ClassModel> classes = new List<ClassModel>();
             foreach (var row in data2)
             {
@@ -304,7 +353,9 @@ namespace ProjectCSA.Controllers
             }
             model.Classes = classes;
             model.Students = student;
-            if(model.Students.Count==0)
+            model.ClassCode = ccode;
+
+            if (model.Students.Count == 0)
             {
                 TempData["Temporary"] = "No students where found!";
                 return View("ViewStudentsTemp", model);

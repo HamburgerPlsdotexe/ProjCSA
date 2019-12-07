@@ -41,9 +41,9 @@ box {
 }
 
 .headers {
-    padding-left: 3%;
+    padding-left: 1%;
     padding-top: 2%;
-    font-weight: bold;
+
 }
 
 .maincontent {
@@ -283,12 +283,6 @@ h3{
 h4{
     font-size: 14px;
 }
-
-tabdat {
-    font-size: 14px;
-}
-
-
 a{
     color:black;
     font-size:15px;
@@ -299,22 +293,16 @@ validation{
     color:red;
     font-weight:bold;
 }
-
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
-inpu
-
 body, html {
     height: 100%;
 
 }
-
-/*---------------------------------------------*/
 a {
     font-size: 14px;
     line-height: 1.7;
@@ -335,86 +323,12 @@ a {
         color: #FF0000;
     }
 
-/*---------------------------------------------*/
 input {
     outline: none;
     border: none;
 }
 
-textarea {
-    outline: none;
-    border: none;
-}
 
-    textarea:focus, input:focus {
-        border-color: transparent !important;
-    }
-
-        input:focus::-webkit-input-placeholder {
-            color: transparent;
-        }
-
-        input:focus:-moz-placeholder {
-            color: transparent;
-        }
-
-        input:focus::-moz-placeholder {
-            color: transparent;
-        }
-
-        input:focus:-ms-input-placeholder {
-            color: transparent;
-        }
-
-        textarea:focus::-webkit-input-placeholder {
-            color: transparent;
-        }
-
-        textarea:focus:-moz-placeholder {
-            color: transparent;
-        }
-
-        textarea:focus::-moz-placeholder {
-            color: transparent;
-        }
-
-        textarea:focus:-ms-input-placeholder {
-            color: transparent;
-        }
-
-input::-webkit-input-placeholder {
-    color: #999999;
-}
-
-input:-moz-placeholder {
-    color: #999999;
-}
-
-input::-moz-placeholder {
-    color: #999999;
-}
-
-input:-ms-input-placeholder {
-    color: #999999;
-}
-
-textarea::-webkit-input-placeholder {
-    color: #999999;
-}
-
-textarea:-moz-placeholder {
-    color: #999999;
-}
-
-textarea::-moz-placeholder {
-    color: #999999;
-}
-
-textarea:-ms-input-placeholder {
-    color: #999999;
-}
-
-/*---------------------------------------------*/
 button {
     outline: none !important;
     border: none;
@@ -429,9 +343,6 @@ iframe {
     border: none !important;
 }
 
-
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
 .txt1 {
     font-size: 13px;
     line-height: 1.5;
@@ -443,10 +354,6 @@ iframe {
     line-height: 1.5;
     color: #666666;
 }
-
-
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
 
 .limiter {
     width: 100%;
@@ -484,24 +391,12 @@ iframe {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 70px 85px 33px 85px;
+    padding: 70px 50px 33px 50px;
     text-align: center;
     vertical-align: middle;
 }
 
-/*------------------------------------------------------------------
-[  ]*/
-.login100-pic {
-    width: 316px;
-}
 
-    .login100-pic img {
-        max-width: 100%;
-    }
-
-
-/*------------------------------------------------------------------
-[  ]*/
 .login100-form {
     width: 290px;
 }
@@ -514,11 +409,9 @@ iframe {
     font-weight: bold;
     width: 100%;
     display: block;
-    padding-bottom: 54px;
+    padding-bottom: 28px;
 }
 
-
-/*---------------------------------------------*/
 .wrap-input100 {
     position: relative;
     width: 100%;
@@ -551,10 +444,6 @@ iframe {
         padding: 0 0px 0 10px;
     }
 
-
-
-/*------------------------------------------------------------------
-[ Focus ]*/
 .focus-input100 {
     display: block;
     position: absolute;

@@ -1,20 +1,15 @@
-﻿@model ProjectCSA.Models.StudentsAndClassesModel
+﻿@model ProjectCSA.Models.StudentsClassesLessonCode
 
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class=wrap>
-
-
     <div class="header">
-
         <div class="headers">
             <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to schedule</a>
-
-            @Html.ActionLink("qr_button_Click", "QrButtonClick", "Application", new { }, new {@class = "headerbuttons", })
+            @Html.ActionLink("QR_Button_Click", "QR_Button_Click", "Application", new { LessonCode =  Model.ClassCode }, new {@class = "headerbuttons", })
             @Html.ActionLink("Logout", "LogOut", "Application")
-
         </div>
     </div>
     <div class="maincontent">
@@ -23,9 +18,6 @@
                 <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
             </div>
             <table style="width:100%">
-
-
-
                 <tr>
                     @if (Model.Students.Count == 0)
                     {
