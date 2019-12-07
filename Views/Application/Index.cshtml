@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectCSA.Models.ScheduleModel>
+@model IEnumerable<ProjectCSA.Models.ScheduleModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -25,8 +25,6 @@
                 @(day)
                 @(date)
             </a>
-
-            @Html.ActionLink("Next week", "ReloadSchedule", "Application", null, new { @class = "headerbuttons" })
             <a class="headerbuttons" href="#">STATISTICS</a>
             <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
             @Html.ActionLink("Logout", "LogOut", "Application")
@@ -61,80 +59,98 @@
         else
         {
 
-            <table class="fixed_header">
-                <thead>
-                    <tr>
-                        <th><a>Week: @(ViewData["weeks"])</a></th>
-                        @{string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
 
-                        @for (int i = 0; i < days.Length; i++)
-                        {
-                            <th>@(days[i])</th>
-                        }
-                    </tr>
-                </thead>
-                @{
-                    TimeSpan BreakToken1 = new TimeSpan(10, 10, 0); //10:10:00 First break
-                    TimeSpan BreakToken2 = new TimeSpan(14, 40, 0); //14:40:00 Second break
-                    TimeSpan BreakToken3 = new TimeSpan(16, 40, 0); //16:40:00 Third break
-                    TimeSpan timeSpan = new TimeSpan(8, 30, 0);     //08:30:00
-                    TimeSpan AddTime = new TimeSpan(0, 50, 0);      //00:50:00
-                    TimeSpan AddTime2 = new TimeSpan(0, 20, 0);     //00:20:00 Added time for breaks
-                    TimeSpan timeSpan2 = new TimeSpan();
+    <table class="fixed_header">
+        <thead>
+            <tr>
+                <th><a>Week: @(ViewData["weeks"])</a></th>
+                @{string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };}
+
+                @for (int i = 0; i < days.Length; i++)
+                {
+                    <th>@(days[i])</th>
                 }
-                <tbody>
-                    @{ for (int i = 1; i < 16; i++)
-                        {
-                            if (timeSpan2 == BreakToken1 || timeSpan2 == BreakToken2 || timeSpan2 == BreakToken3)
-                            { // check if time is equal to break time
-                                timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time
-                            }
-                            <tr>
-                                <td>
-                                    <h3>@(i)</h3>
-                                    <a>
-                                        @{timeSpan.ToString();}
-
-                                        @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
-                                    </a>
-                                    @{timeSpan2 = timeSpan.Add(AddTime);}
-                                    <div>
-                                        <a>
-                                            @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
-                                            @{timeSpan = timeSpan2;}
-                                        </a>
-                                    </div>
-                                </td>
-                                @{int weeks = (int)ViewData["weeks"];}
-                                @for (int x = 0; x < 7; x++)                // For every day of the week
-                                {
-                                    <td>
-                                        @foreach (var item in Model)        // For every scheduleitem in the model
-                                        {
-                                            if (item.Week == weeks.ToString())
-                                            {
-
-                                                if (item.Hours.Contains(i))     // If current hour is in model hours array
-                                                {
-                                                    if (item.Day == days[x])    // Check if model day is equal to current day
-                                                    {
-                                                        @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class }, null) //????
-                                                        @(item.Classroom)
-                                                    }
-                                                    else
-                                                    {
-                                                        @("")
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    </td>
-                                }
-
-                            </tr>
-                        }
-                    }
-            </table>
+            </tr>
+        </thead>
+        @{
+            TimeSpan BreakToken1 = new TimeSpan(10, 10, 0); //10:10:00 First break
+            TimeSpan BreakToken2 = new TimeSpan(14, 40, 0); //14:40:00 Second break
+            TimeSpan BreakToken3 = new TimeSpan(16, 40, 0); //16:40:00 Third break
+            TimeSpan timeSpan = new TimeSpan(8, 30, 0); //08:30:00
+            TimeSpan AddTime = new TimeSpan(0, 50, 0);  //00:50:00
+            TimeSpan AddTime2 = new TimeSpan(0, 20, 0); //00:20:00 Added time for breaks
+            TimeSpan timeSpan2 = new TimeSpan();
         }
-    </div>
-</div>
+        @{int weeks = (int)ViewData["weeks"];}
+        @{int[] holidays = new int[11] { 1, 9, 18, 28, 29, 30, 31, 32, 33, 42, 52 };}
+
+        <tbody>
+            @{ for (int i = 1; i < 16; i++)
+                {
+
+
+                    if (timeSpan2 == BreakToken1 || timeSpan2 == BreakToken2 || timeSpan2 == BreakToken3)
+                    { // check if time is equal to break time
+                        timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time
+                    }
+
+
+                    <tr>
+
+                        <td>
+                            <h3>@(i)</h3>
+                            <a>
+                                @{timeSpan.ToString();}
+
+                                @(string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes))
+                            </a>
+                            @{timeSpan2 = timeSpan.Add(AddTime);}
+                            <div>
+                                <a>
+                                    @(string.Format("{0:00}:{1:00}", timeSpan2.Hours, timeSpan2.Minutes))
+                                    @{timeSpan = timeSpan2;}
+                                </a>
+                            </div>
+                        </td>
+
+
+
+
+                        @for (int x = 0; x < 7; x++)                // For every day of the week
+                        {
+                    <td>
+
+                        @if (Array.Exists(holidays, element => element == weeks) && i == 1)
+                        {
+                            @("Vacation")
+                        }
+                        @foreach (var item in Model)        // For every schedule item in the model
+                        {
+
+                            if (item.Week == weeks.ToString())
+                            {
+                                if (item.Hours.Contains(i))     // If current hour is in model hours array
+                                {
+                                    if (item.Day == days[x])    // Check if model day is equal to current day
+                                    {
+                                        @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class, CCode = item.LessonCode }, null) //????
+                                        @(item.Classroom)
+                                    }
+                                    else
+                                    {
+                                        @("")
+                                    }
+                                }
+                            }
+                        }
+
+                    </td>
+                        }
+
+                    </tr>
+                }
+            }
+        </table>
+                    }
+                </div>
+            </div>
