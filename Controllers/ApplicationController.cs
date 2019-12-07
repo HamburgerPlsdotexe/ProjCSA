@@ -4,6 +4,7 @@ using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
 using static ProjectCSA.DateOperations;
+using static ProjectCSA.JsonOperations;
 using ProjectCSA.Models;
 using DataLibrary.DataAccess;
 using System.Web.Security;
@@ -13,8 +14,6 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
-using Newtonsoft.Json;
-using System.Linq;
 
 namespace ProjectCSA.Controllers
 {
@@ -23,7 +22,7 @@ namespace ProjectCSA.Controllers
     {
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
-            int n = 1; 
+            int n = 1;
             Index(n);
             return RedirectToAction("Index");
         }
@@ -49,7 +48,6 @@ namespace ProjectCSA.Controllers
 
             using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
             {
-
                 using (MemoryStream ms = new MemoryStream())
                 {
                     qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -108,15 +106,11 @@ namespace ProjectCSA.Controllers
             if (direction == 1)
             {
                 SetWeeks(1);
-                
             }
             if (direction == 2)
             {
                 SetWeeks(2);
-                
-
             }
-
 
             string Tcode = GetUserTcode();
             List<ScheduleModel> model = new List<ScheduleModel>();
@@ -138,7 +132,6 @@ namespace ProjectCSA.Controllers
                         Hours = row.Hours,
                         Class = row.Class
                     });
-
                 }
                 ViewData["weeks"] = GetWeeks();
                 return View(model);
@@ -201,14 +194,11 @@ namespace ProjectCSA.Controllers
         [AllowAnonymous]
         public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
         {
-
             if (ModelState.IsValid)
             {
-
                 if (DoesTcodeExist(model.Tcode))
                 {
                     string[][] Encrypted = new string[][] { penc.Run(model.Password) };
-
 
                     CreateTeacher(
                     model.Tcode,
@@ -226,71 +216,11 @@ namespace ProjectCSA.Controllers
                     ViewData["ErrorMessage"] = "That teacher code already exists!";
                     return View("SignUp");                                                          //Not a unique Tcode, redirect to signup
                 }
-
             }
             ViewData["ErrorMessage"] = "Teachercode is too long!";
             return View("SignUp");                                                                  //other error, redirect to signup
         }
 
-        public Random rand = new Random();
-
-        public int ReturnWeeks()
-        {
-            var exclude = new HashSet<int>() { 1, 9, 18, 28, 29, 30, 31, 32, 33, 42, 52 };
-            IEnumerable<int> range = Enumerable.Range(1, 52).Where(i => !exclude.Contains(i));
-            int maxvalue = 52 - exclude.Count;
-            int index = rand.Next(0, maxvalue);
-            int weekN = range.ElementAt(index);
-            
-            return weekN;
-
-        }
-
-        public void PopulateJson(string tcode)
-        {
-            string[] Days = new string[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };     //days of the week.
-            int ZeroToFiveOuter = rand.Next(0, 6);
-
-            string[] Classes = new string[5] { "INF2A", "INF2B", "INF2C", "INF2D", "INF2E" };
-
-            string[] ClassRooms = new string[] { $"H.{ZeroToFiveOuter}.114", $"WD.{ZeroToFiveOuter}.002", $"WD.{ZeroToFiveOuter}.016", $"H.{ZeroToFiveOuter}.403", $"H.{ZeroToFiveOuter}.315", $"H.{ZeroToFiveOuter}.308", $"H.{ZeroToFiveOuter}.306", $"H.{ZeroToFiveOuter}.206", $"H.{ZeroToFiveOuter}.204", $"H.{ZeroToFiveOuter}.110", $"H.{ZeroToFiveOuter}.405" };
-            List<ScheduleModel> _data = new List<ScheduleModel>();
-
-            for (int i = 0; i < 250; i++)
-            {
-                string[] integers = new string[250];
-                integers[i] = ReturnWeeks().ToString();
-                int OneToFive = rand.Next(1, 6);                                                                                            //pick random day of the week.
-                int maxvalue = ClassRooms.Length;                                                                                           //random value from array.
-                int ClassRoomInt = rand.Next(0, maxvalue);                                                                                  //random int to pick from array.
-                int Hours = rand.Next(1, 13);                                                                                               //pick random hour of the day between 1 and 13, and add the next to upcoming hours into the array.
-                int[] hours = new int[] { Hours, Hours + 1, Hours + 2 };
-                string ClassCode = Classes[OneToFive - 1];
-                
-                ScheduleModel tempmodel = new ScheduleModel()
-                {
-                    Week = integers[i],
-                    Day = Days[OneToFive],
-                    Classroom = ClassRooms[ClassRoomInt],
-                    Hours = hours,
-                    Class = ClassCode,
-                    LessonCode = ClassCode + "-" + integers[i] + "-" + DateTime.Now.Date.ToString("d")                  //INF1I-49-Date
-
-                };
-                if (DoesExist(_data, tempmodel))
-                {
-                    _data.Add(tempmodel);
-                }
-                else
-                {
-
-                }
-            };
-
-            string json = JsonConvert.SerializeObject(_data.ToArray());
-            string Tcode = tcode;
-            System.IO.File.WriteAllText(HostingEnvironment.MapPath($@"~/Content/{Tcode}.json"), json);
-        }
         public static bool DoesExist(List<ScheduleModel> _data, ScheduleModel tempmodel)
         {
             bool isEmpty = !_data.Any();
@@ -310,10 +240,8 @@ namespace ProjectCSA.Controllers
             }
         }
 
-
         public ActionResult ViewTeachers()
         {
-
             ViewBag.Message = "Teacher List";
 
             var data = LoadTeachers();
@@ -374,7 +302,6 @@ namespace ProjectCSA.Controllers
             {
                 TempData["Temporary"] = "No students where found!";
                 return View("ViewStudentsTemp", model);
-
             }
             else
             {
