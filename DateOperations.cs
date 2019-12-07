@@ -23,6 +23,6 @@ namespace ProjectCSA
         }
 
         public static int GetWeeks() { return weeks; }
-        public static void SetWeeks(int n) { if (GetWeeks() == 1 && n == 2) { weeks = 53;} if (GetWeeks() == 52 && n == 1) { weeks = 0; } if (n == 2) weeks -= 1; else { weeks += 1; }} // due to technical reasons we had to keep this as one long line otherwise vs wouldnt understand.
+        public static void SetWeeks(int n) {  if (GetWeeks() == 1 && n == 2) { weeks = 53;} if (GetWeeks() == 52 && n == 1) { weeks = 0; } if (n == 2) weeks -= 1; else { weeks += 1; }} // due to technical reasons we had to keep this as one long line otherwise vs wouldnt understand.
     }
 }

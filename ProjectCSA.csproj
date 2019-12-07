@@ -148,6 +148,7 @@
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
+    <Compile Include="Models\StudentsClassesLessonCode.cs" />
     <Compile Include="Models\StudentsAndClassesModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,7 +163,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\knyee.json" />
     <Content Include=".gitignore" />
-    <Content Include="Content\daane.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -175,12 +175,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -191,7 +185,6 @@
     <Content Include="Views\Application\SignUp.cshtml" />
     <Content Include="Views\Application\ViewTeachers.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Application\ViewSchedules.cshtml" />
     <Content Include="Views\Application\ViewStudentsTemp.cshtml" />
     <Content Include="Views\Application\TestQR.cshtml" />
   </ItemGroup>
