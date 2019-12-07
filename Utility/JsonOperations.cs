@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using static ProjectCSA.DateOperations;
+using Newtonsoft.Json;
 using ProjectCSA.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Hosting;
-
 namespace ProjectCSA
 {
     public class JsonOperations
@@ -19,7 +19,7 @@ namespace ProjectCSA
 
             string[] ClassRooms = new string[] { $"H.{ZeroToFiveOuter}.114", $"WD.{ZeroToFiveOuter}.002", $"WD.{ZeroToFiveOuter}.016", $"H.{ZeroToFiveOuter}.403", $"H.{ZeroToFiveOuter}.315", $"H.{ZeroToFiveOuter}.308", $"H.{ZeroToFiveOuter}.306", $"H.{ZeroToFiveOuter}.206", $"H.{ZeroToFiveOuter}.204", $"H.{ZeroToFiveOuter}.110", $"H.{ZeroToFiveOuter}.405" };
             List<ScheduleModel> _data = new List<ScheduleModel>();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 200; i++)
             {
                 int OneToFive = rnd.Next(1, 6);                                                                                         //pick random day of the week.
                 int maxvalue = ClassRooms.Length;                                                                                       //random value from array.
@@ -27,7 +27,7 @@ namespace ProjectCSA
                 int Hours = rnd.Next(1, 13);                                                                                            //pick random hour of the day between 1 and 13, and add the next to upcoming hours into the array.
                 int[] hours = new int[] { Hours, Hours + 1, Hours + 2 };
                 string ClassCode = Classes[OneToFive - 1];
-                string Weeks = rnd.Next(1, 53).ToString();
+                string Weeks = ReturnWeeks();
                 ScheduleModel tempmodel = new ScheduleModel()
                 {
                     Week = Weeks,

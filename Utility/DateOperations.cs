@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace ProjectCSA
 {
     public class DateOperations
     {
+        public static Random rand = new Random();
+
         static int weeks = GetWeekOfYear();
         public static int GetWeekOfYear()
         {
@@ -20,6 +23,18 @@ namespace ProjectCSA
             // Return the week of our adjusted day
             Console.WriteLine(CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        }
+
+
+        public static string ReturnWeeks()
+        {
+
+            var exclude = new HashSet<int>() {42, 52, 1, 9, 18, 28, 29, 30, 31, 32, 33};
+            IEnumerable<int> range = Enumerable.Range(1, 52).Where(i => !exclude.Contains(i));
+            int maxvalue = 52 - exclude.Count;
+            int index = rand.Next(0, maxvalue);
+            string weekN = range.ElementAt(index).ToString();
+            return weekN;
         }
 
         public static int GetWeeks() { return weeks; }
