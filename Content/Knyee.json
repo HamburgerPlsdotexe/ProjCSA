@@ -1,7 +1,7 @@
 [
   {
     "Week": 49,
-    "LessonCode": "Test",
+    "LessonCode": "INF1I-49-123",
     "Day": "Tuesday",
     "Classroom": "H.2.403",
     "Hours": [ 1, 2, 3 ],
@@ -9,7 +9,7 @@
   },
   {
     "Week": 49,
-    "LessonCode": "Test",
+    "LessonCode": "INF1I-49-456",
     "Day": "Tuesday",
     "Classroom": "H.2.403",
     "Hours": [ 4, 5, 6 ],
@@ -17,7 +17,7 @@
   },
   {
     "Week": 48,
-    "LessonCode": "Test",
+    "LessonCode": "INF1I-48-123",
     "Day": "Tuesday",
     "Classroom": "H.2.403",
     "Hours": [ 1, 2, 3 ],
@@ -25,7 +25,7 @@
   },
   {
     "Week": 49,
-    "LessonCode": "INFWEB01-C",
+    "LessonCode": "INF1G-49-345",
     "Day": "Monday",
     "Classroom": "H.1.609",
     "Hours": [ 3, 4, 5 ],
@@ -33,7 +33,7 @@
   },
   {
     "Week": 49,
-    "LessonCode": "INFWEB01-a",
+    "LessonCode": "INF2C-49-345",
     "Day": "Wednesday",
     "Classroom": "H.2.103",
     "Hours": [ 3, 4, 5 ],
@@ -41,7 +41,7 @@
   },
   {
     "Week": 49,
-    "LessonCode": "AlEssoN-n",
+    "LessonCode": "INF1D-49-12131415",
     "Day": "Thursday",
     "Classroom": "H.2.305",
     "Hours": [ 12, 13, 14, 15 ],
@@ -49,7 +49,7 @@
   },
   {
     "Week": 49,
-    "LessonCode": "KJLHKJLHK",
+    "LessonCode": "INF1A-49-91011",
     "Day": "Friday",
     "Classroom": "H.2.305",
     "Hours": [ 9, 10, 11 ],
@@ -57,7 +57,7 @@
   },
   {
     "Week": 48,
-    "LessonCode": "AlEssoN-n",
+    "LessonCode": "INF4D-48-789",
     "Day": "Monday",
     "Classroom": "H.2.305",
     "Hours": [ 7, 8, 9 ],
