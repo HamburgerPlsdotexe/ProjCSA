@@ -221,25 +221,6 @@ namespace ProjectCSA.Controllers
             return View("SignUp");                                                                  //other error, redirect to signup
         }
 
-        public static bool DoesExist(List<ScheduleModel> _data, ScheduleModel tempmodel)
-        {
-            bool isEmpty = !_data.Any();
-            if (isEmpty)
-            {
-                return true;
-            }
-            bool alreadyExists = _data.Any(x => x.Day == tempmodel.Day && x.Week == tempmodel.Week && x.Hours.Intersect(tempmodel.Hours).Any()
-);
-            if (alreadyExists)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
         public ActionResult ViewTeachers()
         {
             ViewBag.Message = "Teacher List";
