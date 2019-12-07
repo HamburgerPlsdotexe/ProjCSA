@@ -23,7 +23,7 @@ namespace ProjectCSA.Controllers
     {
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
-            int n = 1;
+            int n = 1; 
             Index(n);
             return RedirectToAction("Index");
         }
@@ -38,6 +38,7 @@ namespace ProjectCSA.Controllers
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
             string Code = LessonCode;
+
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
@@ -107,10 +108,13 @@ namespace ProjectCSA.Controllers
             if (direction == 1)
             {
                 SetWeeks(1);
+                
             }
             if (direction == 2)
             {
                 SetWeeks(2);
+                
+
             }
 
 
