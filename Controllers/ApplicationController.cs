@@ -33,7 +33,7 @@ namespace ProjectCSA.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult QR_Button_Click(string LessonCode, object sender, EventArgs e)
+        public ActionResult QR_Button_Click(string LessonCode)
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
             string Code = LessonCode;
@@ -42,26 +42,25 @@ namespace ProjectCSA.Controllers
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
 
-            System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
-            imgQRcode.Width = 500;
-            imgQRcode.Height = 500;
-
-            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
+            System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image
             {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                    byte[] byteImage = ms.ToArray();
-                    imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
-                }
-                ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
-                imgQRcode.Dispose();
-                qrCodeData.Dispose();
-                qrgenerator.Dispose();
-                qrCode.Dispose();
-                qrCodeData.Dispose();
-                return View("TestQR");
+                Width = 500,
+                Height = 500
+            };
+
+            using Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] byteImage = ms.ToArray();
+                imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
             }
+            ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
+            imgQRcode.Dispose();
+            qrCodeData.Dispose();
+            qrgenerator.Dispose();
+            qrCodeData.Dispose();
+            return View("TestQR");
         }
         public string GetUserTcode()
         {
@@ -69,7 +68,7 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
-        readonly Pwenc penc = new Pwenc();
+        readonly EncOperations pwenc = new EncOperations();
         public ActionResult ViewStudentsTemp()
         {
             StudentsAndClassesModel model = new StudentsAndClassesModel();
@@ -192,13 +191,13 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
+        public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie. 
         {
             if (ModelState.IsValid)
             {
                 if (DoesTcodeExist(model.Tcode))
                 {
-                    string[][] Encrypted = new string[][] { penc.Run(model.Password) };
+                    string[][] Encrypted = new string[][] { pwenc.Run(model.Password) };
 
                     CreateTeacher(
                     model.Tcode,
@@ -217,7 +216,7 @@ namespace ProjectCSA.Controllers
                     return View("SignUp");                                                          //Not a unique Tcode, redirect to signup
                 }
             }
-            ViewData["ErrorMessage"] = "Teachercode is too long!";
+            ViewData["ErrorMessage"] = "Something went wrong!";
             return View("SignUp");                                                                  //other error, redirect to signup
         }
 
