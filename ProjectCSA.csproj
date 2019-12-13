@@ -140,7 +140,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="DateOperations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,7 +151,9 @@
     <Compile Include="Models\StudentsAndClassesModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pwenc.cs" />
+    <Compile Include="Utility\DateOperations.cs" />
+    <Compile Include="Utility\EncOperations.cs" />
+    <Compile Include="Utility\JsonOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

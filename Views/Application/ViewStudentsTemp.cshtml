@@ -4,11 +4,57 @@
     ViewBag.Title = "Home Page";
 }
 
+
 <div class=wrap>
     <div class="header">
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+
+        <script>
+            // Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAji2r1Ky37CjNzZsZlujBowTDY0ubSqx8",
+                authDomain: "studentpre-a7d96.firebaseapp.com",
+                databaseURL: "https://studentpre-a7d96.firebaseio.com",
+                projectId: "studentpre-a7d96",
+                storageBucket: "studentpre-a7d96.appspot.com",
+                messagingSenderId: "716883384544",
+                appId: "1:716883384544:web:53b71515dd6d1ec642d885",
+                measurementId: "G-PC8QV1MHJB"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+
+            // Get image
+            var location = 'item-pics/10.jpg';
+            var storageRef = firebase.storage().refFromURL("gs://studentpre-a7d96.appspot.com/item-pics/10.jpg");
+            var idRef = storageRef.child(location);
+            idRef.getDownloadURL().then(function (url) {
+
+                var img = document.getElementById('myimg');
+                img.src = url;
+
+            }).catch(function (error) {
+                    console.error(error);
+            });
+        </script>
+        @*<script type="text/javascript">
+            function showimage() {
+
+                
+
+
+            }
+        </script>*@
         <div class="headers">
             <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to schedule</a>
-            @Html.ActionLink("QR_Button_Click", "QR_Button_Click", "Application", new { LessonCode =  Model.ClassCode }, new {@class = "headerbuttons", })
+            @Html.ActionLink("QR_Button_Click", "QR_Button_Click", "Application", new { LessonCode = Model.ClassCode }, new { @class = "headerbuttons", })
             @Html.ActionLink("Logout", "LogOut", "Application")
         </div>
     </div>
@@ -19,6 +65,7 @@
             </div>
             <table style="width:100%">
                 <tr>
+                    
                     @if (Model.Students.Count == 0)
                     {
 
@@ -34,7 +81,14 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Fname)
+                            <a>
+                                <div class="inner-pfps">
+                                    @Html.DisplayFor(modelItem => item.Fname)
+
+                                    <img id="myimg" height="125" width="50" />
+                                    @*<img src="~/App_Start/bird.jpeg" />*@
+                                </div>
+                            </a>
                         </td>
 
                         <td>
