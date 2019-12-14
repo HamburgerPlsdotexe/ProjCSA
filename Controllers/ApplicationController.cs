@@ -14,6 +14,11 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using Firebase.Database;
+using Firebase.Database.Query;
+
 
 namespace ProjectCSA.Controllers
 {
@@ -68,11 +73,46 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
+        public List<StudentModel> studentList;
+        public async Task<ActionResult> LoadStudentList()
+        {
+            
+            var firebase = new FirebaseClient("https://studentpre-a7d96.firebaseio.com");
+            var students = await firebase
+                .Child("Students")
+                .OrderByKey()
+                .OnceAsync<StudentModel>();
+
+            var Studentlist = new List<StudentModel>();
+
+            foreach (var stud in students)
+            {
+                Studentlist.Add(stud.Object);
+
+            }
+            /*
+            Studentlist.Add(new StudentModel
+            {
+                Fname = "First",
+                Lname = "Last",
+                Snum = "0110",
+                Cnum = "INF2C",
+                Password = "Pass",
+                ConfirmPassword = "Pass"
+            });
+            */
+            ViewBag.students = Studentlist.OrderByDescending(x => x);
+            studentList = Studentlist;
+            return View(Studentlist);
+
+        }
+
         readonly EncOperations pwenc = new EncOperations();
         public ActionResult ViewStudentsTemp()
         {
             StudentsAndClassesModel model = new StudentsAndClassesModel();
-            var data = LoadStudents();
+            LoadStudentList();
+            var data = studentList;
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
@@ -80,10 +120,11 @@ namespace ProjectCSA.Controllers
             {
                 student.Add(new StudentModel
                 {
-                    Snum = row.Snum,
-                    Fname = row.Fname,
-                    Lname = row.Lname,
-                    Cnum = row.Cnum
+                    userStudentNum = row.userStudentNum,
+                    userFirstName = row.userFirstName,
+                    userLastName = row.userLastName,
+                    userClass = row.userClass,
+                    userEmail = row.userEmail
                 });
             }
             List<ClassModel> classes = new List<ClassModel>();
@@ -248,20 +289,22 @@ namespace ProjectCSA.Controllers
         {
             string ccode = CCode;
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
-            var data = LoadStudents();
+            LoadStudentList().Wait();
+            var data = studentList;
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
             foreach (var row in data)
             {
-                if (row.Cnum == Cnum)
+                if (row.userClass == Cnum)
                 {
                     student.Add(new StudentModel
                     {
-                        Snum = row.Snum,
-                        Fname = row.Fname,
-                        Lname = row.Lname,
-                        Cnum = row.Cnum
+                        userStudentNum = row.userStudentNum,
+                        userFirstName = row.userFirstName,
+                        userLastName = row.userLastName,
+                        userClass = row.userClass,
+                        userEmail = row.userEmail
                     });
                 }
             }

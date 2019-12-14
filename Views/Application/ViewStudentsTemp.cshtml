@@ -1,5 +1,8 @@
 ﻿@model ProjectCSA.Models.StudentsClassesLessonCode
 
+
+@using System.Linq;
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -15,6 +18,11 @@
         </div>
     </div>
     <div class="maincontent">
+        @{ 
+            
+
+
+        }
         <div class="table2">
             <div class="center">
                 <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
@@ -28,7 +36,7 @@
                     }
                     else
                     {
-                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
+                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().userFirstName)</th>
                         <th>Date</th>
                     }
                 </tr>
@@ -39,7 +47,7 @@
                         <td>
                             <a>
                                 <div class="inner-pfps">
-                                    @Html.DisplayFor(modelItem => item.Fname)
+                                    @Html.DisplayFor(modelItem => item.userFirstName)
 
                                     <img id="myimg" height="125" width="100" />
 
