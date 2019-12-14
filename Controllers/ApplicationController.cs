@@ -76,7 +76,13 @@ namespace ProjectCSA.Controllers
         public List<StudentModel> studentList;
         public async Task<ActionResult> LoadStudentList()
         {
-            var firebase = new FirebaseClient("https://studentpre-a7d96.firebaseio.com/");
+            var auth = "S1VfQJeuwZzyPI6KVQgJATyvqnRL995HnR4xkqj2";
+            var firebase = new FirebaseClient(
+                "https://studentpre-a7d96.firebaseio.com",
+                new FirebaseOptions
+                {
+                    AuthTokenAsyncFactory = () => Task.FromResult(auth)
+                });
             var students = await firebase
                 .Child("Students")
                 .OrderByKey()
