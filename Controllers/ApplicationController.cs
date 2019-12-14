@@ -76,19 +76,16 @@ namespace ProjectCSA.Controllers
         public List<StudentModel> studentList;
         public async Task<ActionResult> LoadStudentList()
         {
-            
-            var firebase = new FirebaseClient("https://studentpre-a7d96.firebaseio.com");
+            var firebase = new FirebaseClient("https://studentpre-a7d96.firebaseio.com/");
             var students = await firebase
                 .Child("Students")
                 .OrderByKey()
                 .OnceAsync<StudentModel>();
 
             var Studentlist = new List<StudentModel>();
-
             foreach (var stud in students)
             {
                 Studentlist.Add(stud.Object);
-
             }
             /*
             Studentlist.Add(new StudentModel
@@ -289,7 +286,8 @@ namespace ProjectCSA.Controllers
         {
             string ccode = CCode;
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
-            LoadStudentList().Wait();
+            var studload = LoadStudentList();
+            studload.Wait();
             var data = studentList;
             var data2 = LoadClasses();
 
