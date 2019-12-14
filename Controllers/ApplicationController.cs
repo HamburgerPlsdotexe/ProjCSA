@@ -16,9 +16,16 @@ using QRCoder;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Firebase.Database;
-using Firebase.Database.Query;
-
+//using Firebase.Database;
+//using Firebase.Database.Query;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using System.ComponentModel;
+using System.Data;
+using System.Text;
+using System.Windows.Forms;
+using FireSharp;
 
 namespace ProjectCSA.Controllers
 {
@@ -76,6 +83,19 @@ namespace ProjectCSA.Controllers
         public List<StudentModel> studentList;
         public async Task<ActionResult> LoadStudentList()
         {
+            IFirebaseConfig config = new FirebaseConfig
+            {
+                AuthSecret = "S1VfQJeuwZzyPI6KVQgJATyvqnRL995HnR4xkqj2",
+                BasePath = "https://studentpre-a7d96.firebaseio.com/"
+            };
+
+            IFirebaseClient client = new FirebaseClient(config);
+
+            FirebaseResponse response = await client.GetAsync("Students");
+            List<StudentModel> StudentList = response.ResultAs<List<StudentModel>>();
+            studentList = StudentList;
+            return View(StudentList);
+            /*
             var auth = "S1VfQJeuwZzyPI6KVQgJATyvqnRL995HnR4xkqj2";
             var firebase = new FirebaseClient(
                 "https://studentpre-a7d96.firebaseio.com",
@@ -83,7 +103,8 @@ namespace ProjectCSA.Controllers
                 {
                     AuthTokenAsyncFactory = () => Task.FromResult(auth)
                 });
-            var students = await firebase
+            var firebase2 = new FirebaseClient("https://studentpre-a7d96.firebaseio.com");
+            var students = await firebase2
                 .Child("Students")
                 .OrderByKey()
                 .OnceAsync<StudentModel>();
@@ -93,7 +114,7 @@ namespace ProjectCSA.Controllers
             {
                 Studentlist.Add(stud.Object);
             }
-            /*
+            
             Studentlist.Add(new StudentModel
             {
                 Fname = "First",
@@ -103,11 +124,11 @@ namespace ProjectCSA.Controllers
                 Password = "Pass",
                 ConfirmPassword = "Pass"
             });
-            */
+            
             ViewBag.students = Studentlist.OrderByDescending(x => x);
             studentList = Studentlist;
             return View(Studentlist);
-
+            */
         }
 
         readonly EncOperations pwenc = new EncOperations();
