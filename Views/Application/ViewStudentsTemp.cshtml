@@ -25,7 +25,7 @@
                     }
                     else
                     {
-                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().Fname)</th>
+                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().userFirstName)</th>
                         <th>Date</th>
                     }
                 </tr>
@@ -34,7 +34,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Fname)
+                            @Html.DisplayFor(modelItem => item.userFirstName)
                         </td>
 
                         <td>

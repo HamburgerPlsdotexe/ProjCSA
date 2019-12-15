@@ -28,8 +28,8 @@
             <a class="headerbuttons" href="#">STATISTICS</a>
             <a class="headerbuttons">Current user: @Html.Action("GetUserTcode", "Application")</a>
             @Html.ActionLink("Logout", "LogOut", "Application")
-            @Html.ActionLink("←", "SchedulePreviousWeek", "Application", null, new { @class = "headerbuttons" })
-            @Html.ActionLink("→", "ScheduleNextWeek", "Application", null, new { @class = "headerbuttons" })
+            @Html.ActionLink(HttpUtility.HtmlDecode("&larr;"), "SchedulePreviousWeek", "Application", null, new { @class = "headerbuttons" })
+            @Html.ActionLink(HttpUtility.HtmlDecode("&rarr;"), "ScheduleNextWeek", "Application", null, new { @class = "headerbuttons" })
         </div>
     </div>
 
@@ -122,7 +122,7 @@
 
                         @if (Array.Exists(holidays, element => element == weeks) && i == 1)
                         {
-                            @("Vacation")
+                            @("Holiday")
                         }
                         @foreach (var item in Model)        // For every schedule item in the model
                         {

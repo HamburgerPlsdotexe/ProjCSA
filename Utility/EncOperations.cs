@@ -10,7 +10,7 @@ using DataLibrary;
 
 namespace ProjectCSA
 {
-    public class Pwenc
+    public class EncOperations
     {
         private byte[] CreateSalt()
         {

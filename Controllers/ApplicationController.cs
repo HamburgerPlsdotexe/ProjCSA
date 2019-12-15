@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using static ProjectCSA.Utility.FireBaseOperations;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
@@ -69,11 +70,12 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
-        readonly Pwenc penc = new Pwenc();
-        public ActionResult ViewStudentsTemp()
+        readonly EncOperations pwenc = new EncOperations();
+
+        /*public ActionResult ViewStudentsTemp()
         {
             StudentsAndClassesModel model = new StudentsAndClassesModel();
-            var data = LoadStudents();
+            var data = Retrieve();
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
@@ -99,7 +101,7 @@ namespace ProjectCSA.Controllers
             model.Students = student;
 
             return View(model);
-        }
+        }*/
 
         public ActionResult Index(int direction = 3)
         {
@@ -198,7 +200,7 @@ namespace ProjectCSA.Controllers
             {
                 if (DoesTcodeExist(model.Tcode))
                 {
-                    string[][] Encrypted = new string[][] { penc.Run(model.Password) };
+                    string[][] Encrypted = new string[][] { pwenc.Run(model.Password) };
 
                     CreateTeacher(
                     model.Tcode,
@@ -245,24 +247,24 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult ReturnStudentListViewWithCnum(string Cnum, string CCode)
+        public ActionResult ReturnStudentListViewWithCnum(string userClass, string CCode)
         {
             string ccode = CCode;
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
-            var data = LoadStudents();
+            var data = Retrieve();
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
             foreach (var row in data)
             {
-                if (row.Cnum == Cnum)
+                if (row.userClass == userClass)
                 {
                     student.Add(new StudentModel
                     {
-                        Snum = row.Snum,
-                        Fname = row.Fname,
-                        Lname = row.Lname,
-                        Cnum = row.Cnum
+                        userStudentNum = row.userStudentNum,
+                        userFirstName = row.userFirstName,
+                        userLastName = row.userLastName,
+                        userClass = row.userClass
                     });
                 }
             }
