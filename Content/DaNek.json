@@ -1,1 +1,2378 @@
-[{"Week":"12","LessonCode":"INF2B-12-07/12/2019","Day":"Wednesday","Classroom":"H.0.308","Hours":[10,11,12],"Class":"INF2B"},{"Week":"4","LessonCode":"INF2A-4-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[8,9,10],"Class":"INF2A"},{"Week":"48","LessonCode":"INF2A-48-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[10,11,12],"Class":"INF2A"},{"Week":"44","LessonCode":"INF2C-44-07/12/2019","Day":"Thursday","Classroom":"H.0.206","Hours":[12,13,14],"Class":"INF2C"},{"Week":"3","LessonCode":"INF2C-3-07/12/2019","Day":"Thursday","Classroom":"H.0.403","Hours":[9,10,11],"Class":"INF2C"},{"Week":"39","LessonCode":"INF2B-39-07/12/2019","Day":"Wednesday","Classroom":"H.0.405","Hours":[2,3,4],"Class":"INF2B"},{"Week":"43","LessonCode":"INF2C-43-07/12/2019","Day":"Thursday","Classroom":"H.0.315","Hours":[12,13,14],"Class":"INF2C"},{"Week":"26","LessonCode":"INF2E-26-07/12/2019","Day":"Saturday","Classroom":"H.0.204","Hours":[12,13,14],"Class":"INF2E"},{"Week":"50","LessonCode":"INF2E-50-07/12/2019","Day":"Saturday","Classroom":"H.0.315","Hours":[12,13,14],"Class":"INF2E"},{"Week":"38","LessonCode":"INF2D-38-07/12/2019","Day":"Friday","Classroom":"H.0.110","Hours":[8,9,10],"Class":"INF2D"},{"Week":"34","LessonCode":"INF2A-34-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[6,7,8],"Class":"INF2A"},{"Week":"45","LessonCode":"INF2D-45-07/12/2019","Day":"Friday","Classroom":"H.0.206","Hours":[1,2,3],"Class":"INF2D"},{"Week":"7","LessonCode":"INF2B-7-07/12/2019","Day":"Wednesday","Classroom":"H.0.403","Hours":[1,2,3],"Class":"INF2B"},{"Week":"39","LessonCode":"INF2A-39-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[11,12,13],"Class":"INF2A"},{"Week":"17","LessonCode":"INF2B-17-07/12/2019","Day":"Wednesday","Classroom":"H.0.405","Hours":[8,9,10],"Class":"INF2B"},{"Week":"37","LessonCode":"INF2C-37-07/12/2019","Day":"Thursday","Classroom":"H.0.114","Hours":[1,2,3],"Class":"INF2C"},{"Week":"20","LessonCode":"INF2B-20-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[10,11,12],"Class":"INF2B"},{"Week":"10","LessonCode":"INF2D-10-07/12/2019","Day":"Friday","Classroom":"H.0.403","Hours":[4,5,6],"Class":"INF2D"},{"Week":"36","LessonCode":"INF2D-36-07/12/2019","Day":"Friday","Classroom":"WD.0.002","Hours":[7,8,9],"Class":"INF2D"},{"Week":"17","LessonCode":"INF2C-17-07/12/2019","Day":"Thursday","Classroom":"WD.0.016","Hours":[1,2,3],"Class":"INF2C"},{"Week":"38","LessonCode":"INF2C-38-07/12/2019","Day":"Thursday","Classroom":"H.0.110","Hours":[4,5,6],"Class":"INF2C"},{"Week":"34","LessonCode":"INF2D-34-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[12,13,14],"Class":"INF2D"},{"Week":"34","LessonCode":"INF2C-34-07/12/2019","Day":"Thursday","Classroom":"H.0.306","Hours":[4,5,6],"Class":"INF2C"},{"Week":"41","LessonCode":"INF2B-41-07/12/2019","Day":"Wednesday","Classroom":"H.0.405","Hours":[2,3,4],"Class":"INF2B"},{"Week":"6","LessonCode":"INF2E-6-07/12/2019","Day":"Saturday","Classroom":"H.0.114","Hours":[7,8,9],"Class":"INF2E"},{"Week":"48","LessonCode":"INF2E-48-07/12/2019","Day":"Saturday","Classroom":"H.0.110","Hours":[5,6,7],"Class":"INF2E"},{"Week":"51","LessonCode":"INF2A-51-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[1,2,3],"Class":"INF2A"},{"Week":"46","LessonCode":"INF2E-46-07/12/2019","Day":"Saturday","Classroom":"H.0.308","Hours":[11,12,13],"Class":"INF2E"},{"Week":"6","LessonCode":"INF2E-6-07/12/2019","Day":"Saturday","Classroom":"H.0.405","Hours":[4,5,6],"Class":"INF2E"},{"Week":"37","LessonCode":"INF2D-37-07/12/2019","Day":"Friday","Classroom":"H.0.315","Hours":[9,10,11],"Class":"INF2D"},{"Week":"4","LessonCode":"INF2E-4-07/12/2019","Day":"Saturday","Classroom":"WD.0.016","Hours":[9,10,11],"Class":"INF2E"},{"Week":"8","LessonCode":"INF2E-8-07/12/2019","Day":"Saturday","Classroom":"H.0.308","Hours":[5,6,7],"Class":"INF2E"},{"Week":"38","LessonCode":"INF2A-38-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[5,6,7],"Class":"INF2A"},{"Week":"22","LessonCode":"INF2D-22-07/12/2019","Day":"Friday","Classroom":"WD.0.002","Hours":[10,11,12],"Class":"INF2D"},{"Week":"27","LessonCode":"INF2C-27-07/12/2019","Day":"Thursday","Classroom":"H.0.403","Hours":[7,8,9],"Class":"INF2C"},{"Week":"15","LessonCode":"INF2B-15-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[10,11,12],"Class":"INF2B"},{"Week":"2","LessonCode":"INF2D-2-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[10,11,12],"Class":"INF2D"},{"Week":"19","LessonCode":"INF2D-19-07/12/2019","Day":"Friday","Classroom":"H.0.315","Hours":[5,6,7],"Class":"INF2D"},{"Week":"34","LessonCode":"INF2B-34-07/12/2019","Day":"Wednesday","Classroom":"H.0.315","Hours":[1,2,3],"Class":"INF2B"},{"Week":"37","LessonCode":"INF2A-37-07/12/2019","Day":"Tuesday","Classroom":"WD.0.016","Hours":[1,2,3],"Class":"INF2A"},{"Week":"25","LessonCode":"INF2A-25-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[10,11,12],"Class":"INF2A"},{"Week":"20","LessonCode":"INF2A-20-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[5,6,7],"Class":"INF2A"},{"Week":"46","LessonCode":"INF2A-46-07/12/2019","Day":"Tuesday","Classroom":"H.0.206","Hours":[3,4,5],"Class":"INF2A"},{"Week":"24","LessonCode":"INF2E-24-07/12/2019","Day":"Saturday","Classroom":"H.0.315","Hours":[10,11,12],"Class":"INF2E"},{"Week":"45","LessonCode":"INF2C-45-07/12/2019","Day":"Thursday","Classroom":"H.0.206","Hours":[6,7,8],"Class":"INF2C"},{"Week":"40","LessonCode":"INF2D-40-07/12/2019","Day":"Friday","Classroom":"H.0.405","Hours":[12,13,14],"Class":"INF2D"},{"Week":"36","LessonCode":"INF2A-36-07/12/2019","Day":"Tuesday","Classroom":"H.0.204","Hours":[2,3,4],"Class":"INF2A"},{"Week":"15","LessonCode":"INF2A-15-07/12/2019","Day":"Tuesday","Classroom":"WD.0.002","Hours":[6,7,8],"Class":"INF2A"},{"Week":"12","LessonCode":"INF2B-12-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[4,5,6],"Class":"INF2B"},{"Week":"48","LessonCode":"INF2B-48-07/12/2019","Day":"Wednesday","Classroom":"H.0.315","Hours":[11,12,13],"Class":"INF2B"},{"Week":"15","LessonCode":"INF2E-15-07/12/2019","Day":"Saturday","Classroom":"H.0.405","Hours":[4,5,6],"Class":"INF2E"},{"Week":"5","LessonCode":"INF2A-5-07/12/2019","Day":"Tuesday","Classroom":"H.0.110","Hours":[9,10,11],"Class":"INF2A"},{"Week":"48","LessonCode":"INF2D-48-07/12/2019","Day":"Friday","Classroom":"WD.0.002","Hours":[3,4,5],"Class":"INF2D"},{"Week":"24","LessonCode":"INF2D-24-07/12/2019","Day":"Friday","Classroom":"H.0.403","Hours":[10,11,12],"Class":"INF2D"},{"Week":"3","LessonCode":"INF2B-3-07/12/2019","Day":"Wednesday","Classroom":"WD.0.002","Hours":[4,5,6],"Class":"INF2B"},{"Week":"19","LessonCode":"INF2B-19-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[10,11,12],"Class":"INF2B"},{"Week":"50","LessonCode":"INF2B-50-07/12/2019","Day":"Wednesday","Classroom":"H.0.405","Hours":[3,4,5],"Class":"INF2B"},{"Week":"44","LessonCode":"INF2A-44-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[8,9,10],"Class":"INF2A"},{"Week":"43","LessonCode":"INF2D-43-07/12/2019","Day":"Friday","Classroom":"H.0.110","Hours":[6,7,8],"Class":"INF2D"},{"Week":"13","LessonCode":"INF2A-13-07/12/2019","Day":"Tuesday","Classroom":"WD.0.016","Hours":[9,10,11],"Class":"INF2A"},{"Week":"49","LessonCode":"INF2E-49-07/12/2019","Day":"Saturday","Classroom":"H.0.405","Hours":[6,7,8],"Class":"INF2E"},{"Week":"51","LessonCode":"INF2B-51-07/12/2019","Day":"Wednesday","Classroom":"WD.0.016","Hours":[7,8,9],"Class":"INF2B"},{"Week":"5","LessonCode":"INF2A-5-07/12/2019","Day":"Tuesday","Classroom":"H.0.308","Hours":[1,2,3],"Class":"INF2A"},{"Week":"41","LessonCode":"INF2A-41-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[10,11,12],"Class":"INF2A"},{"Week":"11","LessonCode":"INF2D-11-07/12/2019","Day":"Friday","Classroom":"H.0.405","Hours":[10,11,12],"Class":"INF2D"},{"Week":"38","LessonCode":"INF2C-38-07/12/2019","Day":"Thursday","Classroom":"WD.0.002","Hours":[9,10,11],"Class":"INF2C"},{"Week":"34","LessonCode":"INF2B-34-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[4,5,6],"Class":"INF2B"},{"Week":"24","LessonCode":"INF2D-24-07/12/2019","Day":"Friday","Classroom":"H.0.114","Hours":[5,6,7],"Class":"INF2D"},{"Week":"4","LessonCode":"INF2B-4-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[1,2,3],"Class":"INF2B"},{"Week":"16","LessonCode":"INF2C-16-07/12/2019","Day":"Thursday","Classroom":"WD.0.016","Hours":[8,9,10],"Class":"INF2C"},{"Week":"47","LessonCode":"INF2B-47-07/12/2019","Day":"Wednesday","Classroom":"H.0.308","Hours":[12,13,14],"Class":"INF2B"},{"Week":"16","LessonCode":"INF2A-16-07/12/2019","Day":"Tuesday","Classroom":"WD.0.002","Hours":[8,9,10],"Class":"INF2A"},{"Week":"20","LessonCode":"INF2A-20-07/12/2019","Day":"Tuesday","Classroom":"WD.0.016","Hours":[8,9,10],"Class":"INF2A"},{"Week":"7","LessonCode":"INF2C-7-07/12/2019","Day":"Thursday","Classroom":"H.0.405","Hours":[5,6,7],"Class":"INF2C"},{"Week":"41","LessonCode":"INF2B-41-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[8,9,10],"Class":"INF2B"},{"Week":"11","LessonCode":"INF2E-11-07/12/2019","Day":"Saturday","Classroom":"H.0.114","Hours":[5,6,7],"Class":"INF2E"},{"Week":"3","LessonCode":"INF2A-3-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[5,6,7],"Class":"INF2A"},{"Week":"20","LessonCode":"INF2B-20-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[4,5,6],"Class":"INF2B"},{"Week":"5","LessonCode":"INF2A-5-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[6,7,8],"Class":"INF2A"},{"Week":"13","LessonCode":"INF2C-13-07/12/2019","Day":"Thursday","Classroom":"H.0.405","Hours":[6,7,8],"Class":"INF2C"},{"Week":"23","LessonCode":"INF2C-23-07/12/2019","Day":"Thursday","Classroom":"WD.0.016","Hours":[8,9,10],"Class":"INF2C"},{"Week":"20","LessonCode":"INF2C-20-07/12/2019","Day":"Thursday","Classroom":"H.0.403","Hours":[2,3,4],"Class":"INF2C"},{"Week":"35","LessonCode":"INF2D-35-07/12/2019","Day":"Friday","Classroom":"H.0.315","Hours":[12,13,14],"Class":"INF2D"},{"Week":"16","LessonCode":"INF2A-16-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[3,4,5],"Class":"INF2A"},{"Week":"8","LessonCode":"INF2D-8-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[2,3,4],"Class":"INF2D"},{"Week":"26","LessonCode":"INF2C-26-07/12/2019","Day":"Thursday","Classroom":"WD.0.016","Hours":[10,11,12],"Class":"INF2C"},{"Week":"25","LessonCode":"INF2D-25-07/12/2019","Day":"Friday","Classroom":"H.0.403","Hours":[8,9,10],"Class":"INF2D"},{"Week":"47","LessonCode":"INF2C-47-07/12/2019","Day":"Thursday","Classroom":"H.0.315","Hours":[10,11,12],"Class":"INF2C"},{"Week":"51","LessonCode":"INF2C-51-07/12/2019","Day":"Thursday","Classroom":"H.0.110","Hours":[8,9,10],"Class":"INF2C"},{"Week":"49","LessonCode":"INF2B-49-07/12/2019","Day":"Wednesday","Classroom":"H.0.405","Hours":[11,12,13],"Class":"INF2B"},{"Week":"50","LessonCode":"INF2C-50-07/12/2019","Day":"Thursday","Classroom":"H.0.114","Hours":[10,11,12],"Class":"INF2C"},{"Week":"48","LessonCode":"INF2E-48-07/12/2019","Day":"Saturday","Classroom":"H.0.405","Hours":[12,13,14],"Class":"INF2E"},{"Week":"11","LessonCode":"INF2A-11-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[6,7,8],"Class":"INF2A"},{"Week":"8","LessonCode":"INF2D-8-07/12/2019","Day":"Friday","Classroom":"H.0.110","Hours":[12,13,14],"Class":"INF2D"},{"Week":"10","LessonCode":"INF2B-10-07/12/2019","Day":"Wednesday","Classroom":"WD.0.002","Hours":[10,11,12],"Class":"INF2B"},{"Week":"13","LessonCode":"INF2D-13-07/12/2019","Day":"Friday","Classroom":"H.0.114","Hours":[9,10,11],"Class":"INF2D"},{"Week":"43","LessonCode":"INF2B-43-07/12/2019","Day":"Wednesday","Classroom":"WD.0.016","Hours":[2,3,4],"Class":"INF2B"},{"Week":"37","LessonCode":"INF2B-37-07/12/2019","Day":"Wednesday","Classroom":"H.0.315","Hours":[9,10,11],"Class":"INF2B"},{"Week":"5","LessonCode":"INF2E-5-07/12/2019","Day":"Saturday","Classroom":"H.0.206","Hours":[3,4,5],"Class":"INF2E"},{"Week":"38","LessonCode":"INF2E-38-07/12/2019","Day":"Saturday","Classroom":"H.0.315","Hours":[7,8,9],"Class":"INF2E"},{"Week":"46","LessonCode":"INF2B-46-07/12/2019","Day":"Wednesday","Classroom":"H.0.206","Hours":[11,12,13],"Class":"INF2B"},{"Week":"48","LessonCode":"INF2C-48-07/12/2019","Day":"Thursday","Classroom":"H.0.206","Hours":[10,11,12],"Class":"INF2C"},{"Week":"27","LessonCode":"INF2D-27-07/12/2019","Day":"Friday","Classroom":"H.0.315","Hours":[10,11,12],"Class":"INF2D"},{"Week":"15","LessonCode":"INF2C-15-07/12/2019","Day":"Thursday","Classroom":"WD.0.002","Hours":[5,6,7],"Class":"INF2C"},{"Week":"49","LessonCode":"INF2E-49-07/12/2019","Day":"Saturday","Classroom":"H.0.114","Hours":[3,4,5],"Class":"INF2E"},{"Week":"48","LessonCode":"INF2D-48-07/12/2019","Day":"Friday","Classroom":"H.0.306","Hours":[8,9,10],"Class":"INF2D"},{"Week":"35","LessonCode":"INF2E-35-07/12/2019","Day":"Saturday","Classroom":"H.0.405","Hours":[8,9,10],"Class":"INF2E"},{"Week":"35","LessonCode":"INF2C-35-07/12/2019","Day":"Thursday","Classroom":"H.0.110","Hours":[7,8,9],"Class":"INF2C"},{"Week":"10","LessonCode":"INF2E-10-07/12/2019","Day":"Saturday","Classroom":"H.0.306","Hours":[12,13,14],"Class":"INF2E"},{"Week":"39","LessonCode":"INF2A-39-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[1,2,3],"Class":"INF2A"},{"Week":"10","LessonCode":"INF2C-10-07/12/2019","Day":"Thursday","Classroom":"H.0.405","Hours":[3,4,5],"Class":"INF2C"},{"Week":"49","LessonCode":"INF2A-49-07/12/2019","Day":"Tuesday","Classroom":"WD.0.002","Hours":[8,9,10],"Class":"INF2A"},{"Week":"44","LessonCode":"INF2E-44-07/12/2019","Day":"Saturday","Classroom":"H.0.110","Hours":[11,12,13],"Class":"INF2E"},{"Week":"36","LessonCode":"INF2C-36-07/12/2019","Day":"Thursday","Classroom":"WD.0.002","Hours":[2,3,4],"Class":"INF2C"},{"Week":"10","LessonCode":"INF2A-10-07/12/2019","Day":"Tuesday","Classroom":"H.0.206","Hours":[3,4,5],"Class":"INF2A"},{"Week":"34","LessonCode":"INF2E-34-07/12/2019","Day":"Saturday","Classroom":"H.0.308","Hours":[9,10,11],"Class":"INF2E"},{"Week":"13","LessonCode":"INF2D-13-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[2,3,4],"Class":"INF2D"},{"Week":"27","LessonCode":"INF2D-27-07/12/2019","Day":"Friday","Classroom":"H.0.306","Hours":[2,3,4],"Class":"INF2D"},{"Week":"44","LessonCode":"INF2B-44-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[6,7,8],"Class":"INF2B"},{"Week":"51","LessonCode":"INF2B-51-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[2,3,4],"Class":"INF2B"},{"Week":"40","LessonCode":"INF2D-40-07/12/2019","Day":"Friday","Classroom":"H.0.306","Hours":[2,3,4],"Class":"INF2D"},{"Week":"34","LessonCode":"INF2C-34-07/12/2019","Day":"Thursday","Classroom":"H.0.206","Hours":[8,9,10],"Class":"INF2C"},{"Week":"50","LessonCode":"INF2A-50-07/12/2019","Day":"Tuesday","Classroom":"H.0.306","Hours":[12,13,14],"Class":"INF2A"},{"Week":"21","LessonCode":"INF2A-21-07/12/2019","Day":"Tuesday","Classroom":"WD.0.016","Hours":[1,2,3],"Class":"INF2A"},{"Week":"50","LessonCode":"INF2A-50-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[3,4,5],"Class":"INF2A"},{"Week":"40","LessonCode":"INF2A-40-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[9,10,11],"Class":"INF2A"},{"Week":"4","LessonCode":"INF2D-4-07/12/2019","Day":"Friday","Classroom":"H.0.204","Hours":[12,13,14],"Class":"INF2D"},{"Week":"45","LessonCode":"INF2A-45-07/12/2019","Day":"Tuesday","Classroom":"H.0.315","Hours":[11,12,13],"Class":"INF2A"},{"Week":"2","LessonCode":"INF2C-2-07/12/2019","Day":"Thursday","Classroom":"H.0.308","Hours":[3,4,5],"Class":"INF2C"},{"Week":"12","LessonCode":"INF2C-12-07/12/2019","Day":"Thursday","Classroom":"H.0.204","Hours":[9,10,11],"Class":"INF2C"},{"Week":"36","LessonCode":"INF2A-36-07/12/2019","Day":"Tuesday","Classroom":"H.0.114","Hours":[9,10,11],"Class":"INF2A"},{"Week":"3","LessonCode":"INF2A-3-07/12/2019","Day":"Tuesday","Classroom":"WD.0.002","Hours":[11,12,13],"Class":"INF2A"},{"Week":"46","LessonCode":"INF2D-46-07/12/2019","Day":"Friday","Classroom":"WD.0.002","Hours":[9,10,11],"Class":"INF2D"},{"Week":"14","LessonCode":"INF2B-14-07/12/2019","Day":"Wednesday","Classroom":"H.0.315","Hours":[7,8,9],"Class":"INF2B"},{"Week":"24","LessonCode":"INF2E-24-07/12/2019","Day":"Saturday","Classroom":"H.0.306","Hours":[3,4,5],"Class":"INF2E"},{"Week":"19","LessonCode":"INF2C-19-07/12/2019","Day":"Thursday","Classroom":"WD.0.002","Hours":[4,5,6],"Class":"INF2C"},{"Week":"36","LessonCode":"INF2B-36-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[6,7,8],"Class":"INF2B"},{"Week":"14","LessonCode":"INF2D-14-07/12/2019","Day":"Friday","Classroom":"H.0.206","Hours":[8,9,10],"Class":"INF2D"},{"Week":"3","LessonCode":"INF2B-3-07/12/2019","Day":"Wednesday","Classroom":"H.0.206","Hours":[12,13,14],"Class":"INF2B"},{"Week":"34","LessonCode":"INF2E-34-07/12/2019","Day":"Saturday","Classroom":"WD.0.002","Hours":[3,4,5],"Class":"INF2E"},{"Week":"49","LessonCode":"INF2C-49-07/12/2019","Day":"Thursday","Classroom":"H.0.403","Hours":[1,2,3],"Class":"INF2C"},{"Week":"49","LessonCode":"INF2D-49-07/12/2019","Day":"Friday","Classroom":"H.0.114","Hours":[9,10,11],"Class":"INF2D"},{"Week":"5","LessonCode":"INF2D-5-07/12/2019","Day":"Friday","Classroom":"H.0.403","Hours":[9,10,11],"Class":"INF2D"},{"Week":"25","LessonCode":"INF2D-25-07/12/2019","Day":"Friday","Classroom":"H.0.308","Hours":[3,4,5],"Class":"INF2D"},{"Week":"22","LessonCode":"INF2E-22-07/12/2019","Day":"Saturday","Classroom":"H.0.403","Hours":[12,13,14],"Class":"INF2E"},{"Week":"39","LessonCode":"INF2B-39-07/12/2019","Day":"Wednesday","Classroom":"H.0.315","Hours":[8,9,10],"Class":"INF2B"},{"Week":"17","LessonCode":"INF2D-17-07/12/2019","Day":"Friday","Classroom":"H.0.204","Hours":[5,6,7],"Class":"INF2D"},{"Week":"12","LessonCode":"INF2E-12-07/12/2019","Day":"Saturday","Classroom":"H.0.110","Hours":[12,13,14],"Class":"INF2E"},{"Week":"24","LessonCode":"INF2C-24-07/12/2019","Day":"Thursday","Classroom":"H.0.306","Hours":[5,6,7],"Class":"INF2C"},{"Week":"20","LessonCode":"INF2C-20-07/12/2019","Day":"Thursday","Classroom":"H.0.405","Hours":[5,6,7],"Class":"INF2C"},{"Week":"49","LessonCode":"INF2D-49-07/12/2019","Day":"Friday","Classroom":"H.0.306","Hours":[12,13,14],"Class":"INF2D"},{"Week":"20","LessonCode":"INF2A-20-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[11,12,13],"Class":"INF2A"},{"Week":"6","LessonCode":"INF2D-6-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[11,12,13],"Class":"INF2D"},{"Week":"51","LessonCode":"INF2A-51-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[4,5,6],"Class":"INF2A"},{"Week":"38","LessonCode":"INF2D-38-07/12/2019","Day":"Friday","Classroom":"H.0.114","Hours":[12,13,14],"Class":"INF2D"},{"Week":"20","LessonCode":"INF2E-20-07/12/2019","Day":"Saturday","Classroom":"H.0.204","Hours":[9,10,11],"Class":"INF2E"},{"Week":"5","LessonCode":"INF2D-5-07/12/2019","Day":"Friday","Classroom":"H.0.405","Hours":[2,3,4],"Class":"INF2D"},{"Week":"51","LessonCode":"INF2A-51-07/12/2019","Day":"Tuesday","Classroom":"H.0.206","Hours":[10,11,12],"Class":"INF2A"},{"Week":"13","LessonCode":"INF2D-13-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[6,7,8],"Class":"INF2D"},{"Week":"43","LessonCode":"INF2C-43-07/12/2019","Day":"Thursday","Classroom":"H.0.403","Hours":[3,4,5],"Class":"INF2C"},{"Week":"40","LessonCode":"INF2D-40-07/12/2019","Day":"Friday","Classroom":"H.0.306","Hours":[6,7,8],"Class":"INF2D"},{"Week":"15","LessonCode":"INF2B-15-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[3,4,5],"Class":"INF2B"},{"Week":"21","LessonCode":"INF2B-21-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[11,12,13],"Class":"INF2B"},{"Week":"49","LessonCode":"INF2D-49-07/12/2019","Day":"Friday","Classroom":"H.0.204","Hours":[3,4,5],"Class":"INF2D"},{"Week":"2","LessonCode":"INF2B-2-07/12/2019","Day":"Wednesday","Classroom":"H.0.204","Hours":[10,11,12],"Class":"INF2B"},{"Week":"26","LessonCode":"INF2C-26-07/12/2019","Day":"Thursday","Classroom":"H.0.110","Hours":[6,7,8],"Class":"INF2C"},{"Week":"10","LessonCode":"INF2C-10-07/12/2019","Day":"Thursday","Classroom":"H.0.110","Hours":[9,10,11],"Class":"INF2C"},{"Week":"8","LessonCode":"INF2C-8-07/12/2019","Day":"Thursday","Classroom":"H.0.315","Hours":[12,13,14],"Class":"INF2C"},{"Week":"26","LessonCode":"INF2B-26-07/12/2019","Day":"Wednesday","Classroom":"H.0.308","Hours":[2,3,4],"Class":"INF2B"},{"Week":"17","LessonCode":"INF2B-17-07/12/2019","Day":"Wednesday","Classroom":"H.0.308","Hours":[5,6,7],"Class":"INF2B"},{"Week":"44","LessonCode":"INF2B-44-07/12/2019","Day":"Wednesday","Classroom":"H.0.114","Hours":[9,10,11],"Class":"INF2B"},{"Week":"44","LessonCode":"INF2D-44-07/12/2019","Day":"Friday","Classroom":"WD.0.016","Hours":[5,6,7],"Class":"INF2D"},{"Week":"45","LessonCode":"INF2D-45-07/12/2019","Day":"Friday","Classroom":"H.0.110","Hours":[8,9,10],"Class":"INF2D"},{"Week":"43","LessonCode":"INF2E-43-07/12/2019","Day":"Saturday","Classroom":"H.0.403","Hours":[10,11,12],"Class":"INF2E"},{"Week":"2","LessonCode":"INF2A-2-07/12/2019","Day":"Tuesday","Classroom":"H.0.114","Hours":[8,9,10],"Class":"INF2A"},{"Week":"49","LessonCode":"INF2A-49-07/12/2019","Day":"Tuesday","Classroom":"H.0.403","Hours":[5,6,7],"Class":"INF2A"},{"Week":"4","LessonCode":"INF2B-4-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[9,10,11],"Class":"INF2B"},{"Week":"35","LessonCode":"INF2B-35-07/12/2019","Day":"Wednesday","Classroom":"WD.0.002","Hours":[7,8,9],"Class":"INF2B"},{"Week":"22","LessonCode":"INF2E-22-07/12/2019","Day":"Saturday","Classroom":"H.0.315","Hours":[5,6,7],"Class":"INF2E"},{"Week":"4","LessonCode":"INF2E-4-07/12/2019","Day":"Saturday","Classroom":"H.0.114","Hours":[6,7,8],"Class":"INF2E"},{"Week":"38","LessonCode":"INF2D-38-07/12/2019","Day":"Friday","Classroom":"H.0.405","Hours":[1,2,3],"Class":"INF2D"},{"Week":"41","LessonCode":"INF2C-41-07/12/2019","Day":"Thursday","Classroom":"H.0.308","Hours":[9,10,11],"Class":"INF2C"},{"Week":"38","LessonCode":"INF2A-38-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[9,10,11],"Class":"INF2A"},{"Week":"36","LessonCode":"INF2C-36-07/12/2019","Day":"Thursday","Classroom":"H.0.204","Hours":[6,7,8],"Class":"INF2C"},{"Week":"43","LessonCode":"INF2D-43-07/12/2019","Day":"Friday","Classroom":"H.0.315","Hours":[2,3,4],"Class":"INF2D"},{"Week":"7","LessonCode":"INF2E-7-07/12/2019","Day":"Saturday","Classroom":"H.0.403","Hours":[1,2,3],"Class":"INF2E"},{"Week":"16","LessonCode":"INF2D-16-07/12/2019","Day":"Friday","Classroom":"H.0.206","Hours":[11,12,13],"Class":"INF2D"},{"Week":"46","LessonCode":"INF2B-46-07/12/2019","Day":"Wednesday","Classroom":"H.0.110","Hours":[3,4,5],"Class":"INF2B"},{"Week":"48","LessonCode":"INF2C-48-07/12/2019","Day":"Thursday","Classroom":"WD.0.016","Hours":[6,7,8],"Class":"INF2C"},{"Week":"14","LessonCode":"INF2B-14-07/12/2019","Day":"Wednesday","Classroom":"WD.0.016","Hours":[2,3,4],"Class":"INF2B"},{"Week":"50","LessonCode":"INF2B-50-07/12/2019","Day":"Wednesday","Classroom":"H.0.206","Hours":[8,9,10],"Class":"INF2B"},{"Week":"11","LessonCode":"INF2D-11-07/12/2019","Day":"Friday","Classroom":"H.0.306","Hours":[6,7,8],"Class":"INF2D"},{"Week":"51","LessonCode":"INF2C-51-07/12/2019","Day":"Thursday","Classroom":"H.0.308","Hours":[12,13,14],"Class":"INF2C"},{"Week":"36","LessonCode":"INF2E-36-07/12/2019","Day":"Saturday","Classroom":"H.0.306","Hours":[10,11,12],"Class":"INF2E"},{"Week":"36","LessonCode":"INF2A-36-07/12/2019","Day":"Tuesday","Classroom":"H.0.114","Hours":[6,7,8],"Class":"INF2A"},{"Week":"39","LessonCode":"INF2C-39-07/12/2019","Day":"Thursday","Classroom":"H.0.405","Hours":[3,4,5],"Class":"INF2C"},{"Week":"45","LessonCode":"INF2A-45-07/12/2019","Day":"Tuesday","Classroom":"H.0.405","Hours":[3,4,5],"Class":"INF2A"},{"Week":"47","LessonCode":"INF2D-47-07/12/2019","Day":"Friday","Classroom":"H.0.204","Hours":[10,11,12],"Class":"INF2D"}]
+[
+  {
+    "Week": "12",
+    "LessonCode": "INF2B-12-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "4",
+    "LessonCode": "INF2A-4-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2A-48-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "INF2C-44-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "3",
+    "LessonCode": "INF2C-3-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "39",
+    "LessonCode": "INF2B-39-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "INF2C-43-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "26",
+    "LessonCode": "INF2E-26-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "INF2E-50-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2D-38-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2A-34-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "45",
+    "LessonCode": "INF2D-45-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "7",
+    "LessonCode": "INF2B-7-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "39",
+    "LessonCode": "INF2A-39-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "17",
+    "LessonCode": "INF2B-17-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "37",
+    "LessonCode": "INF2C-37-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2B-20-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "10",
+    "LessonCode": "INF2D-10-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2D-36-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "17",
+    "LessonCode": "INF2C-17-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2C-38-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2D-34-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2C-34-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "41",
+    "LessonCode": "INF2B-41-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "6",
+    "LessonCode": "INF2E-6-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2E-48-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2A-51-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "46",
+    "LessonCode": "INF2E-46-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "6",
+    "LessonCode": "INF2E-6-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "37",
+    "LessonCode": "INF2D-37-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "4",
+    "LessonCode": "INF2E-4-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "8",
+    "LessonCode": "INF2E-8-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2A-38-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "22",
+    "LessonCode": "INF2D-22-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "27",
+    "LessonCode": "INF2C-27-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "15",
+    "LessonCode": "INF2B-15-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "2",
+    "LessonCode": "INF2D-2-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "19",
+    "LessonCode": "INF2D-19-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2B-34-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "37",
+    "LessonCode": "INF2A-37-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "25",
+    "LessonCode": "INF2A-25-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2A-20-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "46",
+    "LessonCode": "INF2A-46-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "24",
+    "LessonCode": "INF2E-24-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "45",
+    "LessonCode": "INF2C-45-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "40",
+    "LessonCode": "INF2D-40-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2A-36-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "15",
+    "LessonCode": "INF2A-15-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "12",
+    "LessonCode": "INF2B-12-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2B-48-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "15",
+    "LessonCode": "INF2E-15-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "5",
+    "LessonCode": "INF2A-5-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2D-48-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "24",
+    "LessonCode": "INF2D-24-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "3",
+    "LessonCode": "INF2B-3-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "19",
+    "LessonCode": "INF2B-19-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "INF2B-50-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "INF2A-44-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "INF2D-43-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "13",
+    "LessonCode": "INF2A-13-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2E-49-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2B-51-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "5",
+    "LessonCode": "INF2A-5-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "41",
+    "LessonCode": "INF2A-41-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "11",
+    "LessonCode": "INF2D-11-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2C-38-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2B-34-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "24",
+    "LessonCode": "INF2D-24-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "4",
+    "LessonCode": "INF2B-4-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "16",
+    "LessonCode": "INF2C-16-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "47",
+    "LessonCode": "INF2B-47-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "16",
+    "LessonCode": "INF2A-16-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2A-20-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "7",
+    "LessonCode": "INF2C-7-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "41",
+    "LessonCode": "INF2B-41-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "11",
+    "LessonCode": "INF2E-11-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "3",
+    "LessonCode": "INF2A-3-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2B-20-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "5",
+    "LessonCode": "INF2A-5-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "13",
+    "LessonCode": "INF2C-13-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "23",
+    "LessonCode": "INF2C-23-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2C-20-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "35",
+    "LessonCode": "INF2D-35-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "16",
+    "LessonCode": "INF2A-16-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "8",
+    "LessonCode": "INF2D-8-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "26",
+    "LessonCode": "INF2C-26-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "25",
+    "LessonCode": "INF2D-25-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "47",
+    "LessonCode": "INF2C-47-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2C-51-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2B-49-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "INF2C-50-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2E-48-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "11",
+    "LessonCode": "INF2A-11-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "8",
+    "LessonCode": "INF2D-8-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "10",
+    "LessonCode": "INF2B-10-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "13",
+    "LessonCode": "INF2D-13-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "INF2B-43-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "37",
+    "LessonCode": "INF2B-37-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "5",
+    "LessonCode": "INF2E-5-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2E-38-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "46",
+    "LessonCode": "INF2B-46-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2C-48-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "27",
+    "LessonCode": "INF2D-27-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "15",
+    "LessonCode": "INF2C-15-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2E-49-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2D-48-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "35",
+    "LessonCode": "INF2E-35-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "35",
+    "LessonCode": "INF2C-35-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "10",
+    "LessonCode": "INF2E-10-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "39",
+    "LessonCode": "INF2A-39-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "10",
+    "LessonCode": "INF2C-10-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2A-49-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "INF2E-44-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2C-36-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "10",
+    "LessonCode": "INF2A-10-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2E-34-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "13",
+    "LessonCode": "INF2D-13-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "27",
+    "LessonCode": "INF2D-27-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "INF2B-44-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2B-51-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "40",
+    "LessonCode": "INF2D-40-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2C-34-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "INF2A-50-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "21",
+    "LessonCode": "INF2A-21-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "INF2A-50-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "40",
+    "LessonCode": "INF2A-40-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "4",
+    "LessonCode": "INF2D-4-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "45",
+    "LessonCode": "INF2A-45-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "2",
+    "LessonCode": "INF2C-2-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "12",
+    "LessonCode": "INF2C-12-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2A-36-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "3",
+    "LessonCode": "INF2A-3-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "46",
+    "LessonCode": "INF2D-46-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "14",
+    "LessonCode": "INF2B-14-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "24",
+    "LessonCode": "INF2E-24-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "19",
+    "LessonCode": "INF2C-19-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2B-36-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "14",
+    "LessonCode": "INF2D-14-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "3",
+    "LessonCode": "INF2B-3-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "34",
+    "LessonCode": "INF2E-34-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2C-49-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2D-49-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "5",
+    "LessonCode": "INF2D-5-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "25",
+    "LessonCode": "INF2D-25-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "22",
+    "LessonCode": "INF2E-22-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "39",
+    "LessonCode": "INF2B-39-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "17",
+    "LessonCode": "INF2D-17-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "12",
+    "LessonCode": "INF2E-12-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "24",
+    "LessonCode": "INF2C-24-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2C-20-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2D-49-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2A-20-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "6",
+    "LessonCode": "INF2D-6-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2A-51-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      4,
+      5,
+      6
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2D-38-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "20",
+    "LessonCode": "INF2E-20-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "5",
+    "LessonCode": "INF2D-5-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2A-51-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "13",
+    "LessonCode": "INF2D-13-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "INF2C-43-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "40",
+    "LessonCode": "INF2D-40-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "15",
+    "LessonCode": "INF2B-15-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "21",
+    "LessonCode": "INF2B-21-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2D-49-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "2",
+    "LessonCode": "INF2B-2-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "26",
+    "LessonCode": "INF2C-26-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "10",
+    "LessonCode": "INF2C-10-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "8",
+    "LessonCode": "INF2C-8-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "26",
+    "LessonCode": "INF2B-26-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "17",
+    "LessonCode": "INF2B-17-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "INF2B-44-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "44",
+    "LessonCode": "INF2D-44-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "45",
+    "LessonCode": "INF2D-45-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "INF2E-43-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "2",
+    "LessonCode": "INF2A-2-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "49",
+    "LessonCode": "INF2A-49-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "4",
+    "LessonCode": "INF2B-4-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "35",
+    "LessonCode": "INF2B-35-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "WD.0.002",
+    "Hours": [
+      7,
+      8,
+      9
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "22",
+    "LessonCode": "INF2E-22-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      5,
+      6,
+      7
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "4",
+    "LessonCode": "INF2E-4-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2D-38-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "41",
+    "LessonCode": "INF2C-41-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "38",
+    "LessonCode": "INF2A-38-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      9,
+      10,
+      11
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2C-36-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "43",
+    "LessonCode": "INF2D-43-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.315",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "7",
+    "LessonCode": "INF2E-7-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.403",
+    "Hours": [
+      1,
+      2,
+      3
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "16",
+    "LessonCode": "INF2D-16-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      11,
+      12,
+      13
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "46",
+    "LessonCode": "INF2B-46-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.110",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "48",
+    "LessonCode": "INF2C-48-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "14",
+    "LessonCode": "INF2B-14-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "WD.0.016",
+    "Hours": [
+      2,
+      3,
+      4
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "50",
+    "LessonCode": "INF2B-50-07/12/2019",
+    "Day": "Wednesday",
+    "Classroom": "H.0.206",
+    "Hours": [
+      8,
+      9,
+      10
+    ],
+    "Class": "INF2B"
+  },
+  {
+    "Week": "11",
+    "LessonCode": "INF2D-11-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2D"
+  },
+  {
+    "Week": "51",
+    "LessonCode": "INF2C-51-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.308",
+    "Hours": [
+      12,
+      13,
+      14
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2E-36-07/12/2019",
+    "Day": "Saturday",
+    "Classroom": "H.0.306",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2E"
+  },
+  {
+    "Week": "36",
+    "LessonCode": "INF2A-36-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.114",
+    "Hours": [
+      6,
+      7,
+      8
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "39",
+    "LessonCode": "INF2C-39-07/12/2019",
+    "Day": "Thursday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2C"
+  },
+  {
+    "Week": "45",
+    "LessonCode": "INF2A-45-07/12/2019",
+    "Day": "Tuesday",
+    "Classroom": "H.0.405",
+    "Hours": [
+      3,
+      4,
+      5
+    ],
+    "Class": "INF2A"
+  },
+  {
+    "Week": "47",
+    "LessonCode": "INF2D-47-07/12/2019",
+    "Day": "Friday",
+    "Classroom": "H.0.204",
+    "Hours": [
+      10,
+      11,
+      12
+    ],
+    "Class": "INF2D"
+  }
+]

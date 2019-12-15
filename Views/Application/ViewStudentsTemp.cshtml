@@ -4,11 +4,13 @@
     ViewBag.Title = "Home Page";
 }
 
+
 <div class=wrap>
     <div class="header">
+
         <div class="headers">
             <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to schedule</a>
-            @Html.ActionLink("QR_Button_Click", "QR_Button_Click", "Application", new { LessonCode =  Model.ClassCode }, new {@class = "headerbuttons", })
+            @Html.ActionLink("QR_Button_Click", "QR_Button_Click", "Application", new { LessonCode = Model.ClassCode }, new { @class = "headerbuttons", })
             @Html.ActionLink("Logout", "LogOut", "Application")
         </div>
     </div>
@@ -19,6 +21,7 @@
             </div>
             <table style="width:100%">
                 <tr>
+
                     @if (Model.Students.Count == 0)
                     {
 
@@ -34,7 +37,15 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.userFirstName)
+                            @Html.DisplayFor(modelItem = item.userFirstName)
+                            <a>
+                                <div class="inner-pfps">
+                                    @Html.DisplayFor(modelItem => item.Fname)
+
+                                    <img id="myimg" height="125" width="100" />
+
+                                </div>
+                            </a>
                         </td>
 
                         <td>
@@ -50,3 +61,44 @@
         </div>
     </div>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script>
+    var config =
+    {
+        apiKey: "AIzaSyAji2r1Ky37CjNzZsZlujBowTDY0ubSqx8",
+        authDomain: "studentpre-a7d96.firebaseapp.com",
+        databaseURL: "https://studentpre-a7d96.firebaseio.com",
+        storageBucket: "studentpre-a7d96.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+    var tangRef = storageRef.child('item-pics/10.jpg');
+
+    tangRef.getDownloadURL().then(function (url) {
+        var test = url
+        document.querySelector('img').src = test;
+    }).catch(function (error) {
+        switch (error.code) {
+            case 'storage/object_not_found':
+                break;
+
+            case 'storage/unauthorized':
+                break;
+
+            case 'storage/canceled':
+                break;
+
+            case 'storage/unknown':
+                break;
+        }
+    });
+
+    var test = 'firebase_url';
+    document.querySelector('img').src = test;
+
+
+
+</script>
