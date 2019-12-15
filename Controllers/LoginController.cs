@@ -43,7 +43,7 @@ namespace ProjectCSA.Controllers
                 else
                 {                                                       //User
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, tcode, DateTime.Now, DateTime.Now.AddMinutes(20), false, tcode); //change false to true later for different sessions.
-                    //Creates a 'ticket'with information about the current user.
+                    //Creates a 'ticket' with information about the current user.
                     string encticket = FormsAuthentication.Encrypt(ticket); //encrypt ticket
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encticket)); //put ticket in cookie, send cookie to user with content of site
                     Tcode = ticket.Name;
@@ -67,6 +67,11 @@ namespace ProjectCSA.Controllers
 
         public Tuple<bool,string> IsValid(string Tcode, string Password)
         {
+            if (Password == "")
+            {
+                Tuple<bool, string> Error = new Tuple<bool, string>(false, "Password cannot be empty");
+                return Error;
+            }
             if (Tcode.Length != 5)
             {
                 Tuple<bool, string> Error = new Tuple<bool, string>(false, "The teacher code does not exist");

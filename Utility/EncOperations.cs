@@ -22,6 +22,7 @@ namespace ProjectCSA
         }
         private byte[] HashPassword(string password, byte[] salt)
         {
+            //if password is empty, return error. wwq 
             Argon2id argon2 = new Argon2id(Encoding.UTF8.GetBytes(password))
             {
                 Salt = salt,
