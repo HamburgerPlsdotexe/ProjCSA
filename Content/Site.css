@@ -16,11 +16,6 @@ html, body {
     min-height: 100%;
 }
 
-H.2.403INF1I {
-    color: blue;
-    background-color: black;
-}
-
 FnameTextBox {
     background-color: pink;
     width: 55%;
@@ -176,10 +171,6 @@ tr {
         background-color: #dedede;
     }
 
-.center {
-    text-align: center;
-    vertical-align: middle;
-}
 
 
 
@@ -679,7 +670,8 @@ iframe {
     position: relative;
 }
 
-img {
+/*Kan beter, niet img veranderen, daarom komen er problemen met andere img tags in html.*/
+img {                       
     position: absolute;
     z-index: 2;
     height: auto;
