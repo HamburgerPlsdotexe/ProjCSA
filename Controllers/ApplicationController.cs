@@ -20,6 +20,8 @@ namespace ProjectCSA.Controllers
     [Authorize]
     public class ApplicationController : Controller
     {
+        readonly EncOperations pwenc = new EncOperations();
+
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
             int n = 1;
@@ -68,7 +70,6 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
-        readonly EncOperations pwenc = new EncOperations();
         public ActionResult ViewStudentsTemp()
         {
             StudentsAndClassesModel model = new StudentsAndClassesModel();

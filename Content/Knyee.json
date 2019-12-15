@@ -1,4 +1,13 @@
 [
+
+  {
+    "Week": 50,
+    "LessonCode": "INF1I-49-123",
+    "Day": "Monday",
+    "Classroom": "H.2.403",
+    "Hours": [ 1, 2, 3 ],
+    "Class": "INF1I"
+  },
   {
     "Week": 49,
     "LessonCode": "INF1I-49-123",
@@ -54,14 +63,6 @@
     "Classroom": "H.2.305",
     "Hours": [ 9, 10, 11 ],
     "Class": "INF1A"
-  },
-  {
-    "Week": 48,
-    "LessonCode": "INF4D-48-789",
-    "Day": "Monday",
-    "Classroom": "H.2.305",
-    "Hours": [ 7, 8, 9 ],
-    "Class": "INF4D"
   }
 
 ]
