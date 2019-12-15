@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using static ProjectCSA.Utility.FireBaseOperations;
 using static DataLibrary.Logic.TeacherProcessor;
 using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
@@ -44,25 +45,26 @@ namespace ProjectCSA.Controllers
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
 
-            System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image
-            {
-                Width = 500,
-                Height = 500
-            };
+            System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
+            imgQRcode.Width = 500;
+            imgQRcode.Height = 500;
 
-            using Bitmap qrCodeImage = qrCode.GetGraphic(20);
-            using (MemoryStream ms = new MemoryStream())
+            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
             {
-                qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                byte[] byteImage = ms.ToArray();
-                imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
+                    imgQRcode.ImageUrl = "data:image/png;base64, " + Convert.ToBase64String(byteImage);
+                }
+                ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
+                imgQRcode.Dispose();
+                qrCodeData.Dispose();
+                qrgenerator.Dispose();
+                qrCode.Dispose();
+                qrCodeData.Dispose();
+                return View("TestQR");
             }
-            ViewData["QRCodeImage"] = imgQRcode.ImageUrl;
-            imgQRcode.Dispose();
-            qrCodeData.Dispose();
-            qrgenerator.Dispose();
-            qrCodeData.Dispose();
-            return View("TestQR");
         }
         public string GetUserTcode()
         {
@@ -73,7 +75,7 @@ namespace ProjectCSA.Controllers
         public ActionResult ViewStudentsTemp()
         {
             StudentsAndClassesModel model = new StudentsAndClassesModel();
-            var data = LoadStudents();
+            var data = Retrieve();
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
@@ -99,7 +101,7 @@ namespace ProjectCSA.Controllers
             model.Students = student;
 
             return View(model);
-        }
+        }*/
 
         public ActionResult Index(int direction = 3)
         {
@@ -192,7 +194,7 @@ namespace ProjectCSA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie. 
+        public ActionResult SignUp(TeacherModel model)                                              // When signup is done, redirect to index with correct cookie, doesn't have json yet. 
         {
             if (ModelState.IsValid)
             {
@@ -217,7 +219,7 @@ namespace ProjectCSA.Controllers
                     return View("SignUp");                                                          //Not a unique Tcode, redirect to signup
                 }
             }
-            ViewData["ErrorMessage"] = "Something went wrong!";
+            ViewData["ErrorMessage"] = "Teachercode is too long!";
             return View("SignUp");                                                                  //other error, redirect to signup
         }
 
@@ -245,24 +247,24 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult ReturnStudentListViewWithCnum(string Cnum, string CCode)
+        public ActionResult ReturnStudentListViewWithCnum(string userClass, string CCode)
         {
             string ccode = CCode;
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
-            var data = LoadStudents();
+            var data = Retrieve();
             var data2 = LoadClasses();
 
             List<StudentModel> student = new List<StudentModel>();
             foreach (var row in data)
             {
-                if (row.Cnum == Cnum)
+                if (row.userClass == userClass)
                 {
                     student.Add(new StudentModel
                     {
-                        Snum = row.Snum,
-                        Fname = row.Fname,
-                        Lname = row.Lname,
-                        Cnum = row.Cnum
+                        userStudentNum = row.userStudentNum,
+                        userFirstName = row.userFirstName,
+                        userLastName = row.userLastName,
+                        userClass = row.userClass
                     });
                 }
             }
