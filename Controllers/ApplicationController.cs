@@ -72,36 +72,36 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
-        public ActionResult ViewStudentsTemp()
-        {
-            StudentsAndClassesModel model = new StudentsAndClassesModel();
-            var data = Retrieve();
-            var data2 = LoadClasses();
+        //public ActionResult ViewStudentsTemp()
+        //{
+        //    StudentsAndClassesModel model = new StudentsAndClassesModel();
+        //    var data = Retrieve();
+        //    var data2 = LoadClasses();
 
-            List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
-            {
-                student.Add(new StudentModel
-                {
-                    Snum = row.Snum,
-                    Fname = row.Fname,
-                    Lname = row.Lname,
-                    Cnum = row.Cnum
-                });
-            }
-            List<ClassModel> classes = new List<ClassModel>();
-            foreach (var row in data2)
-            {
-                classes.Add(new ClassModel
-                {
-                    Cnum = row.Cnum
-                });
-            }
-            model.Classes = classes;
-            model.Students = student;
+        //    List<StudentModel> student = new List<StudentModel>();
+        //    foreach (var row in data)
+        //    {
+        //        student.Add(new StudentModel
+        //        {
+        //            Snum = row.Snum,
+        //            Fname = row.Fname,
+        //            Lname = row.Lname,
+        //            Cnum = row.Cnum
+        //        });
+        //    }
+        //    List<ClassModel> classes = new List<ClassModel>();
+        //    foreach (var row in data2)
+        //    {
+        //        classes.Add(new ClassModel
+        //        {
+        //            Cnum = row.Cnum
+        //        });
+        //    }
+        //    model.Classes = classes;
+        //    model.Students = student;
 
-            return View(model);
-        }*/
+        //    return View(model);
+        //}*/
 
         public ActionResult Index(int direction = 3)
         {
