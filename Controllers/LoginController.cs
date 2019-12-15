@@ -31,7 +31,8 @@ namespace ProjectCSA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string tcode, string Password)
         {
-            if (IsValid(tcode, Password))
+            Tuple<bool, string> Answer = IsValid(tcode, Password);
+            if (Answer.Item1)
             {
                 Tcode = tcode;
                 if (IsAdmin(tcode))
@@ -52,7 +53,7 @@ namespace ProjectCSA.Controllers
 
             else
             {
-                TempData["Temp"] = "That teacher code does not exist.";
+                TempData["Temp"] = Answer.Item2;
                 return Redirect("Login");
             }
         }
@@ -64,18 +65,20 @@ namespace ProjectCSA.Controllers
             return Teacher;
         }
 
-        public bool IsValid(string Tcode, string Password)
+        public Tuple<bool,string> IsValid(string Tcode, string Password)
         {
             if (Tcode.Length != 5)
             {
-                return false;
+                Tuple<bool, string> Error = new Tuple<bool, string>(false, "The teacher code does not exist");
+                return Error;
             }
             else
             {
                 List<string> teacher = GetTeacher(Tcode);
                 if (teacher[0] == "False")
                 {
-                    return false;
+                    Tuple<bool, string> Error = new Tuple<bool, string>(false, "The teacher code does not exist");
+                    return Error;
                 }
                 else
                 {
@@ -84,15 +87,18 @@ namespace ProjectCSA.Controllers
                     string hashedpw = pwenc.GetHashPw(Password, array);
                     if (hashedpw == teacher[1])
                     {
-                        return true;
+                        Tuple<bool, string> Success = new Tuple<bool, string>(true, "Logging in...");
+                        return Success;
                     }
                     else
                     {
-                        return false;
+                        Tuple<bool, string> Error = new Tuple<bool, string>(false, "The password is not correct");
+                        return Error;
                     }
                 }
             }
         }
+
         public static bool IsAdmin(string Tcode)
         {
             if (Tcode == null)
