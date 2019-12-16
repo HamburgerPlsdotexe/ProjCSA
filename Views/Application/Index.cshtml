@@ -1,7 +1,8 @@
 @model IEnumerable<ProjectCSA.Models.ScheduleModel>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Welcome";
 }
+
 
 <div class=wrap>
     <div class="header">
@@ -52,7 +53,7 @@
         }
         else
         {
-            <table class="fixed_header">
+            <table id="Table" class="fixed_header">
                 <thead>
                     <tr>
                         <th><a>Week: @(ViewData["weeks"])</a></th>
@@ -102,32 +103,22 @@
                                 </td>
 
 
+
                                 @for (int x = 0; x < 7; x++)                // For every day of the week
                                 {
-                                    <td>
+                                        <td>
                                         @if (Array.Exists(holidays, element => element == weeks) && i == 1)
                                         {
-                                            @("Vacation")
+                                            @("Holiday")
                                         }
                                         @foreach (var item in Model)        // For every schedule item in the model.
                                         {
-                                            if (item.Week == weeks.ToString())  //check if lesson week is equivalent to the current week in the webbrowser.
+                                            if (item.Week == weeks.ToString() && item.Hours.Contains(i) && item.Day == days[x])  //check if lesson week is equivalent to the current week in the webbrowser.
                                             {
-                                                if (item.Hours.Contains(i))     // If current hour is in model hours array.
-                                                {
-                                                    if (item.Day == days[x])    // Check if model day is equal to current day.item.
-                                                    {
-                                                        <a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class, CCode = item.LessonCode }, null) </a>//????
-                                                        <p><a>ROOM @(item.Classroom)</a></p>
-                                                    }
-                                                    else
-                                                    {
-                                                        @("")
-                                                    }
-                                                }
+                                                <a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class, CCode = item.LessonCode }, null) </a>
+                                                <p><a>ROOM @(item.Classroom)</a></p>
                                             }
                                         }
-
                                     </td>
                                 }
 

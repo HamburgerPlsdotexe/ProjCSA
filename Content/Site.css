@@ -17,8 +17,8 @@ html, body {
 }
 
 H.2.403INF1I {
-    color:blue;
-    background-color:black;
+    color: blue;
+    background-color: black;
 }
 
 FnameTextBox {
@@ -48,7 +48,6 @@ box {
 .headers {
     padding-left: 1%;
     padding-top: 2%;
-
 }
 
 .maincontent {
@@ -78,19 +77,20 @@ box {
 
     .fixed_header thead tr {
         display: block;
-        width:100%;
+        width: 100%;
     }
 
     .fixed_header thead {
         color: #fff;
-        width:100%;
+        width: 100%;
     }
 
     .fixed_header th, .fixed_header td {
         padding: 5px;
         text-align: left;
-        width:300px;
+        width: 300px;
     }
+
 .headerbut {
     color: #fff !important;
     text-transform: uppercase;
@@ -112,8 +112,9 @@ box {
     margin-left: 12px;
     margin-right: 12px;
     padding: 8px;
-    border: none;   
+    border: none;
 }
+
     .headerbuttons:hover {
         background: #CC0033;
         -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
@@ -123,7 +124,7 @@ box {
     }
 
 th {
-    color:white;
+    color: white;
     background: #333;
     border-bottom: 4px solid #9ea7af;
     border-right: 1px solid #343a45;
@@ -140,12 +141,12 @@ th {
     padding: 40px;
     text-align: center;
 }
+
 table, th, td {
     padding: 20px;
     border: 1px solid black;
     border: none;
     border-collapse: collapse;
-    
 }
 
 table2, th, td {
@@ -158,7 +159,6 @@ table2, th, td {
 }
 
 table {
-    
     width: 100%;
 }
 
@@ -172,9 +172,9 @@ tr {
 }
 
 
-tr:nth-child(even) {
-    background-color: #dedede;
-}
+    tr:nth-child(even) {
+        background-color: #dedede;
+    }
 
 .center {
     text-align: center;
@@ -247,7 +247,7 @@ tr:nth-child(even) {
 
 .leftcolumn {
     background-color: white;
-    width: 20%;         
+    width: 20%;
     height: 90%;
     float: left;
     overflow-y: scroll;
@@ -286,39 +286,43 @@ h1 {
     color: white;
 }
 
-h2{
-    font-size:40px;
-    text-align:center;
+h2 {
+    font-size: 40px;
+    text-align: center;
 }
 
-h3{
-    font-size:25px;
-    text-align:left;
+h3 {
+    font-size: 25px;
+    text-align: left;
 }
 
-h4{
+h4 {
     font-size: 14px;
 }
-a{
-    color:black;
-    font-size:15px;
-    padding-top:10px;
-    font-weight:bold;
+
+a {
+    color: black;
+    font-size: 15px;
+    padding-top: 10px;
+    font-weight: bold;
 }
-validation{
-    color:red;
-    font-weight:bold;
+
+validation {
+    color: red;
+    font-weight: bold;
 }
+
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 body, html {
     height: 100%;
-
 }
+
 a {
     font-size: 14px;
     line-height: 1.7;
@@ -445,7 +449,6 @@ iframe {
     height: 50px;
     border-radius: 25px;
     padding: 0 0px 0 10px;
-
 }
 
     .input100:hover {
@@ -665,6 +668,27 @@ iframe {
         opacity: 1;
     }
 }
-.validation{
-    color:red;
+
+.validation {
+    color: red;
+}
+
+.inner-pfps {
+    height: 0px;
+    text-align: center;
+    position: relative;
+}
+
+img {
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    width: 100px;
+    display: none;
+    top: -30px;
+}
+
+.inner-pfps:hover img {
+    display: block;
+    margin: auto;
 }

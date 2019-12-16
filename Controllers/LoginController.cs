@@ -14,7 +14,7 @@ namespace ProjectCSA.Controllers
     public class LoginController : Controller
     {
         public static string Tcode;
-        readonly EncOperations enc = new EncOperations();
+        readonly EncOperations pwenc = new EncOperations();
 
         public static string ReturnTcode()
         {
@@ -84,7 +84,7 @@ namespace ProjectCSA.Controllers
                 {
                     string converted = teacher[2];
                     byte[] array = Convert.FromBase64String(converted);
-                    string hashedpw = enc.GetHashPw(Password, array);
+                    string hashedpw = pwenc.GetHashPw(Password, array);
                     if (hashedpw == teacher[1])
                     {
                         Tuple<bool, string> Success = new Tuple<bool, string>(true, "Logging in...");
