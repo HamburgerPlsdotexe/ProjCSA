@@ -33,12 +33,12 @@
                 @foreach (var item in Model.Students)
                 {
                     <tr>
-                        <td>
+                        <td onmouseover="loadImage(@item.userStudentNum)">
                             @*@Html.DisplayFor(modelItem = item.userFirstName)*@
                             <a>
-                                <div class="inner-pfps">
+                                <div>
                                     @Html.DisplayFor(modelItem => item.userFirstName)
-                                        <img  height="125" width="100" />
+                                        <img height="125" width="100"/>
                                 </div>
                             </a>
                         </td>
@@ -58,41 +58,80 @@
 
 <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
 <script>
+
     var config =
-    {
-        apiKey: "AIzaSyAji2r1Ky37CjNzZsZlujBowTDY0ubSqx8",
-        authDomain: "studentpre-a7d96.firebaseapp.com",
-        databaseURL: "https://studentpre-a7d96.firebaseio.com",
-        storageBucket: "studentpre-a7d96.appspot.com",
-    };
+        {
+            apiKey: "AIzaSyAji2r1Ky37CjNzZsZlujBowTDY0ubSqx8",
+            authDomain: "studentpre-a7d96.firebaseapp.com",
+            databaseURL: "https://studentpre-a7d96.firebaseio.com",
+            storageBucket: "studentpre-a7d96.appspot.com",
+        };
 
-    firebase.initializeApp(config);
-    var storage = firebase.storage();
-    var storageRef = storage.ref();
-    var tangRef = storageRef.child('item-pics/10.jpg');
+        firebase.initializeApp(config);
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        
+        var tangRef = storageRef.child('item-pics/10.jpg');
 
-    tangRef.getDownloadURL().then(function (url) {
-        var test = url
+        tangRef.getDownloadURL().then(function (url) {
+            
+            var test = url;
+            document.querySelector('img').src = test;
+
+        }).catch(function (error) {
+            switch (error.code) {
+                case 'storage/object_not_found':
+                    break;
+
+                case 'storage/unauthorized':
+                    break;
+
+                case 'storage/canceled':
+                    break;
+
+                case 'storage/unknown':
+                    break;
+            }
+        });
+
+        var test = 'firebase_url';
         document.querySelector('img').src = test;
-    }).catch(function (error) {
-        switch (error.code) {
-            case 'storage/object_not_found':
-                break;
 
-            case 'storage/unauthorized':
-                break;
+    function loadImage(studNum) {
 
-            case 'storage/canceled':
-                break;
-
-            case 'storage/unknown':
-                break;
+        //window.alert(studNum);
+        studNum = String(studNum);
+        if(studNum.length < 7) {
+            studNum = '0' + studNum;
         }
-    });
+        var location = 'item-pics/' + studNum + '.jpg';
+        //window.alert(location);
+        var tangRef = storageRef.child(location);
+        tangRef.getDownloadURL().then(function (url) {
+            
+            var test = url;
+            document.querySelector('img').src = test;
 
-    var test = 'firebase_url';
-    document.querySelector('img').src = test;
+        }).catch(function (error) {
+            switch (error.code) {
+                case 'storage/object_not_found':
+                    break;
 
+                case 'storage/unauthorized':
+                    break;
+
+                case 'storage/canceled':
+                    break;
+
+                case 'storage/unknown':
+                    break;
+            }
+        });
+        var test = 'firebase_url';
+        document.querySelector('img').src = test;
+    }
+
+    
 
 
 </script>
