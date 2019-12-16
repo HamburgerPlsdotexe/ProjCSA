@@ -21,6 +21,8 @@ namespace ProjectCSA.Controllers
     [Authorize]
     public class ApplicationController : Controller
     {
+        readonly EncOperations pwenc = new EncOperations();
+
         public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
         {
             int n = 1;
@@ -34,7 +36,7 @@ namespace ProjectCSA.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult QR_Button_Click(string LessonCode, object sender, EventArgs e)
+        public ActionResult QR_Button_Click(string LessonCode)
         {
             //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
             string Code = LessonCode;
@@ -70,38 +72,36 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
-        readonly EncOperations pwenc = new EncOperations();
+        //public ActionResult ViewStudentsTemp()
+        //{
+        //    StudentsAndClassesModel model = new StudentsAndClassesModel();
+        //    var data = Retrieve();
+        //    var data2 = LoadClasses();
 
-        /*public ActionResult ViewStudentsTemp()
-        {
-            StudentsAndClassesModel model = new StudentsAndClassesModel();
-            var data = Retrieve();
-            var data2 = LoadClasses();
+        //    List<StudentModel> student = new List<StudentModel>();
+        //    foreach (var row in data)
+        //    {
+        //        student.Add(new StudentModel
+        //        {
+        //            Snum = row.Snum,
+        //            Fname = row.Fname,
+        //            Lname = row.Lname,
+        //            Cnum = row.Cnum
+        //        });
+        //    }
+        //    List<ClassModel> classes = new List<ClassModel>();
+        //    foreach (var row in data2)
+        //    {
+        //        classes.Add(new ClassModel
+        //        {
+        //            Cnum = row.Cnum
+        //        });
+        //    }
+        //    model.Classes = classes;
+        //    model.Students = student;
 
-            List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
-            {
-                student.Add(new StudentModel
-                {
-                    Snum = row.Snum,
-                    Fname = row.Fname,
-                    Lname = row.Lname,
-                    Cnum = row.Cnum
-                });
-            }
-            List<ClassModel> classes = new List<ClassModel>();
-            foreach (var row in data2)
-            {
-                classes.Add(new ClassModel
-                {
-                    Cnum = row.Cnum
-                });
-            }
-            model.Classes = classes;
-            model.Students = student;
-
-            return View(model);
-        }*/
+        //    return View(model);
+        //}*/
 
         public ActionResult Index(int direction = 3)
         {

@@ -21,10 +21,8 @@
             </div>
             <table style="width:100%">
                 <tr>
-
                     @if (Model.Students.Count == 0)
                     {
-
                     }
                     else
                     {
@@ -32,25 +30,21 @@
                         <th>Date</th>
                     }
                 </tr>
-
                 @foreach (var item in Model.Students)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem = item.userFirstName)
+                            @*@Html.DisplayFor(modelItem = item.userFirstName)*@
                             <a>
                                 <div class="inner-pfps">
-                                    @Html.DisplayFor(modelItem => item.Fname)
-
-                                    <img id="myimg" height="125" width="100" />
-
+                                    @Html.DisplayFor(modelItem => item.userFirstName)
+                                        <img  height="125" width="100" />
                                 </div>
                             </a>
                         </td>
 
                         <td>
                             <div class="checkbox">
-
                                 @Html.CheckBox("checkbox")
                             </div>
                         </td>
