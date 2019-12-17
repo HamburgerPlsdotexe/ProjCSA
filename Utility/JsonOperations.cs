@@ -70,6 +70,18 @@ namespace ProjectCSA
                 return true;
             }
         }
+        public static void JsonClass(string LessonCode)
+        {
+            List<JsonAttendance> _data = new List<JsonAttendance>();
+                JsonAttendance Model = new JsonAttendance()
+                {
+                    
+
+                };
+
+            string json = JsonConvert.SerializeObject(_data.ToArray());
+            System.IO.File.WriteAllText(HostingEnvironment.MapPath($@"~/Content/{LessonCode}.json"), json);
+        }
     }
    
 }

@@ -15,6 +15,10 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
+using System.Net.Sockets;
+using System.Net;
+using System.Threading;
+using System.Text;
 
 namespace ProjectCSA.Controllers
 {
@@ -23,7 +27,7 @@ namespace ProjectCSA.Controllers
     {
         readonly EncOperations pwenc = new EncOperations();
 
-        public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
+        public ActionResult ScheduleNextWeek() // Increments the week with one so that index displays the next week of a teacher's schedule
         {
             int n = 1;
             Index(n);
@@ -38,8 +42,9 @@ namespace ProjectCSA.Controllers
 
         public ActionResult QR_Button_Click(string LessonCode)
         {
-            //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
-            string Code = LessonCode;
+            Thread ServerThread = new Thread(new ThreadStart(PrepareConcurrentServer));
+            ServerThread.Start();
+            string Code = LessonCode;                           //lessoncode 
 
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
@@ -68,40 +73,9 @@ namespace ProjectCSA.Controllers
         }
         public string GetUserTcode()
         {
-            var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
+            var username = User.Identity.Name;              //space after name 'knyee ' messes up system.  FIXED
             return username;
         }
-
-        //public ActionResult ViewStudentsTemp()
-        //{
-        //    StudentsAndClassesModel model = new StudentsAndClassesModel();
-        //    var data = Retrieve();
-        //    var data2 = LoadClasses();
-
-        //    List<StudentModel> student = new List<StudentModel>();
-        //    foreach (var row in data)
-        //    {
-        //        student.Add(new StudentModel
-        //        {
-        //            Snum = row.Snum,
-        //            Fname = row.Fname,
-        //            Lname = row.Lname,
-        //            Cnum = row.Cnum
-        //        });
-        //    }
-        //    List<ClassModel> classes = new List<ClassModel>();
-        //    foreach (var row in data2)
-        //    {
-        //        classes.Add(new ClassModel
-        //        {
-        //            Cnum = row.Cnum
-        //        });
-        //    }
-        //    model.Classes = classes;
-        //    model.Students = student;
-
-        //    return View(model);
-        //}*/
 
         public ActionResult Index(int direction = 3)
         {
@@ -291,6 +265,56 @@ namespace ProjectCSA.Controllers
                 TempData["ClassCode"] = model.Classes[0];
                 return View("ViewStudentsTemp", model);
             }
+
+        }
+        public void PrepareConcurrentServer()
+        {
+            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+            int portNumber = 11111;
+            try
+            {
+                IPEndPoint localEndPoint = new IPEndPoint(ipAddress, portNumber);
+                Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                listener.Bind(localEndPoint);
+                listener.Listen(200);
+                while (true)
+                {
+                    Socket connection = listener.Accept();
+                    Thread ListeningThread = new Thread(() => { HandleClient(connection); });
+                    ListeningThread.Start();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Out.WriteLine(e.Message);
+            }
+
+        }
+
+        public void HandleClient(Socket connection)
+        {
+            byte[] bytes = new Byte[1024];
+            String data = null;
+            int numByte = 0;
+            string replyMsg = "";
+
+
+
+            numByte = connection.Receive(bytes);
+            data = Encoding.ASCII.GetString(bytes, 0, numByte);
+            replyMsg = processMessage(data);
+
+
+
+        }
+        List<string> list = new List<string>();
+
+        public string processMessage(string data)
+        {
+            var data2 = data;
+            int DD = 1;
+            list.Add(data2);
+            return data2;
 
         }
 

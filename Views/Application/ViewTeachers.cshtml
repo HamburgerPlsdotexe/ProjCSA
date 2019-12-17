@@ -4,12 +4,12 @@
     ViewBag.Title = "ViewTeachers";
 }
 
+    <div class="header">
 
-<h2>ViewTeachers</h2>
-
-<p>
-    @Html.ActionLink("Sign up", "SignUp")
-</p>
+        <div class="headers">
+                @Html.ActionLink("Logout", "LogOut", "Application", null, new { @class = "headerbuttons" })
+        </div>
+    </div>
 <table class="table">
     <tr>
         <th>
