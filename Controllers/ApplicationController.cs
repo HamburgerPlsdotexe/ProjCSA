@@ -19,6 +19,8 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 using System.Text;
+using System.Diagnostics;
+using System.Globalization;
 
 namespace ProjectCSA.Controllers
 {
@@ -40,9 +42,19 @@ namespace ProjectCSA.Controllers
             return RedirectToAction("Index");
         }
 
+        public string ReturnDateOfWeek(int year, int weekOfYear, int dayofweek)
+        {
+            DateTime[] array = ReturnDatesOfWeekArray(year, weekOfYear);
+            string Output = array[dayofweek].ToString("dd/MM/yyyy");
+            return Output;
+        }
+
+        
+
         public ActionResult QR_Button_Click(string LessonCode)
         {
             Thread ServerThread = new Thread(new ThreadStart(PrepareConcurrentServer));
+            
             ServerThread.Start();
             string Code = LessonCode;                           //lessoncode 
 
@@ -129,18 +141,6 @@ namespace ProjectCSA.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login", "Login");
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
         }
 
         [AllowAnonymous]
@@ -267,9 +267,30 @@ namespace ProjectCSA.Controllers
             }
 
         }
+        private static bool Continue2;
+
+        public static void TimerFunction()                                                          //Thread that counts to 60 seconds, then returns false. Is used to stop the server after 1 minute.
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            bool Continue = true;
+            while (Continue)
+            {
+                TimeSpan ts = stopWatch.Elapsed;
+                if (ts.TotalSeconds >= 60)
+                {
+                    Continue = false;
+                }
+            }
+            Continue2 = true;
+
+        }
+
         public void PrepareConcurrentServer()
         {
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+            Thread TimerThread = new Thread(() => { TimerFunction(); });
+            TimerThread.Start();
+            IPAddress ipAddress = IPAddress.Parse("127.0.0.1"); //192.168.0.36
             int portNumber = 11111;
             try
             {
@@ -282,15 +303,19 @@ namespace ProjectCSA.Controllers
                     Socket connection = listener.Accept();
                     Thread ListeningThread = new Thread(() => { HandleClient(connection); });
                     ListeningThread.Start();
+                    if(Continue2 == true)                                                                          //This method runs in a thread and should stop when TimerFunction has counted to 60 seconds.
+                    {
+                        listener.Close();
+                        ListeningThread.Abort();
+                        TimerThread.Abort();
+                    }
                 }
             }
             catch (Exception e)
             {
                 Console.Out.WriteLine(e.Message);
             }
-
         }
-
         public void HandleClient(Socket connection)
         {
             byte[] bytes = new Byte[1024];
@@ -298,16 +323,11 @@ namespace ProjectCSA.Controllers
             int numByte = 0;
             string replyMsg = "";
 
-
-
             numByte = connection.Receive(bytes);
             data = Encoding.ASCII.GetString(bytes, 0, numByte);
             replyMsg = processMessage(data);
-
-
-
         }
-        List<string> list = new List<string>();
+        public List<string> list = new List<string>();
 
         public string processMessage(string data)
         {

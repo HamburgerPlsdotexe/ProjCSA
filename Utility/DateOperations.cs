@@ -11,7 +11,33 @@ namespace ProjectCSA
     {
         public static Random rand = new Random();
 
+
+        public static DateTime[] ReturnDatesOfWeekArray(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            var weekNum = weekOfYear;
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+            var result = firstThursday.AddDays(weekNum * 7);
+            DateTime day = result.AddDays(-3);
+            DateTime[] DaysArray = new DateTime[7];
+            for (int i = 0; i < 7; i++)
+            {
+                DaysArray[i] = day;
+                day = day.AddDays(1);
+            };
+
+            return DaysArray;
+        }
+
         static int weeks = GetWeekOfYear();
+
         public static int GetWeekOfYear()
         {
             DateTime time = DateTime.Today;

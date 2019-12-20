@@ -1,16 +1,50 @@
 ﻿@{
     ViewBag.Title = "TestQR";
 }
+<link rel="stylesheet" type="text/css" href="../../Content/QRPage.css">
+
 <div class="header">
     <div class="headers">
         <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to student List</a>
-        @Html.ActionLink("Logout", "LogOut", "Application")
+        @Html.ActionLink("Logout", "LogOut", "Application", null, new { @class = "headerbuttons" })
+        <a>Time left for qr code: </a><a id="Timer"></a>
+    </div>
+</div>
+<div>
+</div>
+<div class="maincontent">
+    <div class="center">
+        <img class="QR" src="@ViewData["QRCodeImage"]" />
     </div>
 </div>
 
-<div class="center">
-    <img style="display:initial; width:500px; height:500px; margin-top:160px; margin-left:36%;" src="@ViewData["QRCodeImage"]" />
-</div>
 
+<script>
+    //Timer to show how long the QR code is active. Could have some errors in it, msg Daan if you find any.
 
-            
+    
+        if (sessionStorage.getItem("key") < 61) {
+            var y = sessionStorage.getItem("key");
+            if (y == null) {
+                y = 61;
+            }
+        }
+        else {
+            var y = 61;
+        }
+    var x = setInterval(function () {
+        y--;
+
+        sessionStorage.setItem("key", y);
+        document.getElementById("Timer").innerHTML = sessionStorage.getItem("key");
+        if (y < 0) {
+            clearInterval(x);
+            sessionStorage.setItem("FinalKey", "The QR code has expired.");
+            document.getElementById("Timer").innerHTML = "The QR code has expired.";
+        }
+    }, 1000);
+
+    onbeforeunload = function () {
+        sessionStorage.clear();
+    };
+</script>

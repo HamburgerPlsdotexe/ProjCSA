@@ -3,6 +3,7 @@
     ViewBag.Title = "Welcome";
 }
 
+<link rel="stylesheet" type="text/css" href="../../Content/IndexCss.css">
 
 <div class=wrap>
     <div class="header">
@@ -52,7 +53,9 @@
 
                         @for (int i = 0; i < days.Length; i++)
                         {
-                            <th>@(days[i])</th>
+                        <th>
+                            @(days[i]) <a >@Html.Action("ReturnDateOfWeek", "Application", new { year = DateTime.Now.Year, weekOfYear = ViewData["weeks"], DayOfWeek = i }) </a>
+                        </th>
                         }
                     </tr>
                 </thead>
@@ -93,7 +96,7 @@
                                 </td>
                                 @for (int x = 0; x < 7; x++)                // For every day of the week
                                 {
-                                        <td>
+                                    <td>
                                         @if (Array.Exists(holidays, element => element == weeks) && i == 1)
                                         {
                                             @("Holiday")
@@ -102,7 +105,7 @@
                                         {
                                             if (item.Week == weeks.ToString() && item.Hours.Contains(i) && item.Day == days[x])  //check if lesson week is equivalent to the current week in the webbrowser.
                                             {
-                                                <a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { userClass = item.Class, CCode = item.LessonCode }, null) </a>
+                                                <p><a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { userClass = item.Class, CCode = item.LessonCode }, null)</a></p>
                                                 <p><a>ROOM @(item.Classroom)</a></p>
                                             }
                                         }
