@@ -1,0 +1,20 @@
+﻿.inner-pfps {
+    height: 0px;
+    text-align: center;
+    position: relative;
+}
+
+img {
+    position: absolute;
+    z-index: 2;
+    height: 200px;
+    width: 140px;
+    left: 50px;
+    top: 150px;
+    margin: auto;
+    display: block;
+}
+.headerbuttons {
+margin-bottom:40px;
+
+}

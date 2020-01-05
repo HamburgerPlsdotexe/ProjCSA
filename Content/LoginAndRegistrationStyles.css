@@ -181,6 +181,7 @@
 
     .login100-form-btn:hover {
         background: #FF0000;
+        cursor: pointer;
     }
 
 .validate-input {

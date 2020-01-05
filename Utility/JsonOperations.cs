@@ -35,8 +35,7 @@ namespace ProjectCSA
                     Classroom = ClassRooms[ClassRoomInt],
                     Hours = hours,
                     Class = ClassCode,
-                    LessonCode = ClassCode + "-" + Weeks + "-" + DateTime.Now.Date.ToString("d")                  //INF1I-49-Date
-
+                    LessonCode = ClassCode                                                                                      //INF1I-49-Date
                 };
                 if (DoesExist(_data, tempmodel))
                 {
@@ -49,7 +48,7 @@ namespace ProjectCSA
             };
 
             string json = JsonConvert.SerializeObject(_data.ToArray());
-            string Tcode = tcode;
+            string Tcode = tcode.ToUpper();
             System.IO.File.WriteAllText(HostingEnvironment.MapPath($@"~/Content/{Tcode}.json"), json);
         }
         public static bool DoesExist(List<ScheduleModel> _data, ScheduleModel tempmodel)
@@ -70,6 +69,7 @@ namespace ProjectCSA
                 return true;
             }
         }
+
         public static void JsonClass(string LessonCode)
         {
             List<JsonAttendance> _data = new List<JsonAttendance>();

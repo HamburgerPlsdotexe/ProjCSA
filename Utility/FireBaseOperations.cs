@@ -20,7 +20,7 @@ namespace ProjectCSA.Utility
         public static IFirebaseClient client;
         public static FirebaseResponse response;
 
-        public static List<StudentModel> Retrieve()
+        public static List<StudentModel> RetrieveStudents()
         {
             client = new FireSharp.FirebaseClient(config);
             response = client.Get("/Students");
@@ -28,8 +28,21 @@ namespace ProjectCSA.Utility
             string responseBody = response.Body;
             var firebaseLookup = JsonConvert.DeserializeObject<Dictionary<string, StudentModel>>(responseBody);
             var data = firebaseLookup.Values.ToList();
+            
+            return data;
+        }
+
+        public static List<AttendanceModel> RetrieveAbsence(string lessoncode)
+        {
+            client = new FireSharp.FirebaseClient(config);
+            response = client.Get($"/{lessoncode}");
+
+            string responseBody = response.Body;
+            var firebaseLookup = JsonConvert.DeserializeObject<Dictionary<string, AttendanceModel>>(responseBody);
+            List<AttendanceModel> data = firebaseLookup.Values.ToList();
 
             return data;
         }
+
     }
 }
