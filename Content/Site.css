@@ -36,7 +36,6 @@ body, html {
 }
 
 .fixed_header {
-    -ms-overflow-style: auto width: 100%;
     height: 100%;
     table-layout: fixed;
     border-collapse: collapse;

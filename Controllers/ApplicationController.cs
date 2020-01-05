@@ -15,12 +15,6 @@ using System;
 using System.Web.Hosting;
 using QRCoder;
 using System.Drawing;
-using System.Net.Sockets;
-using System.Net;
-using System.Threading;
-using System.Text;
-using System.Diagnostics;
-using System.Globalization;
 
 namespace ProjectCSA.Controllers
 {
@@ -49,17 +43,12 @@ namespace ProjectCSA.Controllers
             return Output;
         }
 
-        
-
         public ActionResult QR_Button_Click(string LessonCode)
         {
-            Thread ServerThread = new Thread(new ThreadStart(PrepareConcurrentServer));
-            
-            ServerThread.Start();
-            string Code = LessonCode;                           //lessoncode 
+
 
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrgenerator.CreateQrCode(LessonCode, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
 
             System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
@@ -89,6 +78,21 @@ namespace ProjectCSA.Controllers
             return username;
         }
 
+        public bool DoesJsonExists(string Tcode)
+        {
+            string TCode = Tcode.ToUpper();
+            string relativepath = $@"~/Content/{TCode}.json";
+            var absolutepath = HttpContext.Server.MapPath(relativepath);
+            if (System.IO.File.Exists(absolutepath))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public ActionResult Index(int direction = 3)
         {
             if (direction == 1)
@@ -106,8 +110,13 @@ namespace ProjectCSA.Controllers
             {
                 return View();
             }
+
             else
             {
+                if (!DoesJsonExists(Tcode))
+                {
+                    PopulateJson(Tcode);
+                }
                 List<ScheduleModel> list = RetrieveValuesFromJson(Tcode);
                 foreach (var row in list)
                 {
@@ -199,6 +208,7 @@ namespace ProjectCSA.Controllers
 
         public ActionResult ViewTeachers()
         {
+
             ViewBag.Message = "Teacher List";
 
             var data = LoadTeachers();
@@ -221,15 +231,22 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult ReturnStudentListViewWithCnum(string userClass, string CCode)
+
+        public ActionResult ReturnStudentListViewWithCnum(string day, string week, string userClass, string CCode)
         {
-            string ccode = CCode;
+            string Tcode = GetUserTcode();
+            DateTime dateAndTime = DateTime.Now;
+            string date = dateAndTime.ToString("dd-MM-yyyy");
+            string Code = CCode + "-" + day + "-" + week + "-" + Tcode + "-" + date; //lessoncode 
+
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
-            var data = Retrieve();
-            var data2 = LoadClasses();
+
+            var StudentData = RetrieveStudents();
+            var ClassesData = LoadClasses();
+             
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
+            foreach (var row in StudentData)
             {
                 if (row.userClass == userClass)
                 {
@@ -239,21 +256,26 @@ namespace ProjectCSA.Controllers
                         userFirstName = row.userFirstName,
                         userLastName = row.userLastName,
                         userClass = row.userClass
+                               
                     });
                 }
             }
 
+
             List<ClassModel> classes = new List<ClassModel>();
-            foreach (var row in data2)
+            foreach (var row in ClassesData)
             {
                 classes.Add(new ClassModel
                 {
                     Cnum = row.Cnum
                 });
             }
+           
+
             model.Classes = classes;
             model.Students = student;
-            model.ClassCode = ccode;
+            model.ClassCode = Code;
+            model.Attendance = RetrieveAbsence(Code);
 
             if (model.Students.Count == 0)
             {
@@ -267,76 +289,5 @@ namespace ProjectCSA.Controllers
             }
 
         }
-        private static bool Continue2;
-
-        public static void TimerFunction()                                                          //Thread that counts to 60 seconds, then returns false. Is used to stop the server after 1 minute.
-        {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            bool Continue = true;
-            while (Continue)
-            {
-                TimeSpan ts = stopWatch.Elapsed;
-                if (ts.TotalSeconds >= 60)
-                {
-                    Continue = false;
-                }
-            }
-            Continue2 = true;
-
-        }
-
-        public void PrepareConcurrentServer()
-        {
-            Thread TimerThread = new Thread(() => { TimerFunction(); });
-            TimerThread.Start();
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1"); //192.168.0.36
-            int portNumber = 11111;
-            try
-            {
-                IPEndPoint localEndPoint = new IPEndPoint(ipAddress, portNumber);
-                Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                listener.Bind(localEndPoint);
-                listener.Listen(200);
-                while (true)
-                {
-                    Socket connection = listener.Accept();
-                    Thread ListeningThread = new Thread(() => { HandleClient(connection); });
-                    ListeningThread.Start();
-                    if(Continue2 == true)                                                                          //This method runs in a thread and should stop when TimerFunction has counted to 60 seconds.
-                    {
-                        listener.Close();
-                        ListeningThread.Abort();
-                        TimerThread.Abort();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.Out.WriteLine(e.Message);
-            }
-        }
-        public void HandleClient(Socket connection)
-        {
-            byte[] bytes = new Byte[1024];
-            String data = null;
-            int numByte = 0;
-            string replyMsg = "";
-
-            numByte = connection.Receive(bytes);
-            data = Encoding.ASCII.GetString(bytes, 0, numByte);
-            replyMsg = processMessage(data);
-        }
-        public List<string> list = new List<string>();
-
-        public string processMessage(string data)
-        {
-            var data2 = data;
-            int DD = 1;
-            list.Add(data2);
-            return data2;
-
-        }
-
     }
 }
