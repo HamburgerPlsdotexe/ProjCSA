@@ -2,11 +2,8 @@
 
 @{
     ViewBag.Title = "Home Page";
-    string Present = "";
-
 }
 <link rel="stylesheet" type="text/css" href="../../Content/StudentImage.css">
-
 
 <div class=wrap>
     <div class="header">
@@ -19,7 +16,6 @@
             @Html.ActionLink("Logout", "LogOut", "Application", null, new { @class = "headerbuttons" })
         </div>
     </div>
-        
     
     <div class="maincontent">
         @if (TempData["Temporary"] != null)
@@ -40,35 +36,35 @@
         {
 
 
-            <tr>
-                <td onmouseover="loadImage(@item.userStudentNum)">
-                    <a onclick="myFunction()">
-                        @Html.DisplayFor(modelItem => item.userFirstName)
-                        <img style="border-radius:10px; border: 3px solid #000;" />
-                    </a>
-                </td>
-                <td>
-                    <a>
-                        @Html.DisplayFor(modelItem => item.userStudentNum)
-                    </a>
-                </td>
-
-                <td>
-                    <a>
-
-                        @foreach (var items in Model.Attendance)
+    <tr>
+        <td onmouseover="loadImage(@item.userStudentNum)">
+            <a onclick="myFunction()">
+                @Html.DisplayFor(modelItem => item.userFirstName)
+                <img/> 
+            </a>
+        </td>
+        <td>
+            <a>
+                @Html.DisplayFor(modelItem => item.userStudentNum)
+            </a>
+        </td>
+        <td>
+            <a>
+                @if (Model.Attendance != null)                  //If there is no attendance in the database, load the normal student list without any attendance.
+                {
+                    foreach (var items in Model.Attendance)
+                    {
+                        if (items.StudentNumber == item.userStudentNum)
                         {
-                            if (items.StudentNumber == item.userStudentNum)
-                            {
-                                <a>
-                                    @(HttpUtility.HtmlDecode("&#10004;"))
-                                </a>
-                            }
+                            <a>
+                                @(HttpUtility.HtmlDecode("&#10004;"))
+                            </a>
                         }
-                    </a>
-
-                </td>
-            </tr>
+                    }
+                }
+            </a>
+        </td>
+    </tr>
 
         }
 
@@ -97,13 +93,11 @@
     var storageRef = storage.ref();
 
     function loadImage(studNum) {
-        //window.alert(studNum);
         studNum = String(studNum);
         if (studNum.length < 7) {
             studNum = '0' + studNum;
         }
         var location = 'item-pics/' + studNum + '.jpg';
-        //window.alert(location);
         var tangRef = storageRef.child(location);
         tangRef.getDownloadURL().then(function (url) {
 

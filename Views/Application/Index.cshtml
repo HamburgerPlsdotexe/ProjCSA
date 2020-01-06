@@ -105,7 +105,7 @@
                                         {
                                             if (item.Week == weeks.ToString() && item.Hours.Contains(i) && item.Day == days[x])  //check if lesson week is equivalent to the current week in the webbrowser.
                                             {
-                                                <p><a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { day = item.Day, week = item.Week, userClass = item.Class, CCode = item.LessonCode }, null)</a></p>
+                                                <p><a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { room = item.Classroom, day = item.Day, week = item.Week, userClass = item.Class, CCode = item.LessonCode }, null)</a></p>
                                                 <p><a>ROOM @(item.Classroom)</a></p>
                                             }
                                         }

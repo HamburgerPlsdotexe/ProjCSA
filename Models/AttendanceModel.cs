@@ -8,7 +8,5 @@ namespace ProjectCSA.Models
         public string Present { get; set; }
         [Display(Name = "Student Number")]
         public string StudentNumber { get; set; }
-
-
     }
 }

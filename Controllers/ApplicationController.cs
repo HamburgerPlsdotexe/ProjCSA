@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using static ProjectCSA.Utility.FireBaseOperations;
 using static DataLibrary.Logic.TeacherProcessor;
-using static DataLibrary.Logic.StudentProcessor;
 using static DataLibrary.Logic.ClassProcessor;
 using static ProjectCSA.DateOperations;
 using static ProjectCSA.JsonOperations;
@@ -23,13 +22,13 @@ namespace ProjectCSA.Controllers
     {
         readonly EncOperations pwenc = new EncOperations();
 
-        public ActionResult ScheduleNextWeek() // Increments the week with one so that index displays the next week of a teacher's schedule
+        public ActionResult ScheduleNextWeek()      // Increments the week with one so that index displays the next week of a teacher's schedule
         {
             int n = 1;
             Index(n);
             return RedirectToAction("Index");
         }
-        public ActionResult SchedulePreviousWeek() // Same as the previous method but inverted
+        public ActionResult SchedulePreviousWeek()  // Same as the previous method but inverted
         {
             int n = 2;
             Index(n);
@@ -45,8 +44,6 @@ namespace ProjectCSA.Controllers
 
         public ActionResult QR_Button_Click(string LessonCode)
         {
-
-
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrgenerator.CreateQrCode(LessonCode, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
@@ -181,6 +178,7 @@ namespace ProjectCSA.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 if (DoesTcodeExist(model.Tcode))
                 {
                     string[][] Encrypted = new string[][] { pwenc.Run(model.Password) };
@@ -201,8 +199,12 @@ namespace ProjectCSA.Controllers
                     ViewData["ErrorMessage"] = "That teacher code already exists!";
                     return View("SignUp");                                                          //Not a unique Tcode, redirect to signup
                 }
+
             }
-            ViewData["ErrorMessage"] = "Teachercode is too long!";
+            if (model.Tcode == null ||  model.Tcode.Length != 5  )
+            {
+                ViewData["ErrorMessage"] = "Your teacher code has to be 5 characters long!";
+            }
             return View("SignUp");                                                                  //other error, redirect to signup
         }
 
@@ -232,12 +234,12 @@ namespace ProjectCSA.Controllers
             }
         }
 
-        public ActionResult ReturnStudentListViewWithCnum(string day, string week, string userClass, string CCode)
+        public ActionResult ReturnStudentListViewWithCnum(string room, string day, string week, string userClass, string CCode)
         {
             string Tcode = GetUserTcode();
             DateTime dateAndTime = DateTime.Now;
             string date = dateAndTime.ToString("dd-MM-yyyy");
-            string Code = CCode + "-" + day + "-" + week + "-" + Tcode + "-" + date; //lessoncode 
+            string Code = CCode + "-" + day + "-" + week + "-" + Tcode + "-" + date + "-" + room; //lessoncode 
 
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
 
@@ -275,8 +277,13 @@ namespace ProjectCSA.Controllers
             model.Classes = classes;
             model.Students = student;
             model.ClassCode = Code;
-            model.Attendance = RetrieveAbsence(Code);
-
+            try
+            {
+                model.Attendance = RetrieveAbsence(Code);
+            }
+            catch
+            {
+            }
             if (model.Students.Count == 0)
             {
                 TempData["Temporary"] = "No students where found!";

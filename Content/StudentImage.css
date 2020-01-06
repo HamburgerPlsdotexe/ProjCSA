@@ -13,6 +13,7 @@ img {
     top: 150px;
     margin: auto;
     display: block;
+    position: fixed;
 }
 .headerbuttons {
 margin-bottom:40px;
