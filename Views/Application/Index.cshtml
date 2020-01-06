@@ -3,6 +3,7 @@
     ViewBag.Title = "Welcome";
 }
 
+<link rel="stylesheet" type="text/css" href="../../Content/IndexCss.css">
 
 <div class=wrap>
     <div class="header">
@@ -27,15 +28,6 @@
             @Html.ActionLink(HttpUtility.HtmlDecode("&rarr;"), "ScheduleNextWeek", "Application", null, new { @class = "headerbuttons" })
         </div>
     </div>
-
-    <!---
-          p1 start 02/09/19                    p2 start 18/11/19               p3 start 17/02/20               p4 start 04/05/20
-
-          10/10/19 - 25/10/19 herfst           10/04/20 Good                   27/04/20 konings               05/05/20 bevrijding                     27/07/20 - 31/08/20 zomer
-          23/12/19 - 03/12/19 kerst            12/04/20 1e paas                28/04/20 - 01/05/20 mei        21/05/20 - 22/05/20 Hemelvaart
-          24/02/19 - 28/02/20 voorjaars        13/04/20 2e                                                    01/06/20 - 2e pinkster
-    -->
-
     @{
         DateTime per1 = new DateTime(2019, 9, 2);
         DateTime per2 = new DateTime(2019, 11, 18);
@@ -61,7 +53,9 @@
 
                         @for (int i = 0; i < days.Length; i++)
                         {
-                            <th>@(days[i])</th>
+                        <th>
+                            @(days[i]) <a >@Html.Action("ReturnDateOfWeek", "Application", new { year = DateTime.Now.Year, weekOfYear = ViewData["weeks"], DayOfWeek = i }) </a>
+                        </th>
                         }
                     </tr>
                 </thead>
@@ -85,8 +79,7 @@
                                 timeSpan = timeSpan.Add(AddTime2); //add 20 minutes break time
                             }
                             <tr>
-
-                                <td>
+                                <td class="graybackground">
                                     <h3>@(i)</h3>
                                     <a>
                                         @{timeSpan.ToString();}
@@ -101,12 +94,9 @@
                                         </a>
                                     </div>
                                 </td>
-
-
-
                                 @for (int x = 0; x < 7; x++)                // For every day of the week
                                 {
-                                        <td>
+                                    <td>
                                         @if (Array.Exists(holidays, element => element == weeks) && i == 1)
                                         {
                                             @("Holiday")
@@ -115,7 +105,7 @@
                                         {
                                             if (item.Week == weeks.ToString() && item.Hours.Contains(i) && item.Day == days[x])  //check if lesson week is equivalent to the current week in the webbrowser.
                                             {
-                                                <a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { Cnum = item.Class, CCode = item.LessonCode }, null) </a>
+                                                <p><a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { day = item.Day, week = item.Week, userClass = item.Class, CCode = item.LessonCode }, null)</a></p>
                                                 <p><a>ROOM @(item.Classroom)</a></p>
                                             }
                                         }

@@ -2,68 +2,89 @@
 
 @{
     ViewBag.Title = "Home Page";
+    string Present = "";
+
 }
+<link rel="stylesheet" type="text/css" href="../../Content/StudentImage.css">
 
 
 <div class=wrap>
     <div class="header">
-
         <div class="headers">
             <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to schedule</a>
-            @Html.ActionLink("QR_Button_Click", "QR_Button_Click", "Application", new { LessonCode = Model.ClassCode }, new { @class = "headerbuttons", })
-            @Html.ActionLink("Logout", "LogOut", "Application")
+            @if (TempData["Temporary"] == null)
+            {
+                @Html.ActionLink("Generate QR code", "QR_Button_Click", "Application", new { LessonCode = Model.ClassCode }, new { @class = "headerbuttons", })
+            }
+            @Html.ActionLink("Logout", "LogOut", "Application", null, new { @class = "headerbuttons" })
         </div>
     </div>
+        
+    
     <div class="maincontent">
-        <div class="table2">
-            <div class="center">
-                <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
-            </div>
-            <table style="width:100%">
-                <tr>
+        @if (TempData["Temporary"] != null)
+        {
+            <div class="red">@TempData["Temporary"]</div> @*error message if there is no class/students.*@
+        }
 
-                    @if (Model.Students.Count == 0)
-                    {
+        @if (TempData["Temporary"] == null)
+        {
+    <table>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().userFirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().userStudentNum)</th>
+            <th>Present</th>
+        </tr>
 
-                    }
-                    else
-                    {
-                        <th>@Html.DisplayNameFor(model => model.Students.FirstOrDefault().userFirstName)</th>
-                        <th>Date</th>
-                    }
-                </tr>
+        @foreach (var item in Model.Students)
+        {
 
-                @foreach (var item in Model.Students)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem = item.userFirstName)
-                            <a>
-                                <div class="inner-pfps">
-                                    @Html.DisplayFor(modelItem => item.Fname)
 
-                                    <img id="myimg" height="125" width="100" />
+            <tr>
+                <td onmouseover="loadImage(@item.userStudentNum)">
+                    <a onclick="myFunction()">
+                        @Html.DisplayFor(modelItem => item.userFirstName)
+                        <img style="border-radius:10px; border: 3px solid #000;" />
+                    </a>
+                </td>
+                <td>
+                    <a>
+                        @Html.DisplayFor(modelItem => item.userStudentNum)
+                    </a>
+                </td>
 
-                                </div>
-                            </a>
-                        </td>
+                <td>
+                    <a>
 
-                        <td>
-                            <div class="checkbox">
+                        @foreach (var items in Model.Attendance)
+                        {
+                            if (items.StudentNumber == item.userStudentNum)
+                            {
+                                <a>
+                                    @(HttpUtility.HtmlDecode("&#10004;"))
+                                </a>
+                            }
+                        }
+                    </a>
 
-                                @Html.CheckBox("checkbox")
-                            </div>
-                        </td>
+                </td>
+            </tr>
 
-                    </tr>
-                }
-            </table>
-        </div>
+        }
+
+
+
+    </table>
+        }
+
     </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
 <script>
+    function myFunction() {
+  alert("Hover over a student to see their picture.");
+}
     var config =
     {
         apiKey: "AIzaSyAji2r1Ky37CjNzZsZlujBowTDY0ubSqx8",
@@ -71,34 +92,37 @@
         databaseURL: "https://studentpre-a7d96.firebaseio.com",
         storageBucket: "studentpre-a7d96.appspot.com",
     };
-
     firebase.initializeApp(config);
     var storage = firebase.storage();
     var storageRef = storage.ref();
-    var tangRef = storageRef.child('item-pics/10.jpg');
 
-    tangRef.getDownloadURL().then(function (url) {
-        var test = url
-        document.querySelector('img').src = test;
-    }).catch(function (error) {
-        switch (error.code) {
-            case 'storage/object_not_found':
-                break;
-
-            case 'storage/unauthorized':
-                break;
-
-            case 'storage/canceled':
-                break;
-
-            case 'storage/unknown':
-                break;
+    function loadImage(studNum) {
+        //window.alert(studNum);
+        studNum = String(studNum);
+        if (studNum.length < 7) {
+            studNum = '0' + studNum;
         }
-    });
+        var location = 'item-pics/' + studNum + '.jpg';
+        //window.alert(location);
+        var tangRef = storageRef.child(location);
+        tangRef.getDownloadURL().then(function (url) {
 
-    var test = 'firebase_url';
-    document.querySelector('img').src = test;
+            var test = url;
+            document.querySelector('img').src = test;
+        }).catch(function (error) {
+            switch (error.code) {
+                case 'storage/object_not_found':
+                    break;
+                case 'storage/unauthorized':
+                    break;
+                case 'storage/canceled':
+                    break;
+                case 'storage/unknown':
+                    break;
+            }
+        });
 
 
+    }
 
 </script>

@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Login";
 }
+<link rel="stylesheet" type="text/css" href="../../Content/LoginAndRegistrationStyles.css">
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -33,7 +35,7 @@
                     <div class="container-login100-form-btn">
                         <input type="submit" value="Login" class="login100-form-btn" />
                     </div>
-                    <a class="txt2" href="~/Application/SignUp/">
+                    <a class="LinkText" href="~/Application/SignUp/">
                         Create your Account
                     </a>
                 </form>

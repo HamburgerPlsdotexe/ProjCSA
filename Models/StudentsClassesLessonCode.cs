@@ -7,6 +7,7 @@ namespace ProjectCSA.Models
 {
     public class StudentsClassesLessonCode
     {
+        public List<AttendanceModel> Attendance { get; set; }
         public List<StudentModel> Students { get; set; }
         public List<ClassModel> Classes { get; set; }
         public string ClassCode { get; set; }

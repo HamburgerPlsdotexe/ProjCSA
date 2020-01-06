@@ -1,14 +1,18 @@
 ﻿@{
     ViewBag.Title = "TestQR";
 }
-    <div class="header">
-        <div class="headers">
-            <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to student List</a>
-            @Html.ActionLink("Logout", "LogOut", "Application")
-        </div>
+<link rel="stylesheet" type="text/css" href="../../Content/QRPage.css">
+
+<div class="header">
+    <div class="headers">
+        <a class="headerbuttons" href="javascript:void(0);" onclick="history.go(-1);">Back to student List</a>
+        @Html.ActionLink("Logout", "LogOut", "Application", null, new { @class = "headerbuttons" })
     </div>
-
-
-<div class="center">
-    <img src="@ViewData["QRCodeImage"]" alt="No qr code :(" style="height:500px;width:500px" />
+</div>
+<div>
+</div>
+<div class="maincontent">
+    <div class="center">
+        <img class="QR" src="@ViewData["QRCodeImage"]" />
+    </div>
 </div>

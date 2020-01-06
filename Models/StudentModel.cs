@@ -13,8 +13,6 @@ namespace ProjectCSA.Models
         public string userLastName { get; set; }
         [Display(Name = "Student Number")]
         public string userStudentNum { get; set; }
-
-
     }
 }
 

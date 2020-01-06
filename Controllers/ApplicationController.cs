@@ -21,7 +21,9 @@ namespace ProjectCSA.Controllers
     [Authorize]
     public class ApplicationController : Controller
     {
-        public ActionResult ScheduleNextWeek() // Increments the week with one so that mvc displays the next week of a teacher's schedule
+        readonly EncOperations pwenc = new EncOperations();
+
+        public ActionResult ScheduleNextWeek() // Increments the week with one so that index displays the next week of a teacher's schedule
         {
             int n = 1;
             Index(n);
@@ -34,13 +36,19 @@ namespace ProjectCSA.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult QR_Button_Click(string LessonCode, object sender, EventArgs e)
+        public string ReturnDateOfWeek(int year, int weekOfYear, int dayofweek)
         {
-            //This variable is the input for the qr-code, which should be pulled from the database instead of being an on-click event
-            string Code = LessonCode;
+            DateTime[] array = ReturnDatesOfWeekArray(year, weekOfYear);
+            string Output = array[dayofweek].ToString("dd/MM/yyyy");
+            return Output;
+        }
+
+        public ActionResult QR_Button_Click(string LessonCode)
+        {
+
 
             QRCodeGenerator qrgenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrgenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrgenerator.CreateQrCode(LessonCode, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
 
             System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
@@ -66,42 +74,24 @@ namespace ProjectCSA.Controllers
         }
         public string GetUserTcode()
         {
-            var username = User.Identity.Name;              //space after name 'knyee ' messes up system.
+            var username = User.Identity.Name;              //space after name 'knyee ' messes up system.  FIXED
             return username;
         }
 
-        readonly EncOperations pwenc = new EncOperations();
-
-        /*public ActionResult ViewStudentsTemp()
+        public bool DoesJsonExists(string Tcode)
         {
-            StudentsAndClassesModel model = new StudentsAndClassesModel();
-            var data = Retrieve();
-            var data2 = LoadClasses();
-
-            List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
+            string TCode = Tcode.ToUpper();
+            string relativepath = $@"~/Content/{TCode}.json";
+            var absolutepath = HttpContext.Server.MapPath(relativepath);
+            if (System.IO.File.Exists(absolutepath))
             {
-                student.Add(new StudentModel
-                {
-                    Snum = row.Snum,
-                    Fname = row.Fname,
-                    Lname = row.Lname,
-                    Cnum = row.Cnum
-                });
+                return true;
             }
-            List<ClassModel> classes = new List<ClassModel>();
-            foreach (var row in data2)
+            else
             {
-                classes.Add(new ClassModel
-                {
-                    Cnum = row.Cnum
-                });
+                return false;
             }
-            model.Classes = classes;
-            model.Students = student;
-
-            return View(model);
-        }*/
+        }
 
         public ActionResult Index(int direction = 3)
         {
@@ -120,8 +110,13 @@ namespace ProjectCSA.Controllers
             {
                 return View();
             }
+
             else
             {
+                if (!DoesJsonExists(Tcode))
+                {
+                    PopulateJson(Tcode);
+                }
                 List<ScheduleModel> list = RetrieveValuesFromJson(Tcode);
                 foreach (var row in list)
                 {
@@ -155,18 +150,6 @@ namespace ProjectCSA.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login", "Login");
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
         }
 
         [AllowAnonymous]
@@ -225,6 +208,7 @@ namespace ProjectCSA.Controllers
 
         public ActionResult ViewTeachers()
         {
+
             ViewBag.Message = "Teacher List";
 
             var data = LoadTeachers();
@@ -247,15 +231,22 @@ namespace ProjectCSA.Controllers
                 return View("Error");
             }
         }
-        public ActionResult ReturnStudentListViewWithCnum(string userClass, string CCode)
+
+        public ActionResult ReturnStudentListViewWithCnum(string day, string week, string userClass, string CCode)
         {
-            string ccode = CCode;
+            string Tcode = GetUserTcode();
+            DateTime dateAndTime = DateTime.Now;
+            string date = dateAndTime.ToString("dd-MM-yyyy");
+            string Code = CCode + "-" + day + "-" + week + "-" + Tcode + "-" + date; //lessoncode 
+
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
-            var data = Retrieve();
-            var data2 = LoadClasses();
+
+            var StudentData = RetrieveStudents();
+            var ClassesData = LoadClasses();
+             
 
             List<StudentModel> student = new List<StudentModel>();
-            foreach (var row in data)
+            foreach (var row in StudentData)
             {
                 if (row.userClass == userClass)
                 {
@@ -265,21 +256,26 @@ namespace ProjectCSA.Controllers
                         userFirstName = row.userFirstName,
                         userLastName = row.userLastName,
                         userClass = row.userClass
+                               
                     });
                 }
             }
 
+
             List<ClassModel> classes = new List<ClassModel>();
-            foreach (var row in data2)
+            foreach (var row in ClassesData)
             {
                 classes.Add(new ClassModel
                 {
                     Cnum = row.Cnum
                 });
             }
+           
+
             model.Classes = classes;
             model.Students = student;
-            model.ClassCode = ccode;
+            model.ClassCode = Code;
+            model.Attendance = RetrieveAbsence(Code);
 
             if (model.Students.Count == 0)
             {
@@ -293,6 +289,5 @@ namespace ProjectCSA.Controllers
             }
 
         }
-
     }
 }
