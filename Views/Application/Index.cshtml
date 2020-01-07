@@ -22,7 +22,6 @@
                 @(date)
             </a>
             <a class="headerbut">Current user: @Html.Action("GetUserTcode", "Application")</a>
-            <a class="headerbuttons" href="#">STATISTICS</a>
             @Html.ActionLink("Logout", "LogOut", "Application", null, new { @class = "headerbuttons" })
             @Html.ActionLink(HttpUtility.HtmlDecode("&larr;"), "SchedulePreviousWeek", "Application", null, new { @class = "headerbuttons" })
             @Html.ActionLink(HttpUtility.HtmlDecode("&rarr;"), "ScheduleNextWeek", "Application", null, new { @class = "headerbuttons" })
@@ -105,7 +104,7 @@
                                         {
                                             if (item.Week == weeks.ToString() && item.Hours.Contains(i) && item.Day == days[x])  //check if lesson week is equivalent to the current week in the webbrowser.
                                             {
-                                                <p><a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new { room = item.Classroom, day = item.Day, week = item.Week, userClass = item.Class, CCode = item.LessonCode }, null)</a></p>
+                                                <p><a>CLASS @Html.ActionLink(item.Class, "ReturnStudentListViewWithCnum", "Application", new {day = item.Day, week = item.Week, userClass = item.Class, CCode = item.LessonCode }, null)</a></p>
                                                 <p><a>ROOM @(item.Classroom)</a></p>
                                             }
                                         }

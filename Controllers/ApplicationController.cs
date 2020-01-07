@@ -234,12 +234,12 @@ namespace ProjectCSA.Controllers
             }
         }
 
-        public ActionResult ReturnStudentListViewWithCnum(string room, string day, string week, string userClass, string CCode)
+        public ActionResult ReturnStudentListViewWithCnum(string day, string week, string userClass, string CCode)
         {
             string Tcode = GetUserTcode();
             DateTime dateAndTime = DateTime.Now;
             string date = dateAndTime.ToString("dd-MM-yyyy");
-            string Code = CCode + "-" + day + "-" + week + "-" + Tcode + "-" + date + "-" + room; //lessoncode 
+            string Code = CCode + "-" + day + "-" + week + "-" + Tcode + "-" + date; //lessoncode 
 
             StudentsClassesLessonCode model = new StudentsClassesLessonCode();
 

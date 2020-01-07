@@ -26,8 +26,8 @@ namespace ProjectCSA
             Argon2id argon2 = new Argon2id(Encoding.UTF8.GetBytes(password))
             {
                 Salt = salt,
-                DegreeOfParallelism = 8, 
-                Iterations = 24,
+                DegreeOfParallelism = 2, 
+                Iterations = 6,
                 MemorySize = 128 * 128 
             };
             argon2.Dispose();
